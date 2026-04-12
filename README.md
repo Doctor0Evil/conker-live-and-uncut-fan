@@ -1,44 +1,72 @@
-### 🧱 Choosing the Tech Stack & Language
+# Conker: Live & Uncut — GAMEMODE.ai Codegen Hub
 
-You’ll be building a modern game with modern tools, so it makes sense to lean on mature, well-supported technology. Here’s a practical, production-ready stack recommendation:
+Fan-made, non‑commercial revival of **Conker: Live & Uncut**, designed as an **AI‑Chat codebase-generation system** for building and extending game code, tools, and libraries in **Rust, Lua, C++, MATLAB, and Godot** over modern engines (**UE5, Unity, Godot**).
 
-* **Game Engine:** Unreal Engine 5 (UE5), Unity, or Godot.  
-  * **Why:** These engines are industry-standard (or rapidly emerging) with strong communities and robust systems for animation, physics, networking, and rendering. Recreating the original Xbox or N64 engine would be a huge time sink that adds little practical value to a modern fan project.  
-  * **UE5 vs. Unity vs. Godot:** UE5 offers high-fidelity visuals out of the box and a strong multiplayer networking model that aligns well with the “Xbox-quality” vision for *Live & Uncut*. Unity is an excellent choice if you prefer C# and want a very flexible asset pipeline. Godot is a lightweight, open-source alternative that can be attractive for experimentation, custom tooling, and tight AI-Chat integration.
+This repository is structured so AI chat systems can:
+- Generate full files (not snippets) with clear paths and roles.
+- Discover and index tools, libraries, and knowledge-graphs.
+- Iteratively expand a large, modular codebase for the Conker: Live & Uncut vision.
 
-* **Primary Programming Language:**  
-  * **C++** for Unreal Engine 5  
-  * **C#** for Unity  
-  * **GDScript/C#** for Godot  
+---
 
-These core languages can be complemented with **Rust** and **Lua** for tooling, scripting, and data pipelines where appropriate.
+## 1. Project Intent
 
-***
+The goal is to recreate and extend the **original vision** of Conker: Live & Uncut:
 
-### 📦 Leveraging Existing Resources & Reverse-Engineering Work
+- Rebuild the **single-player campaign** in spirit with modern engine tech.
+- Implement the **story-driven multiplayer** modes (The Heist, War/Blitzkrieg, Alien Base, etc.).
+- Provide **tooling, data, and structure** for AI to help write, refactor, and analyze codebases for:
+  - Gameplay logic in C++/Godot/Rust.
+  - Scripting in Lua and Godot Script.
+  - Tooling and analysis in Rust and MATLAB.
+- Maintain a **clear separation** between:
+  - Fan-made code and assets.
+  - Any original, legally protected content (never committed here).
 
-You do not need to start from a blank slate. The community has already done substantial work on the original N64 version of *Conker’s Bad Fur Day*, which forms the single-player backbone of the cancelled *Live & Uncut* project.
+This repository doubles as:
+1. A **game codebase** skeleton.
+2. A **GAMEMODE.ai prompt surface** and knowledge graph for AI‑assisted development.
 
-#### 🏗️ Foundation: The N64 Decompilation Project
+---
 
-The `mkst/conker` repository is a work-in-progress decompilation of the N64 game into human-readable C. This is one of the most important technical references for this codebase because it allows you to:
+## 2. GAMEMODE.ai Rules in This Repo
 
-* Understand game logic by seeing how the original handled character states, AI behavior, camera control, and physics.  
-* Extract and mirror data structures so you can reason about how levels, actors, scripts, and assets are laid out in memory and on disk.  
-* Port mechanics into a modern engine by using the decompiled C as a reference when re-implementing systems in C++ (UE5), C# (Unity), or GDScript/C# (Godot).
+GAMEMODE.ai operational rules are embedded into the workflow:
 
-> **Important:** As with most decompilation-based projects, you are expected to supply your own legally acquired copy of the original N64 ROM for any tools or builds that depend on original game data.
+1. **Perform one or more of:**
+   - Build syntax (full, valid files).
+   - Find tools.
+   - Discover libraries.
+   - Analyze structures and GitHub repositories.
 
-#### 🛠️ Tools & Reverse Engineering
+2. **Research objects and completion:**
+   - Treat every missing file or TODO as a “research-object”.
+   - AI must generate *complete* first-pass implementations, not stubs.
+   - Every prompt should specify a concrete path:  
+     e.g. `Engine/Unreal/Source/Multiplayer/Heist/CLUHeistGameMode.cpp`.
 
-* **For Conker: Live & Reloaded (Xbox):** The `clr_unpack` tool and similar utilities can extract assets from the Xbox version. These tools are useful for studying updated models, textures, and file layouts, and for informing your own asset conversion pipeline. Modding and decensoring projects for *Live & Reloaded* have already reverse-engineered file types such as CAFF and RBM, which you can study as reference formats.  
-* **For Low-Level Reverse Engineering (Advanced):** Tools like Ghidra and IDA Pro let you analyze compiled game binaries, recover control flow, and understand how engine subsystems handle things like scripting, sound triggers, and resource loading.
+3. **Output discipline:**
+   - Always produce **valid, full-length code** or a **complete document**.
+   - The files generated here must **not contain citation markers** or tool artifacts.
 
-***
+4. **When a specific repository is mentioned:**
+   - Check its description.
+   - Inspect its directory structure.
+   - Infer missing or recommended directories and coding steps (for logic, not answered as questions in files).
 
-### 📁 A Suggested Project Structure
+5. **Continuous improvement:**
+   - Every change should suggest next objectives.
+   - Always offer routes to more advanced behavior and better structure.
 
-A clear, consistent project structure from day one is essential for attracting contributors and keeping AI-Chat output predictable. The following layout is tailored for GAMEMODE.ai workflows and large-codebase generation:
+6. **Indexing and lookup:**
+   - Prioritize structures that make AI lookup easy: index files, registries, and manifest-like documents.
+
+7. **Professional standards:**
+   - Follow practices from AAA game programming (UE5, Unity, Godot, major studios).
+
+---
+
+## 3. Repository Structure
 
 ```text
 conker-live-and-uncut-fan/
@@ -51,70 +79,94 @@ conker-live-and-uncut-fan/
 ├── Docs/
 │   ├── GDD/
 │   │   ├── 01_Game_Overview.md
-│   │   ├── 02_Multiplayer_Modes.md
-│   │   └── 03_Asset_Pipeline.md
-│   ├── ReverseEngineering/
-│   │   ├── N64_Decomp_Notes.md
-│   │   └── Xbox_File_Formats.md
+│   │   ├── 02_Multiplayer_Heist.md
+│   │   ├── 03_Multiplayer_War.md
+│   │   └── 04_Multiplayer_Alien_Base.md
+│   ├── TechDesign/
+│   │   ├── 01_Engine_Choice_UE5_Unity_Godot.md
+│   │   ├── 02_Networking_Model.md
+│   │   └── 03_AI_Chat_Workflow.md
 │   └── AI_Chat_Context/
+│       ├── System_Prompts_GAMEMODE_ai.md
 │       ├── Conker_Lore_Base.txt
-│       └── System_Prompts.md
+│       └── File_Generation_Guidelines.md
 ├── Engine/
 │   ├── Unreal/
 │   │   ├── ConkerLiveUncut.uproject
 │   │   ├── Source/
 │   │   │   ├── ConkerLiveUncut.Target.cs
 │   │   │   ├── ConkerLiveUncutEditor.Target.cs
-│   │   │   ├── Private/
+│   │   │   ├── Public/
 │   │   │   │   ├── Core/
-│   │   │   │   │   ├── CLUCharacterBase.cpp
-│   │   │   │   │   └── CLUPlayerController.cpp
+│   │   │   │   │   ├── CLUCharacterBase.h
+│   │   │   │   │   ├── CLUPlayerController.h
+│   │   │   │   │   └── CLUGameInstance.h
 │   │   │   │   ├── Multiplayer/
 │   │   │   │   │   ├── Heist/
-│   │   │   │   │   │   └── CLUHeistGameMode.cpp
-│   │   │   │   │   └── War/
-│   │   │   │   │       └── CLUWarGameState.cpp
+│   │   │   │   │   │   └── CLUHeistGameMode.h
+│   │   │   │   │   ├── War/
+│   │   │   │   │   │   └── CLUWarGameMode.h
+│   │   │   │   │   └── AlienBase/
+│   │   │   │   │       └── CLUAlienBaseGameMode.h
 │   │   │   │   └── Utils/
-│   │   │   │       └── CLUAssetLookup.cpp
-│   │   │   └── Public/
+│   │   │   │       └── CLUAssetLookup.h
+│   │   │   └── Private/
 │   │   │       ├── Core/
-│   │   │       │   ├── CLUCharacterBase.h
-│   │   │       │   └── CLUPlayerController.h
+│   │   │       │   ├── CLUCharacterBase.cpp
+│   │   │       │   ├── CLUPlayerController.cpp
+│   │   │       │   └── CLUGameInstance.cpp
 │   │   │       ├── Multiplayer/
 │   │   │       │   ├── Heist/
-│   │   │       │   │   └── CLUHeistGameMode.h
-│   │   │       │   └── War/
-│   │   │       │       └── CLUWarGameState.h
+│   │   │       │   │   └── CLUHeistGameMode.cpp
+│   │   │       │   ├── War/
+│   │   │       │   │   └── CLUWarGameMode.cpp
+│   │   │       │   └── AlienBase/
+│   │   │       │       └── CLUAlienBaseGameMode.cpp
 │   │   │       └── Utils/
-│   │   │           └── CLUAssetLookup.h
+│   │   │           └── CLUAssetLookup.cpp
 │   │   └── Content/
-│   │       ├── Characters/
 │   │       ├── Maps/
+│   │       ├── Characters/
 │   │       ├── Blueprints/
 │   │       └── Audio/
-│   └── Tools/
-│       ├── clr_unpack_rust/
-│       │   ├── Cargo.toml
-│       │   └── src/
-│       │       └── main.rs
-│       └── n64_asset_converter/
-│           ├── Cargo.toml
-│           └── src/
-│               └── lib.rs
+│   ├── Godot/
+│   │   ├── project.godot
+│   │   ├── src/
+│   │   │   ├── core/
+│   │   │   │   └── conker_character.gd
+│   │   │   └── multiplayer/
+│   │   │       ├── heist_mode.gd
+│   │   │       └── war_mode.gd
+│   │   └── scenes/
+│   └── Unity/
+│       ├── ProjectSettings/
+│       ├── Assets/
+│       │   ├── Scripts/
+│       │   │   ├── Core/
+│       │   │   └── Multiplayer/
+│       │   └── Scenes/
+├── Tools/
+│   ├── rust/
+│   │   ├── clr_unpack_rs/
+│   │   │   ├── Cargo.toml
+│   │   │   └── src/
+│   │   │       └── main.rs
+│   │   ├── n64_asset_converter/
+│   │   │   ├── Cargo.toml
+│   │   │   └── src/
+│   │   │       └── lib.rs
+│   ├── lua/
+│   │   └── gameplay_prototyping/
+│   │       └── heist_round_logic.lua
+│   ├── matlab/
+│   │   └── net_latency_analysis.m
+│   └── indexing/
+│       └── repo_index_generator.rs
 ├── Assets_Source/
-│   ├── Audio/
-│   │   ├── Voice/
-│   │   ├── SFX/
-│   │   └── Music/
 │   ├── Models/
-│   │   ├── Characters/
-│   │   │   ├── Conker.blend
-│   │   │   └── Tediz.blend
-│   │   └── Props/
 │   ├── Textures/
-│   │   └── UI/
+│   ├── Audio/
 │   └── Animations/
-│       └── Conker_Rig.fbx
 ├── Build/
 │   └── README.md
 ├── .gitignore
@@ -122,147 +174,128 @@ conker-live-and-uncut-fan/
 └── README.md
 ```
 
-In this structure, `Engine/` contains the actual game project and code, which is where most contributors and AI-generated C++ will live. `Assets_Source/` separates raw art and audio files from engine-imported content, which simplifies version control and makes non-destructive iteration easier.
+---
 
-***
+## 4. How AI‑Chat Should Use This Repo
 
-### ⚙️ The Development Workflow & Essential Tools
+### 4.1 Loading Context
 
-Building a multiplayer-heavy game demands a disciplined development workflow and the right supporting tools.
+Before generating files, an AI‑Chat system should ingest:
 
-# Conker: Live & Uncut — Fan Revival Codebase
+- `Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md`  
+  (Defines GAMEMODE.ai rules, style, and output constraints.)
 
-**Powered by GAMEMODE.ai**  
-Professional-grade codebase generation for AI-Chat assisted development.
+- `Docs/AI_Chat_Context/File_Generation_Guidelines.md`  
+  (Describes how to always output full files, paths, and next steps.)
 
-## 🎯 Project Intent
+- `Docs/AI_Chat_Context/Conker_Lore_Base.txt`  
+  (Captures tone, characters, and narrative for Conker.)
 
-This repository is the foundational codebase and knowledge graph for reviving **Conker: Live & Uncut**—the uncensored, expanded Xbox remake of *Conker’s Bad Fur Day* that was shown at E3 2003 but never released. The goal is to produce a **fan-made, non-commercial** implementation that respects the original vision while taking advantage of modern tools and workflows.
+This ensures generated code and docs align with the intended style and universe.
 
-The core objectives include:
+### 4.2 Requesting Files
 
-- Restoring an uncut single-player experience with expanded dialogue and missing cutscenes inspired by early previews.  
-- Implementing story-driven multiplayer scenarios such as **The Heist** (16-player bank robbery), **War** (Squirrels vs Tediz), and **Alien Base** co-op survival.  
-- Integrating these modes into a modern engine (Unreal Engine 5, Unity, or Godot) while preserving the feel and timing of the original Xbox/N64-era gameplay.
+Prompts should always specify:
 
-This repository is intentionally structured for **AI-Chat assisted development**, with documentation and prompts tailored to large-language models and automated code generation.
+- Exact **path** of the file.
+- Engine and language.
+- Role of the file and dependencies.
 
-## 🧠 GAMEMODE.ai System Rules (Context)
+Example:
 
-The project follows the **GAMEMODE.ai** methodology:
+> “Generate a full first-pass implementation for `Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp` that supports team-based bank robbery, basic objectives, and replication-ready scoring. Use the public header at `Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h`.”
 
-- **Supported Languages:** Rust, Lua, C++, MATLAB, Godot Script.  
-- **Supported Engines:** Unreal Engine 5, Unity, Godot.  
-- **Operational Directives (R):**  
-  1. Build syntax, find tools, discover libraries, and analyze repository structures.  
-  2. Identify research objects that require completion and produce finalized code with explicit file paths.  
-  3. Generate valid, full-length code or documents without citation markers.  
-  4. When a repository is mentioned, inspect its description and directory layout, then infer missing pieces and next coding steps.  
-  5. Always suggest new directions, next objectives, and concrete improvement tasks.  
-  6. Enhance AI-Chat codebase workflows via repo indexing, tagging, and lookup services.  
-  7. Learn from top industry standards and practices in professional game development and narrative design.
+The AI then returns a single, complete file body that can be saved verbatim at that path.
 
-## 🏗️ File Structure & Purpose
+---
 
-| Directory / File | Purpose | Primary Language |
-| :--- | :--- | :--- |
-| `.github/` | CI/CD workflows, build checks, and issue templates. | YAML, Markdown |
-| `Docs/` | Game design documents, reverse-engineering notes, and AI-Chat context. | Markdown, Plaintext |
-| `Engine/Unreal/` | Main UE5 project: gameplay, multiplayer modes, systems, and utilities. | C++ |
-| `Engine/Tools/` | Custom tools for asset extraction and conversion from N64/Xbox builds. | Rust |
-| `Assets_Source/` | Raw art and audio sources (Blender, FBX, WAV) prior to engine import. | N/A |
-| `Build/` | Packaged builds and runtime artifacts (typically ignored by Git). | N/A |
+## 5. Language and Engine Roles
 
-### Key Files to Generate with AI
+- **C++ / UE5**  
+  Primary implementation for high-fidelity multiplayer and core gameplay systems.
 
-- `Engine/Unreal/Source/Private/Core/CLUCharacterBase.cpp` – Base squirrel character, locomotion, and inventory.  
-- `Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp` – Core logic for the bank heist multiplayer scenario.  
-- `Engine/Tools/clr_unpack_rust/src/main.rs` – Rust CLI tool to parse Xbox CAFF/XPR archives.
+- **Godot Script**  
+  Lightweight prototypes or alternate implementations of modes (Heist/War) usable by smaller teams.
 
-## 🔗 Repository References for Reverse Engineering
+- **C# / Unity**  
+  Optional parallel prototype space (kept here mainly for flexibility and experimentation).
 
-These community repositories are reference material for behavior and file formats. They must not be copied verbatim into this project.
+- **Rust**  
+  Tooling and pipeline code, including:
+  - Xbox/N64 asset unpackers.
+  - Repo index generators.
+  - Static analyzers for the codebase.
 
-| Repository | Description | Research Objective |
-| :--- | :--- | :--- |
-| `mkst/conker` | N64 decompilation of *Conker’s Bad Fur Day* into C. | Recover original actor states, physics, camera, and asset structures. |
-| `clr_unpack` | Asset extractor for *Conker: Live & Reloaded* (Xbox). | Study CAFF and related formats for asset conversion and tooling. |
-| `ConkerModding` | Documentation and tools for decensoring *Live & Reloaded*. | Understand how censorship, triggers, and audio swaps were implemented. |
+- **Lua**  
+  Runtime scripting for gameplay prototyping and scenario logic.
 
-## 🛠️ Development Workflow for AI-Chat
+- **MATLAB**  
+  Networking and simulation scripts (e.g., latency modeling, tick-rate analysis).
 
-To get the most out of AI-assisted coding:
+---
 
-1. **Load Context Files**  
-   Start by feeding the AI the contents of `Docs/AI_Chat_Context/Conker_Lore_Base.txt` and `Docs/AI_Chat_Context/System_Prompts.md`. This anchors both tone and technical constraints before generating any code.
+## 6. Initial Research Objects (For AI‑Guided Completion)
 
-2. **Request Full File Implementations**  
-   Use prompts that include the full file path and describe the complete behavior you want. For example:  
-   “Generate the full C++ implementation for `Engine/Unreal/Source/Public/Multiplayer/War/CLUWarPlayerState.h`, including replication for team score and kill count.”
+These are first targets where AI should generate full files:
 
-3. **Iterate and Refine**  
-   After you receive a file from the AI, compile, test, and then request targeted refinements. Use the “Next Objectives” list below to advance systematically through the codebase.
+1. **Core Character Base (UE5)**  
+   - `Engine/Unreal/Source/Public/Core/CLUCharacterBase.h`  
+   - `Engine/Unreal/Source/Private/Core/CLUCharacterBase.cpp`  
+   Objective: Movement, jumping, basic camera control, replicated health, and simple emote/voice triggers.
 
-***
+2. **The Heist Game Mode (UE5)**  
+   - `Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h`  
+   - `Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp`  
+   Objective: Team setup, spawn points, vault door logic, objective state machine (setup, breach, escape).
 
-### 🧰 Supporting Tools and Pipelines
+3. **Asset Lookup Utility (UE5 + Rust Tooling)**  
+   - `Engine/Unreal/Source/Public/Utils/CLUAssetLookup.h`  
+   - `Engine/Unreal/Source/Private/Utils/CLUAssetLookup.cpp`  
+   - `Tools/indexing/repo_index_generator.rs`  
+   Objective: Provide a mapping from symbolic asset IDs to engine paths, with Rust tool auto-generating indices.
 
-Building a robust multiplayer game requires more than just an engine; it needs disciplined tooling around it.
+4. **Rust Asset Tools**  
+   - `Tools/rust/clr_unpack_rs/src/main.rs`  
+   Objective: CLI skeleton to parse Xbox-style archives (dummy parser first; real parsing later).
 
-| Tool Category | Recommended Tools | Why It Matters |
-| :--- | :--- | :--- |
-| Version Control | Git, GitHub or GitLab | Tracks changes, supports collaboration, and allows safe rollbacks. |
-| Asset Creation & Audio | Blender, Maya, Photoshop, FMOD or Wwise | Provides a clean pipeline for models, textures, and sound into the engine. |
-| Multiplayer & Networking | UE5 replication, Unity Netcode, or custom Godot networking | Multiplayer is central to *Live & Uncut*, especially 16-player scenarios. |
-| Community & Legal | Discord server, clear non-commercial license (e.g., MIT with explicit non-commercial clause or custom fan license) | Creates a hub for contributors and clarifies how work can be used. |
-| Prototyping | UE5 Blueprints, Unity Playmaker, or Godot visual scripting | Enables quick iteration on mechanics before committing to full C++ or C# implementations. |
+---
 
-***
+## 7. Next Directions and Improvement Suggestions
 
-### 🎯 Multiplayer Focus: Core Game Modes
+To improve this system for both developers and AI‑chat:
 
-The multiplayer component is the heart of *Live & Uncut*. It should guide your design and implementation priorities.
+1. **Knowledge Graph Expansion**  
+   - Create `Docs/TechDesign/04_Knowledge_Graph_Index.md` listing all major classes, tools, and scripts with short descriptions.  
+   - AI can use this as a “table of contents” for the whole codebase.
 
-- **The Heist:** Four teams of four players infiltrate and rob a bank. You will need systems for team selection, vault cracking or drilling, money bag handling, and extraction, along with dynamic interactions between rival teams.  
-- **War / Blitzkrieg:** Class-based, team-oriented combat between Squirrels and Tediz. This mode can highlight asymmetric roles, objective-based gameplay, and tightly tuned map design.  
-- **Alien Base:** A co-op mode where players face waves of aliens, essentially a “horde mode” that tests your spawning systems, AI behavior, and moment-to-moment combat loop.
+2. **Repo Index Service**  
+   - Implement `Tools/indexing/repo_index_generator.rs` to crawl the repo and emit a JSON index of:
+     - File paths.
+     - Language.
+     - Declared classes/functions (simple regex or parser).
+   - This JSON can be fed into AI as context for advanced queries.
 
-***
+3. **Coding Standards Docs**  
+   - Add `Docs/TechDesign/05_Coding_Standards_UE5.md` and `Docs/TechDesign/06_Coding_Standards_Rust.md`.  
+   - This helps AI match style and best practices from industry.
 
-### 📋 Next Objectives & Coding Tasks
+4. **Scenario-Specific Prompts**  
+   - Extend `Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md` with dedicated prompt blocks for:
+     - “Heist mode generation”
+     - “War mode generation”
+     - “Alien Base horde mode”
 
-Here is a concrete starting roadmap for AI-assisted development in this repository:
+5. **Multiplayer Test Harness**  
+   - Define a testing scaffold (e.g., `Engine/Unreal/Source/Private/Multiplayer/Tests/`) for AI to generate deterministic tests for game rules, so balancing and refactoring are safer.
 
-1. **Core Movement and Animation**  
-   - **Target:** `Engine/Unreal/Source/Private/Core/CLUCharacterBase.cpp` and its corresponding header.  
-   - **Objective:** Implement a responsive movement system that evokes N64-era movement while benefiting from modern UE5 input, animation blueprints, and root motion.
+---
 
-2. **The Heist Game Mode Loop**  
-   - **Target:** `Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp`  
-   - **Objective:** Implement team selection, objective flow (vault breach, money extraction), scoring, and network replication for key gameplay events.
+## 8. Legal Notice
 
-3. **Asset Extraction Pipeline (Rust)**  
-   - **Target:** `Engine/Tools/clr_unpack_rust/src/main.rs`  
-   - **Objective:** Build a Rust CLI that reads `.xpr` and `.caff` files and converts them into standard formats like PNG and WAV for use in modern engines.
+This is a **fan-operated, non-commercial** project.  
+Conker, Conker’s Bad Fur Day, Conker: Live & Reloaded, and Conker: Live & Uncut are properties of their respective rights holders. This repository does **not** distribute original game assets or ROMs and is intended for educational, preservation, and prototyping purposes only.
 
-***
+---
 
-### ⚙️ Improvement Suggestions for AI Output
-
-To keep AI-generated code maintainable and production-friendly:
-
-- Emphasize strong **code quality**, following Unreal’s coding standards and using features like `UPROPERTY(Replicated)` and `UFUNCTION(Server, Reliable)` where appropriate.  
-- Design for **modularity**, preferring small, focused components (such as `CLUInteractableComponent`) rather than monolithic classes that handle many responsibilities.  
-- Implement **lookup services**, for example a `CLUAssetLookup` singleton that maps original asset IDs to modern engine asset paths, making it easier to recreate or script original sequences.  
-- Favor **Rust** for tooling, as it provides memory safety, good performance, and cross-platform distribution with minimal friction.
-
-***
-
-### 🚫 Legal Disclaimer
-
-This is a **fan-made, non-commercial** project created for educational and preservation purposes. *Conker*, *Conker’s Bad Fur Day*, *Conker: Live & Reloaded*, and related characters and assets are trademarks of Rare Ltd. and Microsoft Corporation. This repository does not distribute original game assets or ROMs. Users are responsible for owning a legal copy of the original software if they choose to use any asset extraction tools associated with this project.
-
-***
-
-*Last Updated: 2026-04-12*  
-GAMEMODE.ai Active Session
+_Last updated: 2026-04-12_  
+_GAMEMODE.ai configuration: Conker Live & Uncut Revival_
