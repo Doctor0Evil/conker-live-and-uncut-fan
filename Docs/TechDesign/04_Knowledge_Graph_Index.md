@@ -1,224 +1,494 @@
 # Knowledge Graph Index – Conker: Live & Uncut (GAMEMODE.ai)
 
-This document acts as a human- and AI-readable index of the major systems, tools, and documents in this repository. Each entry summarizes the role of a file or subsystem in one sentence and notes its primary technology.
+This document is the human‑readable front door into the Conker: Live & Uncut knowledge graph. Every entry maps a stable **Node ID** to one or more files, engines, tools, and roles so that AI‑chat and humans can navigate the codebase as a coherent graph instead of a loose set of files.
+
+The matching machine‑readable schema for these nodes is defined in `schemas/knowledge_graph_systems.schema.json`. Any new system, tool, or document in this repository should be added to both the JSON index and, when appropriate, this Markdown overview.
 
 ---
 
-## 1. High-Level Design & Context
+## 1. Node Types and Naming
 
-- **Docs/GDD/01_Game_Overview.md**  
-  High-level vision, pillars, and scope for the Conker: Live & Uncut fan project (all engines).
+The knowledge graph is organized around a small, composable set of node types:
 
-- **Docs/GDD/02_Multiplayer_Heist.md**  
-  Detailed design for the Heist multiplayer mode (objectives, roles, scoring).
+- **SystemNode**: A gameplay or engine system (character, game mode, net model, asset service, etc.).
+- **ToolNode**: A CLI or service used by AI‑chat or developers (indexers, asset converters, scenario runners).
+- **DocNode**: A document that defines behavior, constraints, lore, or workflows.
+- **PromptNode**: A system prompt or prompt block used to guide AI‑chat behavior for specific tasks or modes.
 
-- **Docs/GDD/03_Multiplayer_War.md**  
-  Design for the War/Blitzkrieg mode including phase flow and team rules.
+Node IDs follow a reverse‑DNS‑style dotted naming convention:
 
-- **Docs/GDD/04_Multiplayer_Alien_Base.md**  
-  Design for the Alien Base / horde-style mode and its wave structure.
+- `systems.conker.core.character_base`
+- `systems.conker.multiplayer.heist`
+- `tools.conker.index.repo_index_generator`
+- `docs.conker.gdd.heist`
+- `prompts.conker.ai_chat.heist_generation`
 
-- **Docs/TechDesign/01_Engine_Choice_UE5_Unity_Godot.md**  
-  Rationale and division of responsibilities among Unreal, Unity, and Godot.
-
-- **Docs/TechDesign/02_Networking_Model.md**  
-  Networking model and replication strategy for multiplayer modes.
-
-- **Docs/TechDesign/03_AI_Chat_Workflow.md**  
-  How AI-chat systems should load context, generate files, and iterate safely.
-
-- **Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md**  
-  Core GAMEMODE.ai rules, style, and output constraints for AI agents.
-
-- **Docs/AI_Chat_Context/File_Generation_Guidelines.md**  
-  Rules for path-first, full-file generation with next-step suggestions.
-
-- **Docs/AI_Chat_Context/Conker_Lore_Base.txt**  
-  Lore, tone, and character references to keep writing on-brand and fan-safe.
-
-- **Docs/TechDesign/04_Knowledge_Graph_Index.md**  
-  This index – semantic map of systems and files for both humans and AI.
+Each node may have multiple file paths across engines and languages, but it must have exactly one canonical `node_id`.
 
 ---
 
-## 2. Unreal Engine – Core Systems
+## 2. Core Gameplay Systems (SystemNodes)
 
-- **Engine/Unreal/ConkerLiveUncut.uproject**  
-  Unreal project descriptor for the Conker: Live & Uncut UE5 project.
+### 2.1 CLU Character and Player Core
 
-- **Engine/Unreal/Source/ConkerLiveUncut.Target.cs**  
-  Build target definition for the game runtime binary.
+**Node ID:** `systems.conker.core.character_base`  
+**Type:** SystemNode  
+**Role:** Base third‑person character foundation for Conker in UE5 and parallel engines.
 
-- **Engine/Unreal/Source/ConkerLiveUncutEditor.Target.cs**  
-  Build target definition for the editor tooling binary.
+**Files (UE5 C++):**
 
-- **Engine/Unreal/Source/Public/Core/CLUCharacterBase.h**  
-  Base character class interface (movement, camera hooks, health, emotes).
+- `Engine/Unreal/Source/Public/Core/CLUCharacterBase.h`
+- `Engine/Unreal/Source/Private/Core/CLUCharacterBase.cpp`
 
-- **Engine/Unreal/Source/Private/Core/CLUCharacterBase.cpp**  
-  Implementation of common player character behavior and replication.
+**Responsibilities:**
 
-- **Engine/Unreal/Source/Public/Core/CLUPlayerController.h**  
-  Player controller interface for input, possession, and HUD interaction.
+- Character movement, jumping, and basic camera follow/orbit behavior.
+- Replicated health, simple damage events, and death/respawn hooks.
+- Emote/voice trigger interface for voice lines and animations.
+- Engine‑agnostic movement/physics parameters mirrored into Rust ECS and Godot/Unity frontends.
 
-- **Engine/Unreal/Source/Private/Core/CLUPlayerController.cpp**  
-  Implementation of player input handling and UI routing.
+**Related Nodes:**
 
-- **Engine/Unreal/Source/Public/Core/CLUGameInstance.h**  
-  Custom game instance interface for global state and session management.
-
-- **Engine/Unreal/Source/Private/Core/CLUGameInstance.cpp**  
-  Implementation of initialization, mode selection, and matchmaking glue.
+- `systems.conker.core.player_controller`
+- `systems.conker.core.game_instance`
+- `docs.conker.gdd.game_overview`
+- `docs.conker.tech.engine_choice`
 
 ---
 
-## 3. Unreal Engine – Multiplayer Modes
+**Node ID:** `systems.conker.core.player_controller`  
+**Type:** SystemNode  
+**Role:** Player input and camera controller that possesses `CLUCharacterBase`.
 
-### 3.1 Heist
+**Files (UE5 C++):**
 
-- **Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h**  
-  Public game mode interface for team-based Heist rules and match phases.
+- `Engine/Unreal/Source/Public/Core/CLUPlayerController.h`
+- `Engine/Unreal/Source/Private/Core/CLUPlayerController.cpp`
 
-- **Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp**  
-  Implementation of team setup, spawns, vault logic, and scoring.
+**Responsibilities:**
 
-### 3.2 War
+- Mapping input to movement, camera rotation, and interaction.
+- Handling respawn, spectate, and team‑switch logic.
+- Providing hooks for UI and HUD updates.
 
-- **Engine/Unreal/Source/Public/Multiplayer/War/CLUWarGameMode.h**  
-  Public game mode interface for War/Blitzkrieg phase and objective rules.
+**Related Nodes:**
 
-- **Engine/Unreal/Source/Private/Multiplayer/War/CLUWarGameMode.cpp**  
-  Implementation of War mode phases, respawns, and victory logic.
-
-### 3.3 Alien Base
-
-- **Engine/Unreal/Source/Public/Multiplayer/AlienBase/CLUAlienBaseGameMode.h**  
-  Public game mode interface for Alien Base horde-style survival rules.
-
-- **Engine/Unreal/Source/Private/Multiplayer/AlienBase/CLUAlienBaseGameMode.cpp**  
-  Implementation of waves, enemy spawning, and difficulty scaling.
+- `systems.conker.core.character_base`
+- `systems.conker.core.game_instance`
+- `docs.conker.gdd.game_overview`
 
 ---
 
-## 4. Unreal Engine – Utilities & Content
+**Node ID:** `systems.conker.core.game_instance`  
+**Type:** SystemNode  
+**Role:** Global Conker game state across maps, modes, and sessions.
 
-- **Engine/Unreal/Source/Public/Utils/CLUAssetLookup.h**  
-  Interface for mapping symbolic asset IDs to UE5 asset references.
+**Files (UE5 C++):**
 
-- **Engine/Unreal/Source/Private/Utils/CLUAssetLookup.cpp**  
-  Implementation of asset ID resolution and lookup caching.
+- `Engine/Unreal/Source/Public/Core/CLUGameInstance.h`
+- `Engine/Unreal/Source/Private/Core/CLUGameInstance.cpp`
 
-- **Engine/Unreal/Content/Maps/**  
-  Container for UE5 map assets (single-player and multiplayer levels).
+**Responsibilities:**
 
-- **Engine/Unreal/Content/Characters/**  
-  UE5-ready character meshes, animations, and related assets.
+- Bootstrapping the correct mode (SinglePlayer, Heist, War, Alien Base).
+- Holding session data (player profiles, matchmaking, progression).
+- Coordinating high‑level transitions between maps and modes.
 
-- **Engine/Unreal/Content/Blueprints/**  
-  Blueprint-based gameplay logic and prototypes layered over C++.
+**Related Nodes:**
 
-- **Engine/Unreal/Content/Audio/**  
-  Engine-imported audio assets (music, VO, SFX) derived from legal sources.
-
----
-
-## 5. Godot Project
-
-- **Engine/Godot/project.godot**  
-  Godot project configuration for Conker mode prototypes.
-
-- **Engine/Godot/src/core/conker_character.gd**  
-  GDScript implementation of a basic Conker-style player character.
-
-- **Engine/Godot/src/multiplayer/heist_mode.gd**  
-  Heist mode prototype logic for Godot (rules and flow).
-
-- **Engine/Godot/src/multiplayer/war_mode.gd**  
-  War mode prototype logic for Godot.
-
-- **Engine/Godot/scenes/**  
-  Godot scenes that assemble nodes and scripts into playable slices.
+- `systems.conker.multiplayer.heist`
+- `systems.conker.multiplayer.war`
+- `systems.conker.multiplayer.alien_base`
+- `docs.conker.tech.networking_model`
 
 ---
 
-## 6. Unity Shell
+### 2.2 Multiplayer Game Modes
 
-- **Engine/Unity/ProjectSettings/**  
-  Unity project configuration (inputs, graphics, etc.).
+**Node ID:** `systems.conker.multiplayer.heist`  
+**Type:** SystemNode  
+**Role:** Heist mode ruleset and game flow for UE5 and parallel simulations.
 
-- **Engine/Unity/Assets/Scripts/Core/**  
-  Intended location for Unity C# core scripts (character, systems).
+**Files (UE5 C++):**
 
-- **Engine/Unity/Assets/Scripts/Multiplayer/**  
-  Intended location for Unity C# multiplayer mode controllers.
+- `Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h`
+- `Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp`
 
-- **Engine/Unity/Assets/Scenes/**  
-  Unity scenes for levels and test harnesses.
+**Responsibilities:**
 
----
+- Team and class setup, spawn logic, and round lifecycle.
+- Vault door state machine (setup, breach, escape).
+- Replicated scoring and objective state for clients.
+- Integration point for mission DAG definitions and scenario tests.
 
-## 7. Tooling – Rust, Lua, MATLAB, Indexing
+**Related Nodes:**
 
-### 7.1 Rust Tools
-
-- **Tools/rust/clr_unpack_rs/Cargo.toml**  
-  Manifest for the Conker Live & Reloaded-style archive unpacker.
-
-- **Tools/rust/clr_unpack_rs/src/main.rs**  
-  CLI skeleton for parsing and unpacking Xbox-style asset archives.
-
-- **Tools/rust/n64_asset_converter/Cargo.toml**  
-  Manifest for N64-era asset conversion utilities.
-
-- **Tools/rust/n64_asset_converter/src/lib.rs**  
-  Library of N64 asset conversion routines for reuse by CLIs and pipelines.
-
-### 7.2 Lua Prototyping
-
-- **Tools/lua/gameplay_prototyping/heist_round_logic.lua**  
-  Lightweight Heist round logic prototype script for engine-agnostic testing.
-
-### 7.3 MATLAB Analysis
-
-- **Tools/matlab/net_latency_analysis.m**  
-  MATLAB script for modeling network latency and tick-rate effects.
-
-### 7.4 Repo Indexing
-
-- **Tools/indexing/repo_index_generator.rs**  
-  Rust CLI that crawls the repo and emits `Build/repo_index.json` for AI lookup.
+- `docs.conker.gdd.heist`
+- `docs.conker.tech.networking_model`
+- `prompts.conker.ai_chat.heist_generation`
+- `tools.conker.index.repo_index_generator`
 
 ---
 
-## 8. Assets and Build Outputs
+**Node ID:** `systems.conker.multiplayer.war`  
+**Type:** SystemNode  
+**Role:** War/Blitzkrieg mode rules and round flow.
 
-- **Assets_Source/Models/**  
-  Authoring/source 3D models for characters and environments.
+**Files (UE5 C++):**
 
-- **Assets_Source/Textures/**  
-  Source textures and atlases before engine import and compression.
+- `Engine/Unreal/Source/Public/Multiplayer/War/CLUWarGameMode.h`
+- `Engine/Unreal/Source/Private/Multiplayer/War/CLUWarGameMode.cpp`
 
-- **Assets_Source/Audio/**  
-  Raw audio source material (SFX, VO, music stems).
+**Responsibilities:**
 
-- **Assets_Source/Animations/**  
-  Source animation files for character rigs and cutscenes.
+- Phase‑based objectives and capture/defend logic.
+- Team scoring and sudden‑death conditions.
+- Replication of match state and time remaining.
 
-- **Build/README.md**  
-  Notes on build procedures, targets, and packaging workflows.
+**Related Nodes:**
 
-- **Build/repo_index.json**  
-  Auto-generated manifest of repository files and their inferred languages.
+- `docs.conker.gdd.war`
+- `docs.conker.tech.networking_model`
+- `prompts.conker.ai_chat.war_generation`
 
 ---
 
-## 9. Git & Project Metadata
+**Node ID:** `systems.conker.multiplayer.alien_base`  
+**Type:** SystemNode  
+**Role:** Alien Base survival/horde ruleset.
 
-- **.gitignore**  
-  Ignore rules for build artifacts, engine caches, and local config.
+**Files (UE5 C++):**
 
-- **LICENSE**  
-  License for the fan project’s original code and assets.
+- `Engine/Unreal/Source/Public/Multiplayer/AlienBase/CLUAlienBaseGameMode.h`
+- `Engine/Unreal/Source/Private/Multiplayer/AlienBase/CLUAlienBaseGameMode.cpp`
 
-- **README.md**  
-  Entry-point overview for the project and AI-chat usage pattern.
+**Responsibilities:**
+
+- Wave progression and enemy spawn logic.
+- Cooperative survival objectives and difficulty scaling.
+- Integration with scenario tests for wave compositions.
+
+**Related Nodes:**
+
+- `docs.conker.gdd.alien_base`
+- `docs.conker.tech.networking_model`
+- `prompts.conker.ai_chat.alien_base_generation`
+
+---
+
+### 2.3 Asset Lookup and Indexing
+
+**Node ID:** `systems.conker.utils.asset_lookup`  
+**Type:** SystemNode  
+**Role:** Symbolic asset ID to engine asset path mapping for Conker content.
+
+**Files (UE5 C++):**
+
+- `Engine/Unreal/Source/Public/Utils/CLUAssetLookup.h`
+- `Engine/Unreal/Source/Private/Utils/CLUAssetLookup.cpp`
+
+**Responsibilities:**
+
+- Map symbolic IDs (e.g., `char.conker.default`, `fx.muzzle_flash.heist`) to UE5 SoftObjectPaths or data table rows.
+- Provide a stable interface for game code to request assets without hard‑coding content paths.
+- Coordinate with Rust indexing tools to auto‑generate asset indices from `Assets_Source` and engine content.
+
+**Related Nodes:**
+
+- `tools.conker.index.repo_index_generator`
+- `docs.conker.tech.engine_choice`
+- `docs.conker.tech.ai_chat_workflow`
+
+---
+
+## 3. Engine and Scripting Prototypes
+
+### 3.1 Godot
+
+**Node ID:** `systems.conker.godot.character`  
+**Type:** SystemNode  
+**Role:** Godot prototype for Conker‑style character control.
+
+**Files (Godot):**
+
+- `Engine/Godot/src/core/conker_character.gd`
+
+**Related Nodes:**
+
+- `systems.conker.core.character_base`
+- `docs.conker.tech.engine_choice`
+
+---
+
+**Node ID:** `systems.conker.godot.heist`  
+**Type:** SystemNode  
+**Role:** Godot prototype of Heist rules and flow.
+
+**Files:**
+
+- `Engine/Godot/src/multiplayer/heist_mode.gd`
+
+**Related Nodes:**
+
+- `systems.conker.multiplayer.heist`
+- `docs.conker.gdd.heist`
+
+---
+
+**Node ID:** `systems.conker.godot.war`  
+**Type:** SystemNode  
+**Role:** Godot prototype of War rules and flow.
+
+**Files:**
+
+- `Engine/Godot/src/multiplayer/war_mode.gd`
+
+**Related Nodes:**
+
+- `systems.conker.multiplayer.war`
+- `docs.conker.gdd.war`
+
+---
+
+### 3.2 Unity
+
+**Node ID:** `systems.conker.unity.core`  
+**Type:** SystemNode  
+**Role:** Unity‑side scripts for core Conker mechanics (placeholder until implemented).
+
+**Files (planned):**
+
+- `Engine/Unity/Assets/Scripts/Core/`
+
+**Related Nodes:**
+
+- `systems.conker.core.character_base`
+- `docs.conker.tech.engine_choice`
+
+---
+
+**Node ID:** `systems.conker.unity.multiplayer`  
+**Type:** SystemNode  
+**Role:** Unity‑side prototypes for multiplayer modes.
+
+**Files (planned):**
+
+- `Engine/Unity/Assets/Scripts/Multiplayer/`
+
+**Related Nodes:**
+
+- `systems.conker.multiplayer.heist`
+- `systems.conker.multiplayer.war`
+- `systems.conker.multiplayer.alien_base`
+
+---
+
+## 4. Tooling (ToolNodes)
+
+### 4.1 Rust Asset and Index Tools
+
+**Node ID:** `tools.conker.rust.clr_unpack_rs`  
+**Type:** ToolNode  
+**Role:** Rust CLI for unpacking Xbox/Conker‑style archives for legal research and asset conversion.
+
+**Files:**
+
+- `Tools/rust/clr_unpack_rs/Cargo.toml`
+- `Tools/rust/clr_unpack_rs/src/main.rs`
+
+**Responsibilities:**
+
+- Provide a CLI skeleton for parsing and unpacking archive formats.
+- Emit structured JSON manifests describing discovered files and structures.
+
+---
+
+**Node ID:** `tools.conker.rust.n64_asset_converter`  
+**Type:** ToolNode  
+**Role:** Library for converting N64‑era assets into modern engine‑friendly formats.
+
+**Files:**
+
+- `Tools/rust/n64_asset_converter/Cargo.toml`
+- `Tools/rust/n64_asset_converter/src/lib.rs`
+
+---
+
+**Node ID:** `tools.conker.index.repo_index_generator`  
+**Type:** ToolNode  
+**Role:** Repository index generator for AI‑chat lookup and navigation.
+
+**Files:**
+
+- `Tools/indexing/repo_index_generator.rs`
+
+**Responsibilities:**
+
+- Crawl the repo and emit a JSON index of files, languages, node IDs, and roles.
+- Keep the machine‑readable KG index (`build/knowledge_graph_systems.json`) in sync with the layout.
+
+---
+
+### 4.2 Scripting and Analysis Tools
+
+**Node ID:** `tools.conker.lua.heist_round_logic`  
+**Type:** ToolNode  
+**Role:** Lua prototype of Heist round logic for rapid iteration.
+
+**Files:**
+
+- `Tools/lua/gameplay_prototyping/heist_round_logic.lua`
+
+---
+
+**Node ID:** `tools.conker.matlab.net_latency_analysis`  
+**Type:** ToolNode  
+**Role:** MATLAB analysis of network latency, jitter, and tick‑rate effects.
+
+**Files:**
+
+- `Tools/matlab/net_latency_analysis.m`
+
+---
+
+## 5. Documentation (DocNodes)
+
+**Node ID:** `docs.conker.gdd.game_overview`  
+**Type:** DocNode  
+**Role:** High‑level game design and pillars.
+
+**Files:**
+
+- `Docs/GDD/01_Game_Overview.md`
+
+---
+
+**Node ID:** `docs.conker.gdd.heist`  
+**Type:** DocNode  
+**Role:** Heist mode design and mission structure.
+
+**Files:**
+
+- `Docs/GDD/02_Multiplayer_Heist.md`
+
+---
+
+**Node ID:** `docs.conker.gdd.war`  
+**Type:** DocNode  
+**Role:** War mode design and mission structure.
+
+**Files:**
+
+- `Docs/GDD/03_Multiplayer_War.md`
+
+---
+
+**Node ID:** `docs.conker.gdd.alien_base`  
+**Type:** DocNode  
+**Role:** Alien Base mode design and wave structure.
+
+**Files:**
+
+- `Docs/GDD/04_Multiplayer_Alien_Base.md`
+
+---
+
+**Node ID:** `docs.conker.tech.engine_choice`  
+**Type:** DocNode  
+**Role:** Engine choice rationale (UE5, Unity, Godot).
+
+**Files:**
+
+- `Docs/TechDesign/01_Engine_Choice_UE5_Unity_Godot.md`
+
+---
+
+**Node ID:** `docs.conker.tech.networking_model`  
+**Type:** DocNode  
+**Role:** Networking model and constraints.
+
+**Files:**
+
+- `Docs/TechDesign/02_Networking_Model.md`
+
+---
+
+**Node ID:** `docs.conker.tech.ai_chat_workflow`  
+**Type:** DocNode  
+**Role:** AI‑chat workflow and tool usage.
+
+**Files:**
+
+- `Docs/TechDesign/03_AI_Chat_Workflow.md`
+
+---
+
+**Node ID:** `docs.conker.ai.lore_base`  
+**Type:** DocNode  
+**Role:** Lore and narrative baseline.
+
+**Files:**
+
+- `Docs/AI_Chat_Context/Conker_Lore_Base.txt`
+
+---
+
+**Node ID:** `docs.conker.ai.system_prompts`  
+**Type:** DocNode  
+**Role:** System prompts and rules for GAMEMODE.ai.
+
+**Files:**
+
+- `Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md`
+
+---
+
+**Node ID:** `docs.conker.ai.file_generation_guidelines`  
+**Type:** DocNode  
+**Role:** File generation rules and constraints for AI‑chat.
+
+**Files:**
+
+- `Docs/AI_Chat_Context/File_Generation_Guidelines.md`
+
+---
+
+## 6. Prompt Nodes
+
+**Node ID:** `prompts.conker.ai_chat.global`  
+**Type:** PromptNode  
+**Role:** Global system rules for Conker GAMEMODE.ai.
+
+**Source:**
+
+- `Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md` (Global section)
+
+---
+
+**Node ID:** `prompts.conker.ai_chat.heist_generation`  
+**Type:** PromptNode  
+**Role:** Specialized prompt block for Heist mode code/doc generation.
+
+**Source:**
+
+- `Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md` (Heist block, to be added)
+
+---
+
+**Node ID:** `prompts.conker.ai_chat.war_generation`  
+**Type:** PromptNode  
+**Role:** Specialized prompt block for War mode generation.
+
+---
+
+**Node ID:** `prompts.conker.ai_chat.alien_base_generation`  
+**Type:** PromptNode  
+**Role:** Specialized prompt block for Alien Base mode generation.
+
+---
+
+## 7. Next Objectives
+
+1. **Machine Index:** Implement `build/knowledge_graph_systems.json` that conforms to `schemas/knowledge_graph_systems.schema.json`, seeded with the nodes above.  
+2. **Repo Index Tool:** Extend `Tools/indexing/repo_index_generator.rs` to keep the JSON index in sync with the actual file tree and validate node references.  
+3. **Scenario Nodes:** Add Scenario/Test nodes (e.g., `systems.conker.tests.heist_scenarios`) once deterministic test harnesses are introduced for multiplayer rules.
