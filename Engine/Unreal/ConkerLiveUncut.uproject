@@ -1,0 +1,58 @@
+# ConkerLiveUncut.uproject
+## Destination: conker-live-and-uncut-fan/Engine/Unreal/ConkerLiveUncut.uproject
+
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.3",
+	"Category": "",
+	"Description": "Fan-made revival of Conker: Live & Uncut, built on Unreal Engine 5 for high-fidelity multiplayer and single-player experience.",
+	"Modules": [
+		{
+			"Name": "ConkerLiveUncut",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Core",
+				"CoreUObject",
+				"Engine",
+				"InputCore",
+				"UMG",
+				"Slate",
+				"SlateCore"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "OnlineSubsystemNull",
+			"Enabled": true
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		}
+	],
+	"EpicSampleNameHash": "0",
+	"TargetPlatforms": [
+		"Windows"
+	],
+	"NativeProjects": [],
+	"AdditionalPluginFilesInPrimaryGame": [],
+	"DisableEnginePlugins": [],
+	"DisableEnginePluginModules": [],
+	"PluginDescriptorFiles": [],
+	"ProgramTargetPlatforms": [],
+	"RuntimeDependencies": [],
+	"PackagedBuilds": [],
+	"AssetRegistryTags": {},
+	"LocalizationTargets": [],
+	"ContentSources": [],
+	"EngineVersion": "5.3.0",
+	"bIsEnterpriseProject": false,
+	"bUseVulkan": false,
+	"bUseOpenGL": false,
+	"bEnableCrashReporter": false,
+	"bUseDeterministicRendering": true,
+	"bUseFixedTimestep": true,
+	"bEnableDeterminismHooks": true
+}
