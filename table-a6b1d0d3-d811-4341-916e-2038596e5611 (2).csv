@@ -1,0 +1,5 @@
+﻿SystemNode ID,Type,Tags,Path,Dependencies
+systems.tools.repo_indexer,Tool,KGUpdate", "SymbolExtraction", "CI,Tools/indexing/repo_index_generator.rs,Cargo.toml", "schemas.system_node.json
+systems.tools.clr_unpack,Tool,AssetParsing", "XboxArchive,Tools/rust/clr_unpack_rs/src/main.rs,Cargo.toml
+systems.tools.n64_converter,Tool,RetroPipeline", "TextureMapping,Tools/rust/n64_asset_converter/src/lib.rs,schemas.n64_constraints.json
+systems.tools.latency_model,Analysis,Netcode", "TickRate", "MATLAB,Tools/matlab/net_latency_analysis.m,schemas.net_config.json

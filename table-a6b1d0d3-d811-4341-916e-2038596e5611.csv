@@ -1,0 +1,5 @@
+﻿SystemNode ID,Type,Tags,Path,Dependencies
+systems.conker.core.character,Code,Deterministic", "InputDriven", "UE5", "Godot,Engine/Unreal/Source/Public/Core/CLUCharacterBase.h,schemas.character_mechanic.json
+systems.conker.core.playercontroller,Code,InputRouting", "CameraManagement", "UI,Engine/Unreal/Source/Public/Core/CLUPlayerController.h,systems.conker.core.character
+systems.conker.core.gameinstance,Code,SessionManagement", "GlobalState,Engine/Unreal/Source/Public/Core/CLUGameInstance.h,schemas.network_config.json
+systems.conker.core.assetlookup,Utility,AssetRouting", "SoftReferences,Engine/Unreal/Source/Public/Utils/CLUAssetLookup.h,schemas.asset_manifest.json

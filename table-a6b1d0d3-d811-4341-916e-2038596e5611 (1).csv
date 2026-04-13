@@ -1,0 +1,4 @@
+﻿SystemNode ID,Type,Tags,Path,Dependencies
+systems.conker.multiplayer.heist,GameMode,Asymmetric", "Stealth", "ObjectiveDAG,Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h,systems.conker.core.networking", "schemas.game_mode.json
+systems.conker.multiplayer.war,GameMode,TeamDeathmatch", "ControlPoints", "ClassBased,Engine/Unreal/Source/Public/Multiplayer/War/CLUWarGameMode.h,systems.conker.core.combat", "schemas.spawn_config.json
+systems.conker.multiplayer.alienbase,GameMode,HordeSurvival", "WaveProgression,Engine/Unreal/Source/Public/Multiplayer/AlienBase/CLUAlienBaseGameMode.h,systems.conker.core.ai", "schemas.difficulty_curve.json
