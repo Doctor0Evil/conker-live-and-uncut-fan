@@ -1,0 +1,242 @@
+###############################################################################
+# Core build artifacts (Rust / C / C++)
+###############################################################################
+
+# Cargo build output
+target/
+**/target/
+
+# C/C++ build directories
+build/
+**/build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+CMakeScripts/
+Testing/
+compile_commands.json
+
+# Libs / binaries
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+*.pdb
+*.dll.lib
+
+###############################################################################
+# Engine and editor generated content (Unity / UE / Godot / others)
+###############################################################################
+
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uilds/
+[Bb]uild/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+Assets/AssetStoreTools*
+*.unityproj
+*.unitypackage
+
+# Unreal Engine
+[Bb]inaries/
+[Bb]uild/**/Binaries/
+[Bb]uild/**/Intermediate/
+Intermediate/
+DerivedDataCache/
+Saved/
+.vs/
+*.sln
+*.suo
+
+# Godot
+.export/
+.import/
+.export-presets.cfg
+.godot/
+.project_metadata/
+*.translation
+
+###############################################################################
+# Retro / ROM / emulator outputs
+###############################################################################
+
+# Built ROMs & ISOs
+*.nes
+*.sfc
+*.smc
+*.z64
+*.n64
+*.v64
+*.iso
+*.bin
+*.cue
+*.img
+
+# Emulator saves and caches
+*.sav
+*.srm
+*.eep
+*.fla
+*.mcr
+*.state
+*.st0
+*.st1
+*.[Ss]tates
+*.rtc
+
+# Emulator logs / traces / captures
+*.dmp
+*.log
+*.trace
+*.pcap
+
+# N64 / PS1 specific temp outputs
+conk64-logs/
+conk64-traces/
+ps1-build-cache/
+n64-build-cache/
+
+###############################################################################
+# AI, artifacts, Starzip / Sonia outputs
+###############################################################################
+
+# Sonia / Starzip artifact trees
+artifacts/
+**/artifacts/
+
+# Packaged builds / distributions
+dist/
+**/dist/
+
+# CI and tool scratch dirs
+.tmp/
+tmp/
+.cache/
+.npm/
+node_modules/
+.coverage/
+coverage/
+htmlcov/
+
+# Local AI/session state (tracked profile JSONs live elsewhere)
+.gamemodeai-session*/ 
+*.ai-session-local.json
+
+###############################################################################
+# IDEs, editors, OS files
+###############################################################################
+
+# VS Code
+.vscode/
+.history/
+
+# JetBrains
+.idea/
+*.iml
+out/
+
+# Visual Studio
+.vs/
+*.user
+*.userosscache
+*.suo
+
+# Other editors
+*.swp
+*.swo
+*~
+.#*
+*.orig
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux / misc
+*~
+.nfs*
+
+###############################################################################
+# Logs, test outputs, temporary data
+###############################################################################
+
+*.log
+logs/
+**/logs/
+*.tmp
+*.bak
+*.old
+
+# Test and fuzz outputs
+fuzz-artifacts/
+fuzz-output/
+test-output/
+**/test-output/
+
+###############################################################################
+# Python / tooling helpers
+###############################################################################
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.mypy_cache/
+pytest_cache/
+
+###############################################################################
+# Asset pipeline scratch (images / audio / intermediates)
+###############################################################################
+
+# Generated atlases, intermediate textures/audio
+*.atlas.tmp
+*.png.tmp
+*.wav.tmp
+*.ogg.tmp
+*.flac.tmp
+
+# Tool-specific caches (e.g., texture packers)
+texture-cache/
+audio-cache/
+
+###############################################################################
+# Local overrides and secrets
+###############################################################################
+
+# Local config overrides
+*.local.json
+*.local.toml
+*.local.yaml
+*.local.yml
+
+# Env / secrets (never commit real keys)
+.env
+.env.*
+*.key
+*.pem
+*.crt
+*.pfx
+
+###############################################################################
+# Git metadata (submodules etc.)
+###############################################################################
+
+.gitmodules.lock
