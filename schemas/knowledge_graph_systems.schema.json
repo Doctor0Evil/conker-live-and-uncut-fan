@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/knowledge_graph_systems.schema.json",
+  "title": "Knowledge Graph Systems Index",
+  "description": "Schema for the Conker: Live & Uncut GAMEMODE.ai knowledge graph index. This JSON file enumerates systems, tools, docs, and prompts with their node IDs, file paths, and relationships.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the index format (e.g., \"1.0.0\")."
+    },
+    "nodes": {
+      "type": "array",
+      "description": "List of knowledge graph nodes across systems, tools, docs, and prompts.",
+      "items": {
+        "$ref": "#/$defs/Node"
+      }
+    }
+  },
+  "required": ["version", "nodes"],
+  "additionalProperties": false,
+  "$defs": {
+    "NodeType": {
+      "type": "string",
+      "description": "High-level node kind.",
+      "enum": [
+        "SystemNode",
+        "ToolNode",
+        "DocNode",
+        "PromptNode"
+      ]
+    },
+    "EngineKind": {
+      "type": "string",
+      "description": "Engine or runtime associated with this node (if applicable).",
+      "enum": [
+        "Unreal",
+        "Unity",
+        "Godot",
+        "Rust",
+        "Lua",
+        "MATLAB",
+        "Generic"
+      ]
+    },
+    "Node": {
+      "type": "object",
+      "description": "Single knowledge graph node describing a system, tool, document, or prompt.",
+      "properties": {
+        "node_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(\\.[a-z0-9_]+)+$",
+          "description": "Stable dotted identifier (e.g., systems.conker.multiplayer.heist)."
+        },
+        "type": {
+          "$ref": "#/$defs/NodeType"
+        },
+        "display_name": {
+          "type": "string",
+          "description": "Human-readable name for this node."
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of the node’s purpose."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Free-form tags for search and routing (e.g., \"Heist\", \"Multiplayer\", \"UE5\").",
+          "items": {
+            "type": "string"
+          }
+        },
+        "engines": {
+          "type": "array",
+          "description": "Engines or runtimes this node is associated with, if applicable.",
+          "items": {
+            "$ref": "#/$defs/EngineKind"
+          }
+        },
+        "languages": {
+          "type": "array",
+          "description": "Implementation languages used by this node (e.g., \"C++\", \"Rust\", \"Lua\", \"Markdown\").",
+          "items": {
+            "type": "string"
+          }
+        },
+        "files": {
+          "type": "array",
+          "description": "File paths in the repository that implement or define this node.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "related_nodes": {
+          "type": "array",
+          "description": "Other node IDs directly related to this node (dependencies, docs, prompts).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "primary": {
+          "type": "boolean",
+          "description": "Whether this node is a primary entry point for its subsystem (true) or a supporting node (false).",
+          "default": false
+        },
+        "status": {
+          "type": "string",
+          "description": "Implementation status of this node.",
+          "enum": [
+            "planned",
+            "prototype",
+            "in_progress",
+            "complete",
+            "deprecated"
+          ],
+          "default": "planned"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Arbitrary metadata for advanced routing and analysis (e.g., difficulty, stability, test coverage).",
+          "additionalProperties": true
+        }
+      },
+      "required": ["node_id", "type", "display_name", "description"],
+      "additionalProperties": false
+    }
+  }
+}
