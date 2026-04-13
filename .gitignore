@@ -1,14 +1,19 @@
+# conker-live-and-uncut-fan/.gitignore
+
 ###############################################################################
-# Core build artifacts (Rust / C / C++)
+# Rust / C / C++ build artifacts
 ###############################################################################
 
 # Cargo build output
-target/
-**/target/
+/target/
+/**/target/
+
+# Optional: ignore Cargo.lock for workspace-style dev (keep if you want lockfile pinned)
+#/Cargo.lock
 
 # C/C++ build directories
-build/
-**/build/
+/build/
+/**/build/
 cmake-build-*/
 CMakeFiles/
 CMakeCache.txt
@@ -17,7 +22,7 @@ CMakeScripts/
 Testing/
 compile_commands.json
 
-# Libs / binaries
+# Compiled libs / binaries
 *.o
 *.obj
 *.lo
@@ -30,40 +35,90 @@ compile_commands.json
 *.exe
 *.pdb
 *.dll.lib
+*.rs.bk
 
 ###############################################################################
 # Engine and editor generated content (Unity / UE / Godot / others)
 ###############################################################################
 
 # Unity
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uilds/
-[Bb]uild/
-[Ll]ogs/
-[Mm]emoryCaptures/
-UserSettings/
-Assets/AssetStoreTools*
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uilds/
+/[Bb]uild/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/Assets/AssetStoreTools*
 *.unityproj
 *.unitypackage
+*.pidb
+*.pidb.meta
+*.pdb.meta
+*.dll.meta
+*.exe.meta
+*.unity.meta
+*.prefab.meta
+*.anim.meta
+*.controller.meta
+*.mat.meta
+*.shader.meta
+*.asset.meta
+*.fbx.meta
+*.png.meta
+*.jpg.meta
+*.tga.meta
+*.psd.meta
+*.wav.meta
+*.mp3.meta
 
-# Unreal Engine
-[Bb]inaries/
-[Bb]uild/**/Binaries/
-[Bb]uild/**/Intermediate/
-Intermediate/
-DerivedDataCache/
-Saved/
+# Unreal Engine 5
+/Binaries/
+/Build/
+/Intermediate/
+/Saved/
+/DerivedDataCache/
+
+# UE editor / IDE caches
 .vs/
+.idea/
 *.sln
 *.suo
+*.user
+*.userosscache
+*.userprefs
+*.pidb
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+
+# UE content that should not be committed
+Content/Developers/
+Content/Collections/
+Content/Localization/
+
+# Platform-specific generated content under Content
+Content/*/Android/
+Content/*/IOS/
+Content/*/Linux/
+Content/*/Mac/
+Content/*/PS5/
+Content/*/XboxSeries/
 
 # Godot
-.export/
-.import/
-.export-presets.cfg
 .godot/
+/.export/
+/.import/
+/export.cfg
+export-*.cfg
+.export-presets.cfg
+*.import
+*.import-remap
+*.remap
+*.uid
+*.tmp
+*.import-*.tmp
 .project_metadata/
 *.translation
 
@@ -112,14 +167,29 @@ n64-build-cache/
 ###############################################################################
 
 # Sonia / Starzip artifact trees
-artifacts/
-**/artifacts/
+/artifacts/
+/**/artifacts/
 
 # Packaged builds / distributions
-dist/
-**/dist/
+/dist/
+/**/dist/
 
+# Build outputs tracked separately
+Build/artifacts/
+Build/releases/
+Build/*.zip
+Build/*.tar.gz
+
+# Local AI / chat session state
+.gamemodeai-session*/
+.gamemodeai-session*.json
+.ai-chat-cache/
+*.ai-session-local.json
+
+###############################################################################
 # CI and tool scratch dirs
+###############################################################################
+
 .tmp/
 tmp/
 .cache/
@@ -128,10 +198,6 @@ node_modules/
 .coverage/
 coverage/
 htmlcov/
-
-# Local AI/session state (tracked profile JSONs live elsewhere)
-.gamemodeai-session*/ 
-*.ai-session-local.json
 
 ###############################################################################
 # IDEs, editors, OS files
@@ -146,11 +212,11 @@ htmlcov/
 *.iml
 out/
 
-# Visual Studio
+# Visual Studio (some overlap with UE section)
 .vs/
+*.suo
 *.user
 *.userosscache
-*.suo
 
 # Other editors
 *.swp
@@ -158,11 +224,18 @@ out/
 *~
 .#*
 *.orig
+*.sublime-*
+*.code-workspace
+.project
 
 # macOS
 .DS_Store
+.DS_Store?
 .AppleDouble
 .LSOverride
+._*
+.Spotlight-V100
+.Trashes
 
 # Windows
 Thumbs.db
@@ -179,8 +252,10 @@ $RECYCLE.BIN/
 ###############################################################################
 
 *.log
-logs/
-**/logs/
+/logs/
+/**/logs/
+Logs/
+CrashReportClient/
 *.tmp
 *.bak
 *.old
@@ -189,7 +264,7 @@ logs/
 fuzz-artifacts/
 fuzz-output/
 test-output/
-**/test-output/
+/**/test-output/
 
 ###############################################################################
 # Python / tooling helpers
@@ -199,12 +274,65 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py[cod]
+*$py.class
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 .mypy_cache/
 pytest_cache/
 
 ###############################################################################
+# MATLAB
+###############################################################################
+
+*.mlx
+*.mlappinstall
+*.mltbx
+*.mlapp
+*.mlproj
+*.mexa64
+*.mexmaci64
+*.mexw64
+*.p
+
+###############################################################################
+# Lua
+###############################################################################
+
+*.luac
+.luacheckrc
+
+###############################################################################
 # Asset pipeline scratch (images / audio / intermediates)
 ###############################################################################
+
+# Large raw assets (prefer Git LFS if you really need them tracked)
+*.fbx
+*.blend
+*.psd
+*.aiff
+*.wav
+*.mp3
+*.ogg
+*.umap
+*.uasset
+*.tscn
+*.tres
+*.unity
+*.prefab
 
 # Generated atlases, intermediate textures/audio
 *.atlas.tmp
@@ -213,7 +341,7 @@ pytest_cache/
 *.ogg.tmp
 *.flac.tmp
 
-# Tool-specific caches (e.g., texture packers)
+# Tool-specific caches (e.g., texture/audio packers)
 texture-cache/
 audio-cache/
 
@@ -230,10 +358,15 @@ audio-cache/
 # Env / secrets (never commit real keys)
 .env
 .env.*
+*.env
+*.local
+*.secret
 *.key
 *.pem
 *.crt
 *.pfx
+credentials.json
+service-account.json
 
 ###############################################################################
 # Git metadata (submodules etc.)
