@@ -1,0 +1,205 @@
+{
+  "systems": [
+    {
+      "id": "systems.ue5.conker.core.character",
+      "title": "Conker Core Character (CLUCharacterBase)",
+      "description": "Base UE5 character for Conker: Live & Uncut, implementing movement, health, camera hooks, emotes, and replication-ready state.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Source/Public/Core/CLUCharacterBase.h",
+        "Engine/Unreal/Source/Private/Core/CLUCharacterBase.cpp"
+      ],
+      "related": [
+        "systems.ue5.conker.core.playercontroller",
+        "systems.ue5.conker.core.gameinstance"
+      ],
+      "tags": [
+        "Deterministic",
+        "Netcode",
+        "Rendering"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.core.playercontroller",
+      "title": "Conker Player Controller (CLUPlayerController)",
+      "description": "UE5 player controller handling input mapping, camera control, HUD interactions, and pawn possession for Conker gameplay.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Source/Public/Core/CLUPlayerController.h",
+        "Engine/Unreal/Source/Private/Core/CLUPlayerController.cpp"
+      ],
+      "related": [
+        "systems.ue5.conker.core.character",
+        "systems.ue5.conker.core.gameinstance"
+      ],
+      "tags": [
+        "Deterministic",
+        "Netcode",
+        "Editor"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.core.gameinstance",
+      "title": "Conker Game Instance (CLUGameInstance)",
+      "description": "Custom UE5 GameInstance managing save profiles, mode routing, matchmaking/session data, and cross-mode player settings.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Source/Public/Core/CLUGameInstance.h",
+        "Engine/Unreal/Source/Private/Core/CLUGameInstance.cpp"
+      ],
+      "related": [
+        "systems.ue5.conker.multiplayer.heist",
+        "systems.ue5.conker.multiplayer.war",
+        "systems.ue5.conker.multiplayer.alienbase"
+      ],
+      "tags": [
+        "Deterministic",
+        "Netcode"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.multiplayer.heist",
+      "title": "Conker Multiplayer Heist GameMode",
+      "description": "Heist mode GameMode handling team setup, vault objective DAG, scoring, and replicated match state for Conker multiplayer.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h",
+        "Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp"
+      ],
+      "related": [
+        "systems.ue5.conker.core.gameinstance",
+        "systems.ue5.conker.core.character",
+        "systems.ue5.conker.utils.assetlookup"
+      ],
+      "tags": [
+        "Deterministic",
+        "Netcode",
+        "TestOnly"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.multiplayer.war",
+      "title": "Conker Multiplayer War GameMode",
+      "description": "War mode GameMode defining round logic, team scoring, respawn rules, and victory conditions.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Source/Public/Multiplayer/War/CLUWarGameMode.h",
+        "Engine/Unreal/Source/Private/Multiplayer/War/CLUWarGameMode.cpp"
+      ],
+      "related": [
+        "systems.ue5.conker.core.gameinstance",
+        "systems.ue5.conker.core.character",
+        "systems.ue5.conker.utils.assetlookup"
+      ],
+      "tags": [
+        "Deterministic",
+        "Netcode",
+        "TestOnly"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.multiplayer.alienbase",
+      "title": "Conker Multiplayer Alien Base GameMode",
+      "description": "Alien Base survival mode implementing wave progression, spawn control, difficulty scaling, and cooperative objectives.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Source/Public/Multiplayer/AlienBase/CLUAlienBaseGameMode.h",
+        "Engine/Unreal/Source/Private/Multiplayer/AlienBase/CLUAlienBaseGameMode.cpp"
+      ],
+      "related": [
+        "systems.ue5.conker.core.gameinstance",
+        "systems.ue5.conker.core.character",
+        "systems.ue5.conker.utils.assetlookup"
+      ],
+      "tags": [
+        "Deterministic",
+        "Netcode",
+        "TestOnly"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.utils.assetlookup",
+      "title": "Conker UE5 Asset Lookup",
+      "description": "Utility for resolving symbolic Conker asset IDs to UE5 soft references and content paths to keep gameplay code decoupled from hard-coded assets.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Source/Public/Utils/CLUAssetLookup.h",
+        "Engine/Unreal/Source/Private/Utils/CLUAssetLookup.cpp"
+      ],
+      "related": [
+        "systems.ue5.conker.multiplayer.heist",
+        "systems.ue5.conker.multiplayer.war",
+        "systems.ue5.conker.multiplayer.alienbase"
+      ],
+      "tags": [
+        "Deterministic",
+        "Editor"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.content.maps",
+      "title": "Conker UE5 Maps Content",
+      "description": "UMAP/.uprojectcontent levels for Conker single-player and multiplayer modes.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Content/Maps"
+      ],
+      "related": [
+        "systems.ue5.conker.multiplayer.heist",
+        "systems.ue5.conker.multiplayer.war",
+        "systems.ue5.conker.multiplayer.alienbase"
+      ],
+      "tags": [
+        "Rendering"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.content.characters",
+      "title": "Conker UE5 Characters Content",
+      "description": "Skeletal meshes, animations, and animation blueprints for Conker and other characters.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Content/Characters"
+      ],
+      "related": [
+        "systems.ue5.conker.core.character"
+      ],
+      "tags": [
+        "Rendering"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.content.blueprints",
+      "title": "Conker UE5 Blueprints Content",
+      "description": "Blueprints and higher-level scripting assets complementing the C++ Conker core.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Content/Blueprints"
+      ],
+      "related": [
+        "systems.ue5.conker.core.character",
+        "systems.ue5.conker.multiplayer.heist",
+        "systems.ue5.conker.multiplayer.war",
+        "systems.ue5.conker.multiplayer.alienbase"
+      ],
+      "tags": [
+        "Editor"
+      ]
+    },
+    {
+      "id": "systems.ue5.conker.content.audio",
+      "title": "Conker UE5 Audio Content",
+      "description": "Sound cues, music, and voice lines for Conker: Live & Uncut, ready for in-engine use.",
+      "crate": "Engine/Unreal",
+      "files": [
+        "Engine/Unreal/Content/Audio"
+      ],
+      "related": [
+        "systems.ue5.conker.utils.assetlookup"
+      ],
+      "tags": [
+        "Rendering"
+      ]
+    }
+  ]
+}
