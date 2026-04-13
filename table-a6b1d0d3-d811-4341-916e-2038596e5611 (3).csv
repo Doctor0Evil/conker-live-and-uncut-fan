@@ -1,6 +1,6 @@
-﻿SystemNode ID,Type,Tags,Path,Dependencies
-docs.gdd.overview,Document,CreativeDirection", "Scope,Docs/GDD/01_Game_Overview.md,docs.ai_context.lore
-docs.gdd.heist,Document,Multiplayer", "StealthMath", "ObjectiveDAG,Docs/GDD/02_Multiplayer_Heist.md,systems.conker.multiplayer.heist
-docs.gdd.war,Document,Multiplayer", "ControlPoints", "ClassBalance,Docs/GDD/03_Multiplayer_War.md,systems.conker.multiplayer.war
-docs.ai_context.system_prompt,Config,AIBehavior", "Constraints,Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md,docs.ai_context.file_guidelines
-docs.techdesign.kg_index,Config,SemanticMap", "Navigation,Docs/TechDesign/04_Knowledge_Graph_Index.md,Build/repo_index.json
+SystemNode ID,Type,Tags,Path,Dependencies
+docs.gdd.overview,Document,"CreativeDirection, Scope",Docs/GDD/01_Game_Overview.md,docs.ai_context.lore
+docs.gdd.heist,Document,"Multiplayer, StealthMath, ObjectiveDAG",Docs/GDD/02_Multiplayer_Heist.md,systems.conker.multiplayer.heist
+docs.gdd.war,Document,"Multiplayer, ControlPoints, ClassBalance",Docs/GDD/03_Multiplayer_War.md,systems.conker.multiplayer.war
+docs.ai_context.system_prompt,Config,"AIBehavior, Constraints",Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md,docs.ai_context.file_guidelines
+docs.techdesign.kg_index,Config,"SemanticMap, Navigation",Docs/TechDesign/04_Knowledge_Graph_Index.md,Build/repo_index.json
