@@ -1,0 +1,140 @@
+# Conker_Lore_Base.txt
+## Destination: conker-live-and-uncut-fan/Docs/AI_Chat_Context/Conker_Lore_Base.txt
+
+CONKER: LIVE & UNCUT — FAN LORE REFERENCE
+==========================================
+
+CORE PREMISE
+- Fan-created, non-commercial revival project
+- Reimagines the cancelled title through modern engine tech and AI-assisted development
+- Focus on irreverent humor, meta-awareness, and genre-blending gameplay
+- All characters, dialogue, and story beats are original interpretations, not direct copies
+
+CONKER (Protagonist)
+- Personality: Cynical, self-aware, reluctantly brave, uses humor to mask insecurity
+- Speech Pattern: Sarcastic asides, fourth-wall breaks, pop-culture parody, reluctant hero monologues
+- Motivation: Wants a quiet life, constantly dragged into absurd scenarios
+- Combat Style: Opportunistic, uses environment, improvises with found weapons/tools
+- Legal Boundary: Do not replicate original voice lines, exact dialogue, or copyrighted story beats
+
+BERRI (Support/Co-op)
+- Personality: Pragmatic, resourceful, acts as Conker's moral compass
+- Role: Provides tactical support, puzzle solutions, occasional comedic foil
+- Dynamics: Balances Conker's cynicism with grounded optimism
+- Legal Boundary: Original fan interpretation only
+
+WORLD & SETTING
+- Structure: Hub-and-spoke campaign with standalone multiplayer modes
+- Locations: Fan-created environments inspired by classic platformer tropes (forests, industrial complexes, alien facilities)
+- Tone Shifts: Seamless transitions between lighthearted exploration, tense stealth, and chaotic action
+- Meta-Elements: In-universe references to "game development," "patch notes," and "player expectations"
+- Legal Boundary: No original map layouts, copyrighted level designs, or proprietary asset references
+
+HUMOR & TONE GUIDELINES
+- Style: Witty, self-referential, genre-parody, situational irony
+- Boundaries: Adult humor allowed but must avoid explicit content, hate speech, or real-world harm references
+- Pacing: Humor serves gameplay flow; never halts progression for joke delivery
+- AI Constraint: Pass generated dialogue through tone validator (consistency with Conker's voice, fan-safe, non-commercial)
+
+NARRATIVE CONSTRAINTS
+- No direct continuation of original copyrighted plots
+- All story beats must be original or clearly derivative/parodic
+- Campaign focuses on standalone missions that can be played in any order
+- Multiplayer modes exist as "in-universe simulation training" or "what-if scenarios"
+
+AI USAGE NOTES
+- Use this text to validate tone, humor, and character consistency
+- Reject outputs that reference original Rare/Microsoft copyrighted material
+- Frame all lore as fan-created educational/prototyping material
+- Ensure generated dialogue aligns with meta-aware, self-referential style without crossing into infringement
+
+LEGAL BOUNDARY REMINDER
+- Conker, Conker's Bad Fur Day, and related properties belong to their respective rights holders
+- This document contains ONLY fan-created interpretations
+- All AI-generated content must remain non-commercial, educational, and legally compliant
+```
+
+```markdown
+# 04_Knowledge_Graph_Index.md
+## Destination: conker-live-and-uncut-fan/Docs/TechDesign/04_Knowledge_Graph_Index.md
+
+# Knowledge Graph Index — Conker: Live & Uncut
+
+> **Document ID:** KG-001  
+> **Version:** 0.1.0  
+> **Status:** Active — Auto-Generated Stub  
+> **Last Updated:** 2026-04-12  
+> **Author:** GAMEMODE.ai Codegen System
+
+---
+
+## 1. Overview
+
+This document serves as the semantic map for the `conker-live-and-uncut-fan` repository. Each entry represents a `SystemNode` with structured metadata for AI navigation, dependency resolution, and CI validation.
+
+## 2. Node Format Specification
+```json
+{
+  "id": "systems.[engine].[module].[component]",
+  "type": "GameMode | Tool | Document | Schema | Asset",
+  "tags": ["Deterministic", "Netcode", "UE5", "Prototype", "AIGenerated"],
+  "path": "repo/relative/path",
+  "dependencies": ["systems.id.1", "systems.id.2"],
+  "validation_rules": ["schema_compliance", "determinism_hash", "budget_check"]
+}
+```
+
+## 3. Core Systems Index
+| SystemNode ID | Type | Tags | Path | Dependencies |
+|---------------|------|------|------|-------------|
+| `systems.conker.core.character` | Code | `Deterministic`, `InputDriven`, `UE5`, `Godot` | `Engine/Unreal/Source/Public/Core/CLUCharacterBase.h` | `schemas.character_mechanic.json` |
+| `systems.conker.core.playercontroller` | Code | `InputRouting`, `CameraManagement`, `UI` | `Engine/Unreal/Source/Public/Core/CLUPlayerController.h` | `systems.conker.core.character` |
+| `systems.conker.core.gameinstance` | Code | `SessionManagement`, `GlobalState` | `Engine/Unreal/Source/Public/Core/CLUGameInstance.h` | `schemas.network_config.json` |
+| `systems.conker.core.assetlookup` | Utility | `AssetRouting`, `SoftReferences` | `Engine/Unreal/Source/Public/Utils/CLUAssetLookup.h` | `schemas.asset_manifest.json` |
+
+## 4. Multiplayer Modes Index
+| SystemNode ID | Type | Tags | Path | Dependencies |
+|---------------|------|------|------|-------------|
+| `systems.conker.multiplayer.heist` | GameMode | `Asymmetric`, `Stealth`, `ObjectiveDAG` | `Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h` | `systems.conker.core.networking`, `schemas.game_mode.json` |
+| `systems.conker.multiplayer.war` | GameMode | `TeamDeathmatch`, `ControlPoints`, `ClassBased` | `Engine/Unreal/Source/Public/Multiplayer/War/CLUWarGameMode.h` | `systems.conker.core.combat`, `schemas.spawn_config.json` |
+| `systems.conker.multiplayer.alienbase` | GameMode | `HordeSurvival`, `WaveProgression` | `Engine/Unreal/Source/Public/Multiplayer/AlienBase/CLUAlienBaseGameMode.h` | `systems.conker.core.ai`, `schemas.difficulty_curve.json` |
+
+## 5. Tooling & Indexing
+| SystemNode ID | Type | Tags | Path | Dependencies |
+|---------------|------|------|------|-------------|
+| `systems.tools.repo_indexer` | Tool | `KGUpdate`, `SymbolExtraction`, `CI` | `Tools/indexing/repo_index_generator.rs` | `Cargo.toml`, `schemas.system_node.json` |
+| `systems.tools.clr_unpack` | Tool | `AssetParsing`, `XboxArchive` | `Tools/rust/clr_unpack_rs/src/main.rs` | `Cargo.toml` |
+| `systems.tools.n64_converter` | Tool | `RetroPipeline`, `TextureMapping` | `Tools/rust/n64_asset_converter/src/lib.rs` | `schemas.n64_constraints.json` |
+| `systems.tools.latency_model` | Analysis | `Netcode`, `TickRate`, `MATLAB` | `Tools/matlab/net_latency_analysis.m` | `schemas.net_config.json` |
+
+## 6. Documentation & Context
+| SystemNode ID | Type | Tags | Path | Dependencies |
+|---------------|------|------|------|-------------|
+| `docs.gdd.overview` | Document | `CreativeDirection`, `Scope` | `Docs/GDD/01_Game_Overview.md` | `docs.ai_context.lore` |
+| `docs.gdd.heist` | Document | `Multiplayer`, `StealthMath`, `ObjectiveDAG` | `Docs/GDD/02_Multiplayer_Heist.md` | `systems.conker.multiplayer.heist` |
+| `docs.gdd.war` | Document | `Multiplayer`, `ControlPoints`, `ClassBalance` | `Docs/GDD/03_Multiplayer_War.md` | `systems.conker.multiplayer.war` |
+| `docs.ai_context.system_prompt` | Config | `AIBehavior`, `Constraints` | `Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md` | `docs.ai_context.file_guidelines` |
+| `docs.techdesign.kg_index` | Config | `SemanticMap`, `Navigation` | `Docs/TechDesign/04_Knowledge_Graph_Index.md` | `Build/repo_index.json` |
+
+## 7. Validation & CI Nodes
+| SystemNode ID | Type | Tags | Path | Purpose |
+|---------------|------|------|------|---------|
+| `ci.validation.determinism` | Pipeline | `ReplayHash`, `StateConsistency` | `.github/workflows/build.yml` | Ensures gameplay state hashes match across builds |
+| `ci.validation.schema` | Pipeline | `JSONSchema`, `ContractEnforcement` | `Tools/indexing/repo_index_generator.rs` | Validates AI-generated configs against schemas |
+| `ci.validation.budget` | Pipeline | `VRAM`, `CPU`, `NetcodePolytope` | `Docs/TechDesign/02_Networking_Model.md` | Enforces hardware and bandwidth constraints |
+
+## 8. How to Query & Update
+- **Add Node:** Append to relevant table, ensure `id` uniqueness, tag appropriately
+- **Resolve Dependency:** Run `repo_index_generator --format kg-sync` to auto-link paths
+- **Validate Graph:** CI checks for orphaned nodes, circular dependencies, missing schema refs
+- **AI Query Example:** `find_nodes(tags=["Deterministic", "Netcode"])` → returns multiplayer + core systems
+
+## 9. Next Objectives
+- [ ] Run `Tools/indexing/repo_index_generator.rs` to auto-populate remaining nodes
+- [ ] Generate `schemas/game_mode.schema.json` and attach to multiplayer mode nodes
+- [ ] Add CI job that validates KG node integrity on every PR merge
+- [ ] Human review: Confirm node tagging aligns with engine roles and validation requirements
+
+---
+
+*This index is part of the Conker: Live & Uncut fan project. All content is fan-created and non-commercial.*
