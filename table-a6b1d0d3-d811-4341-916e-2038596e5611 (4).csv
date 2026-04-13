@@ -1,4 +1,4 @@
-﻿SystemNode ID,Type,Tags,Path,Purpose
-ci.validation.determinism,Pipeline,ReplayHash", "StateConsistency,.github/workflows/build.yml,Ensures gameplay state hashes match across builds
-ci.validation.schema,Pipeline,JSONSchema", "ContractEnforcement,Tools/indexing/repo_index_generator.rs,Validates AI-generated configs against schemas
-ci.validation.budget,Pipeline,VRAM", "CPU", "NetcodePolytope,Docs/TechDesign/02_Networking_Model.md,Enforces hardware and bandwidth constraints
+SystemNode ID,Type,Tags,Path,Purpose
+ci.validation.determinism,Pipeline,"ReplayHash, StateConsistency",.github/workflows/build.yml,Ensures gameplay state hashes match across builds
+ci.validation.schema,Pipeline,"JSONSchema, ContractEnforcement",Tools/indexing/repo_index_generator.rs,Validates AI-generated configs against schemas
+ci.validation.budget,Pipeline,"VRAM, CPU, NetcodePolytope",Docs/TechDesign/02_Networking_Model.md,Enforces hardware and bandwidth constraints
