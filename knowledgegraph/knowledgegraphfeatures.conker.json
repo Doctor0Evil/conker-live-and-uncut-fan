@@ -1,0 +1,198 @@
+{
+  "repo": "Doctor0Evil/Conker-Live-Uncut-UE5",
+  "version": "0.1.0",
+  "features": [
+    {
+      "id": "conker.ue5.core.character",
+      "title": "Conker UE5 Core Character Mechanic",
+      "description": "Deterministic character movement, health, camera hooks, and emote/voice triggers implemented by CLUCharacterBase and UE5 animation assets.",
+      "tags": [
+        "UE5",
+        "Deterministic",
+        "Mechanic",
+        "Character"
+      ],
+      "systems": [
+        "systems.ue5.conker.core.character",
+        "systems.ue5.conker.content.characters",
+        "systems.ue5.conker.content.blueprints"
+      ],
+      "schemas": [
+        "schemas/conker/character.mechanic.schema.json"
+      ],
+      "examples": [
+        "docs/examples/conker/character/basic_move_and_emote.md"
+      ],
+      "roles": [
+        "MechanicDesigner",
+        "AIChatNavigation"
+      ],
+      "commands": [
+        "gamemodeai-kg:getsystem",
+        "gamemodeai-kg:listdependents"
+      ],
+      "stability": "experimental"
+    },
+    {
+      "id": "conker.ue5.multiplayer.heist",
+      "title": "Conker Heist Multiplayer Mode",
+      "description": "Objective-based heist mode with team roles, vault objective DAG, scoring, and network replication of match state.",
+      "tags": [
+        "UE5",
+        "Deterministic",
+        "Netcode",
+        "ScenarioDirector",
+        "Heist"
+      ],
+      "systems": [
+        "systems.ue5.conker.multiplayer.heist",
+        "systems.ue5.conker.content.maps",
+        "systems.ue5.conker.utils.assetlookup"
+      ],
+      "schemas": [
+        "schemas/conker/heist.gamemode.schema.json",
+        "schemas/conker/objective.dag.schema.json"
+      ],
+      "examples": [
+        "docs/examples/conker/heist/basic_vault_run.md",
+        "Engine/Unreal/Content/Maps/Heist_Prototype.umap"
+      ],
+      "roles": [
+        "ScenarioDirector",
+        "NetcodeDesigner"
+      ],
+      "commands": [
+        "gamemodeai-kg:getsystem",
+        "gamemodeai-kg:listdependents"
+      ],
+      "stability": "experimental"
+    },
+    {
+      "id": "conker.ue5.multiplayer.war",
+      "title": "Conker War Multiplayer Mode",
+      "description": "Round-based war mode with team scoring, respawn logic, and configurable victory conditions.",
+      "tags": [
+        "UE5",
+        "Deterministic",
+        "Netcode",
+        "ScenarioDirector",
+        "War"
+      ],
+      "systems": [
+        "systems.ue5.conker.multiplayer.war",
+        "systems.ue5.conker.content.maps",
+        "systems.ue5.conker.utils.assetlookup"
+      ],
+      "schemas": [
+        "schemas/conker/war.gamemode.schema.json"
+      ],
+      "examples": [
+        "docs/examples/conker/war/basic_team_deathmatch.md",
+        "Engine/Unreal/Content/Maps/War_Prototype.umap"
+      ],
+      "roles": [
+        "ScenarioDirector",
+        "NetcodeDesigner"
+      ],
+      "commands": [
+        "gamemodeai-kg:getsystem",
+        "gamemodeai-kg:listdependents"
+      ],
+      "stability": "experimental"
+    },
+    {
+      "id": "conker.ue5.multiplayer.alienbase",
+      "title": "Conker Alien Base Survival Mode",
+      "description": "Cooperative survival mode with wave progression, spawn control, and difficulty scaling.",
+      "tags": [
+        "UE5",
+        "Deterministic",
+        "Netcode",
+        "ScenarioDirector",
+        "Horde"
+      ],
+      "systems": [
+        "systems.ue5.conker.multiplayer.alienbase",
+        "systems.ue5.conker.content.maps",
+        "systems.ue5.conker.utils.assetlookup"
+      ],
+      "schemas": [
+        "schemas/conker/alienbase.gamemode.schema.json"
+      ],
+      "examples": [
+        "docs/examples/conker/alienbase/wave_progression_tuning.md",
+        "Engine/Unreal/Content/Maps/AlienBase_Prototype.umap"
+      ],
+      "roles": [
+        "ScenarioDirector",
+        "NetcodeDesigner"
+      ],
+      "commands": [
+        "gamemodeai-kg:getsystem",
+        "gamemodeai-kg:listdependents"
+      ],
+      "stability": "experimental"
+    },
+    {
+      "id": "conker.ue5.core.session",
+      "title": "Conker Session and Profile Management",
+      "description": "GameInstance-backed profile, save, and mode-routing logic wired into the GAMEMODE.ai SessionProfile model.",
+      "tags": [
+        "UE5",
+        "Deterministic",
+        "Session",
+        "Profile"
+      ],
+      "systems": [
+        "systems.ue5.conker.core.gameinstance"
+      ],
+      "schemas": [
+        "schemas/session/session.schema.json",
+        "schemas/conker/session.profile.schema.json"
+      ],
+      "examples": [
+        "docs/examples/conker/session/profile_json_roundtrip.md"
+      ],
+      "roles": [
+        "SystemsDesigner",
+        "AIChatNavigation"
+      ],
+      "commands": [
+        "gamemodeai-session:getsession",
+        "gamemodeai-session:updatesession"
+      ],
+      "stability": "experimental"
+    },
+    {
+      "id": "conker.ue5.assets.lookup",
+      "title": "Conker Asset Lookup Surface",
+      "description": "Symbolic asset ID to UE5 soft reference mapping for characters, audio, and UI, aligned with the global knowledge graph.",
+      "tags": [
+        "UE5",
+        "Deterministic",
+        "AssetPack"
+      ],
+      "systems": [
+        "systems.ue5.conker.utils.assetlookup",
+        "systems.ue5.conker.content.audio",
+        "systems.ue5.conker.content.characters",
+        "systems.ue5.conker.content.blueprints"
+      ],
+      "schemas": [
+        "schemas/conker/assets.lookup.schema.json"
+      ],
+      "examples": [
+        "docs/examples/conker/assets/lookup_table_snippet.json"
+      ],
+      "roles": [
+        "AssetPipeline",
+        "AIChatNavigation"
+      ],
+      "commands": [
+        "gamemodeai-kg:getsystem",
+        "gamemodeai-kg:listsystemsbytag"
+      ],
+      "stability": "experimental"
+    }
+  ]
+}
