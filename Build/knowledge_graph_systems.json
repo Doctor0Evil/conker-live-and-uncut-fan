@@ -1,0 +1,564 @@
+{
+  "version": "1.0.0",
+  "nodes": [
+    {
+      "node_id": "systems.conker.core.character_base",
+      "type": "SystemNode",
+      "display_name": "CLU Character Base",
+      "description": "Base Conker character implementation for UE5, providing movement, camera hooks, health, and emote triggers.",
+      "tags": ["Core", "Character", "UE5", "Gameplay"],
+      "engines": ["Unreal"],
+      "languages": ["C++"],
+      "files": [
+        "Engine/Unreal/Source/Public/Core/CLUCharacterBase.h",
+        "Engine/Unreal/Source/Private/Core/CLUCharacterBase.cpp"
+      ],
+      "related_nodes": [
+        "systems.conker.core.player_controller",
+        "systems.conker.core.game_instance",
+        "docs.conker.gdd.game_overview",
+        "docs.conker.tech.engine_choice"
+      ],
+      "primary": true,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.core.player_controller",
+      "type": "SystemNode",
+      "display_name": "CLU Player Controller",
+      "description": "Player controller for Conker, handling input, camera control, and pawn possession.",
+      "tags": ["Core", "Controller", "UE5", "Gameplay"],
+      "engines": ["Unreal"],
+      "languages": ["C++"],
+      "files": [
+        "Engine/Unreal/Source/Public/Core/CLUPlayerController.h",
+        "Engine/Unreal/Source/Private/Core/CLUPlayerController.cpp"
+      ],
+      "related_nodes": [
+        "systems.conker.core.character_base",
+        "systems.conker.core.game_instance",
+        "docs.conker.gdd.game_overview"
+      ],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.core.game_instance",
+      "type": "SystemNode",
+      "display_name": "CLU Game Instance",
+      "description": "Global game instance managing mode selection, session state, and high-level transitions.",
+      "tags": ["Core", "GameInstance", "UE5"],
+      "engines": ["Unreal"],
+      "languages": ["C++"],
+      "files": [
+        "Engine/Unreal/Source/Public/Core/CLUGameInstance.h",
+        "Engine/Unreal/Source/Private/Core/CLUGameInstance.cpp"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.heist",
+        "systems.conker.multiplayer.war",
+        "systems.conker.multiplayer.alien_base",
+        "docs.conker.tech.networking_model"
+      ],
+      "primary": true,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.multiplayer.heist",
+      "type": "SystemNode",
+      "display_name": "Heist Game Mode",
+      "description": "Heist multiplayer game mode, including team setup, vault door logic, and objective state.",
+      "tags": ["Multiplayer", "Heist", "UE5", "GameMode"],
+      "engines": ["Unreal"],
+      "languages": ["C++"],
+      "files": [
+        "Engine/Unreal/Source/Public/Multiplayer/Heist/CLUHeistGameMode.h",
+        "Engine/Unreal/Source/Private/Multiplayer/Heist/CLUHeistGameMode.cpp"
+      ],
+      "related_nodes": [
+        "docs.conker.gdd.heist",
+        "docs.conker.tech.networking_model",
+        "prompts.conker.ai_chat.heist_generation",
+        "tools.conker.index.repo_index_generator"
+      ],
+      "primary": true,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.multiplayer.war",
+      "type": "SystemNode",
+      "display_name": "War Game Mode",
+      "description": "War / Blitzkrieg multiplayer game mode with phase-based objectives and scoring.",
+      "tags": ["Multiplayer", "War", "UE5", "GameMode"],
+      "engines": ["Unreal"],
+      "languages": ["C++"],
+      "files": [
+        "Engine/Unreal/Source/Public/Multiplayer/War/CLUWarGameMode.h",
+        "Engine/Unreal/Source/Private/Multiplayer/War/CLUWarGameMode.cpp"
+      ],
+      "related_nodes": [
+        "docs.conker.gdd.war",
+        "docs.conker.tech.networking_model",
+        "prompts.conker.ai_chat.war_generation"
+      ],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.multiplayer.alien_base",
+      "type": "SystemNode",
+      "display_name": "Alien Base Game Mode",
+      "description": "Alien Base survival mode with wave progression, cooperative objectives, and difficulty scaling.",
+      "tags": ["Multiplayer", "AlienBase", "UE5", "GameMode"],
+      "engines": ["Unreal"],
+      "languages": ["C++"],
+      "files": [
+        "Engine/Unreal/Source/Public/Multiplayer/AlienBase/CLUAlienBaseGameMode.h",
+        "Engine/Unreal/Source/Private/Multiplayer/AlienBase/CLUAlienBaseGameMode.cpp"
+      ],
+      "related_nodes": [
+        "docs.conker.gdd.alien_base",
+        "docs.conker.tech.networking_model",
+        "prompts.conker.ai_chat.alien_base_generation"
+      ],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.utils.asset_lookup",
+      "type": "SystemNode",
+      "display_name": "CLU Asset Lookup",
+      "description": "Utility for mapping symbolic asset IDs to engine-specific asset paths and references.",
+      "tags": ["Utils", "Assets", "UE5"],
+      "engines": ["Unreal"],
+      "languages": ["C++"],
+      "files": [
+        "Engine/Unreal/Source/Public/Utils/CLUAssetLookup.h",
+        "Engine/Unreal/Source/Private/Utils/CLUAssetLookup.cpp"
+      ],
+      "related_nodes": [
+        "tools.conker.index.repo_index_generator",
+        "docs.conker.tech.engine_choice",
+        "docs.conker.tech.ai_chat_workflow"
+      ],
+      "primary": true,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.godot.character",
+      "type": "SystemNode",
+      "display_name": "Godot Conker Character",
+      "description": "Godot prototype script for Conker-style character movement and control.",
+      "tags": ["Godot", "Character", "Prototype"],
+      "engines": ["Godot"],
+      "languages": ["GDScript"],
+      "files": [
+        "Engine/Godot/src/core/conker_character.gd"
+      ],
+      "related_nodes": [
+        "systems.conker.core.character_base",
+        "docs.conker.tech.engine_choice"
+      ],
+      "primary": false,
+      "status": "prototype",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.godot.heist",
+      "type": "SystemNode",
+      "display_name": "Godot Heist Mode",
+      "description": "Godot prototype for Heist mode rules and round flow.",
+      "tags": ["Godot", "Heist", "Prototype"],
+      "engines": ["Godot"],
+      "languages": ["GDScript"],
+      "files": [
+        "Engine/Godot/src/multiplayer/heist_mode.gd"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.heist",
+        "docs.conker.gdd.heist"
+      ],
+      "primary": false,
+      "status": "prototype",
+      "metadata": {}
+    },
+    {
+      "node_id": "systems.conker.godot.war",
+      "type": "SystemNode",
+      "display_name": "Godot War Mode",
+      "description": "Godot prototype for War mode rules and round flow.",
+      "tags": ["Godot", "War", "Prototype"],
+      "engines": ["Godot"],
+      "languages": ["GDScript"],
+      "files": [
+        "Engine/Godot/src/multiplayer/war_mode.gd"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.war",
+        "docs.conker.gdd.war"
+      ],
+      "primary": false,
+      "status": "prototype",
+      "metadata": {}
+    },
+    {
+      "node_id": "tools.conker.rust.clr_unpack_rs",
+      "type": "ToolNode",
+      "display_name": "CLR Unpack (Rust)",
+      "description": "Rust CLI for unpacking Xbox-style archives for Conker research and asset workflows.",
+      "tags": ["Rust", "Tool", "Assets"],
+      "engines": ["Rust"],
+      "languages": ["Rust"],
+      "files": [
+        "Tools/rust/clr_unpack_rs/Cargo.toml",
+        "Tools/rust/clr_unpack_rs/src/main.rs"
+      ],
+      "related_nodes": [
+        "systems.conker.utils.asset_lookup"
+      ],
+      "primary": false,
+      "status": "prototype",
+      "metadata": {}
+    },
+    {
+      "node_id": "tools.conker.rust.n64_asset_converter",
+      "type": "ToolNode",
+      "display_name": "N64 Asset Converter (Rust)",
+      "description": "Rust library for converting N64-era assets into modern formats.",
+      "tags": ["Rust", "Tool", "Assets", "N64"],
+      "engines": ["Rust"],
+      "languages": ["Rust"],
+      "files": [
+        "Tools/rust/n64_asset_converter/Cargo.toml",
+        "Tools/rust/n64_asset_converter/src/lib.rs"
+      ],
+      "related_nodes": [],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "tools.conker.index.repo_index_generator",
+      "type": "ToolNode",
+      "display_name": "Repo Index Generator",
+      "description": "Rust tool that scans the repository and emits a machine-readable index for AI-Chat.",
+      "tags": ["Rust", "Tool", "Indexing"],
+      "engines": ["Rust"],
+      "languages": ["Rust"],
+      "files": [
+        "Tools/indexing/repo_index_generator.rs"
+      ],
+      "related_nodes": [
+        "systems.conker.utils.asset_lookup",
+        "docs.conker.tech.ai_chat_workflow"
+      ],
+      "primary": true,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "tools.conker.lua.heist_round_logic",
+      "type": "ToolNode",
+      "display_name": "Heist Round Logic (Lua)",
+      "description": "Lua prototype script for Heist round logic and objectives.",
+      "tags": ["Lua", "Heist", "Prototype"],
+      "engines": ["Lua"],
+      "languages": ["Lua"],
+      "files": [
+        "Tools/lua/gameplay_prototyping/heist_round_logic.lua"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.heist",
+        "docs.conker.gdd.heist"
+      ],
+      "primary": false,
+      "status": "prototype",
+      "metadata": {}
+    },
+    {
+      "node_id": "tools.conker.matlab.net_latency_analysis",
+      "type": "ToolNode",
+      "display_name": "Network Latency Analysis (MATLAB)",
+      "description": "MATLAB script for analyzing network latency and tick-rate effects.",
+      "tags": ["MATLAB", "Networking", "Analysis"],
+      "engines": ["MATLAB"],
+      "languages": ["MATLAB"],
+      "files": [
+        "Tools/matlab/net_latency_analysis.m"
+      ],
+      "related_nodes": [
+        "docs.conker.tech.networking_model"
+      ],
+      "primary": false,
+      "status": "prototype",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.gdd.game_overview",
+      "type": "DocNode",
+      "display_name": "Game Overview GDD",
+      "description": "High-level game design overview for Conker: Live & Uncut.",
+      "tags": ["GDD", "Overview"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/GDD/01_Game_Overview.md"
+      ],
+      "related_nodes": [
+        "systems.conker.core.character_base",
+        "systems.conker.multiplayer.heist",
+        "systems.conker.multiplayer.war",
+        "systems.conker.multiplayer.alien_base"
+      ],
+      "primary": true,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.gdd.heist",
+      "type": "DocNode",
+      "display_name": "Heist GDD",
+      "description": "Design document for the Heist multiplayer mode.",
+      "tags": ["GDD", "Heist"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/GDD/02_Multiplayer_Heist.md"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.heist",
+        "tools.conker.lua.heist_round_logic"
+      ],
+      "primary": false,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.gdd.war",
+      "type": "DocNode",
+      "display_name": "War GDD",
+      "description": "Design document for the War multiplayer mode.",
+      "tags": ["GDD", "War"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/GDD/03_Multiplayer_War.md"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.war"
+      ],
+      "primary": false,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.gdd.alien_base",
+      "type": "DocNode",
+      "display_name": "Alien Base GDD",
+      "description": "Design document for the Alien Base multiplayer mode.",
+      "tags": ["GDD", "AlienBase"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/GDD/04_Multiplayer_Alien_Base.md"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.alien_base"
+      ],
+      "primary": false,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.tech.engine_choice",
+      "type": "DocNode",
+      "display_name": "Engine Choice Tech Design",
+      "description": "Technical rationale for using UE5, Unity, and Godot.",
+      "tags": ["TechDesign", "Engines"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/TechDesign/01_Engine_Choice_UE5_Unity_Godot.md"
+      ],
+      "related_nodes": [
+        "systems.conker.core.character_base",
+        "systems.conker.godot.character",
+        "systems.conker.unity.core"
+      ],
+      "primary": false,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.tech.networking_model",
+      "type": "DocNode",
+      "display_name": "Networking Model Tech Design",
+      "description": "Networking model and constraints for Conker multiplayer.",
+      "tags": ["TechDesign", "Networking"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/TechDesign/02_Networking_Model.md"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.heist",
+        "systems.conker.multiplayer.war",
+        "systems.conker.multiplayer.alien_base",
+        "tools.conker.matlab.net_latency_analysis"
+      ],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.tech.ai_chat_workflow",
+      "type": "DocNode",
+      "display_name": "AI-Chat Workflow Tech Design",
+      "description": "Workflow and constraints for AI-Chat interactions with the repo.",
+      "tags": ["TechDesign", "AIChat"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/TechDesign/03_AI_Chat_Workflow.md"
+      ],
+      "related_nodes": [
+        "tools.conker.index.repo_index_generator"
+      ],
+      "primary": false,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.ai.lore_base",
+      "type": "DocNode",
+      "display_name": "Conker Lore Base",
+      "description": "Lore and narrative baseline for Conker: Live & Uncut.",
+      "tags": ["Lore", "Narrative"],
+      "engines": ["Generic"],
+      "languages": ["Text"],
+      "files": [
+        "Docs/AI_Chat_Context/Conker_Lore_Base.txt"
+      ],
+      "related_nodes": [],
+      "primary": true,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.ai.system_prompts",
+      "type": "DocNode",
+      "display_name": "GAMEMODE.ai System Prompts",
+      "description": "System prompts and rules for GAMEMODE.ai Conker configuration.",
+      "tags": ["Prompts", "AIChat"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md"
+      ],
+      "related_nodes": [
+        "prompts.conker.ai_chat.global"
+      ],
+      "primary": true,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "docs.conker.ai.file_generation_guidelines",
+      "type": "DocNode",
+      "display_name": "File Generation Guidelines",
+      "description": "Guidelines for AI-generated files, paths, and next-step suggestions.",
+      "tags": ["Guidelines", "AIChat"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/AI_Chat_Context/File_Generation_Guidelines.md"
+      ],
+      "related_nodes": [],
+      "primary": false,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "prompts.conker.ai_chat.global",
+      "type": "PromptNode",
+      "display_name": "Global Conker GAMEMODE.ai Prompt",
+      "description": "Global system prompt rules for Conker GAMEMODE.ai.",
+      "tags": ["Prompt", "Global"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md"
+      ],
+      "related_nodes": [
+        "docs.conker.ai.system_prompts"
+      ],
+      "primary": true,
+      "status": "in_progress",
+      "metadata": {}
+    },
+    {
+      "node_id": "prompts.conker.ai_chat.heist_generation",
+      "type": "PromptNode",
+      "display_name": "Heist Mode Generation Prompt",
+      "description": "Mode-specific prompt block for generating Heist code and docs.",
+      "tags": ["Prompt", "Heist"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.heist",
+        "docs.conker.gdd.heist"
+      ],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "prompts.conker.ai_chat.war_generation",
+      "type": "PromptNode",
+      "display_name": "War Mode Generation Prompt",
+      "description": "Mode-specific prompt block for generating War code and docs.",
+      "tags": ["Prompt", "War"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.war",
+        "docs.conker.gdd.war"
+      ],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    },
+    {
+      "node_id": "prompts.conker.ai_chat.alien_base_generation",
+      "type": "PromptNode",
+      "display_name": "Alien Base Mode Generation Prompt",
+      "description": "Mode-specific prompt block for generating Alien Base code and docs.",
+      "tags": ["Prompt", "AlienBase"],
+      "engines": ["Generic"],
+      "languages": ["Markdown"],
+      "files": [
+        "Docs/AI_Chat_Context/System_Prompts_GAMEMODE_ai.md"
+      ],
+      "related_nodes": [
+        "systems.conker.multiplayer.alien_base",
+        "docs.conker.gdd.alien_base"
+      ],
+      "primary": false,
+      "status": "planned",
+      "metadata": {}
+    }
+  ]
+}
