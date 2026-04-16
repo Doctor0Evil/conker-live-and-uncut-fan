@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gamemode.ai/schemas/multiplayer/map_grid_v1.schema.json",
+  "title": "MultiplayerMapGridV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "map_id", "schema_version", "grid_size", "cell_size", "y_level", "origin", "cells"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic content version for this specific grid layout (e.g., 1.0.0)."
+    },
+    "map_id": {
+      "type": "string",
+      "description": "Stable identifier for the map (e.g., beachdead, alienbasehub, thebloodcount)."
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version string used to coordinate compatibility with tools (e.g., map_grid_v1)."
+    },
+    "grid_size": {
+      "type": "object",
+      "description": "Dimensions of the grid in cells.",
+      "additionalProperties": false,
+      "required": ["cols", "rows"],
+      "properties": {
+        "cols": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of columns (X axis) in the grid."
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of rows (Z axis) in the grid."
+        }
+      }
+    },
+    "cell_size": {
+      "type": "number",
+      "exclusiveMinimum": 0.0,
+      "description": "Size of one grid cell edge in world units (e.g., 4.0 for a 4x4 N64-style grid)."
+    },
+    "y_level": {
+      "type": "number",
+      "description": "Base world-space Y coordinate for this grid layer (e.g., 0.0)."
+    },
+    "origin": {
+      "type": "object",
+      "description": "World-space origin used to map grid (col,row) to world XZ coordinates.",
+      "additionalProperties": false,
+      "required": ["x", "z"],
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "World-space X coordinate corresponding to grid column 0."
+        },
+        "z": {
+          "type": "number",
+          "description": "World-space Z coordinate corresponding to grid row 0."
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional free-form metadata about this grid (author, notes, etc.).",
+      "additionalProperties": true
+    },
+    "cells": {
+      "type": "array",
+      "description": "Sparse list of defined cells; any missing (col,row) is treated as empty/void.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["col", "row", "tile_type"],
+        "properties": {
+          "col": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Grid column index in the range [0, grid_size.cols)."
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Grid row index in the range [0, grid_size.rows)."
+          },
+          "tile_type": {
+            "type": "string",
+            "description": "Logical tile identifier (e.g., TFloorIndustrialPlain, TWallFence). Resolved via tileset."
+          },
+          "walkable": {
+            "type": "boolean",
+            "description": "Whether this cell is traversable for pathing (defaults to true for floors).",
+            "default": true
+          },
+          "height_offset": {
+            "type": "number",
+            "description": "Per-cell Y offset relative to the grid y_level for ramps, stairs, etc.",
+            "default": 0.0
+          },
+          "rotation_deg": {
+            "type": "number",
+            "description": "Optional rotation in degrees around Y applied when instantiating the tile.",
+            "default": 0.0
+          },
+          "scale": {
+            "type": "number",
+            "description": "Uniform scale factor applied to this tile instance.",
+            "default": 1.0
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Semantic tags that annotate this cell (e.g., trench, fence1, hubfloor, hedgemaze).",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        }
+      }
+    }
+  }
+}
