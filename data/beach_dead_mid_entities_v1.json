@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "spawn_points": [
+    {
+      "id": "Spawn_Mid_Attacker",
+      "zone": "Attacker",
+      "col": 8,
+      "row": 7,
+      "y_offset": 0.0
+    },
+    {
+      "id": "Spawn_Mid_Defender",
+      "zone": "Defender",
+      "col": 8,
+      "row": 1,
+      "y_offset": 0.0
+    }
+  ],
+  "weapon_pickups": [
+    {
+      "id": "Pickup_Grenades_Center",
+      "type": "Grenades",
+      "col": 7,
+      "row": 4,
+      "y_offset": 0.0
+    },
+    {
+      "id": "Pickup_SMG_RightTrench",
+      "type": "SMG",
+      "col": 10,
+      "row": 3,
+      "y_offset": 0.0
+    }
+  ],
+  "hazard_volumes": [],
+  "objectives": []
+}
