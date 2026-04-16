@@ -1,0 +1,361 @@
+{
+  "version": "1.0.0",
+  "mapid": "fortress",
+  "schemaversion": "mapgridv1",
+  "gridsize": {
+    "cols": 32,
+    "rows": 32
+  },
+  "cellsize": 4.0,
+  "ylevel": 0.0,
+  "origin": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "metadata": {
+    "author": "AIChat",
+    "notes": "First-pass Fortress greybox grid: SHC base south, Tediz fortress north, central valley and bridge, side trenches, and tower positions. Matches fortressentitiesv1.json spawns/capture zones."
+  },
+  "cells": [
+    {
+      "col": 6,
+      "row": 24,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "rotationdeg": 0.0,
+      "scale": 1.0,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 7,
+      "row": 24,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 8,
+      "row": 24,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 9,
+      "row": 24,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 10,
+      "row": 24,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+
+    {
+      "col": 6,
+      "row": 25,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 7,
+      "row": 25,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 8,
+      "row": 25,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 9,
+      "row": 25,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+    {
+      "col": 10,
+      "row": 25,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "shcspawncourt"]
+    },
+
+    {
+      "col": 6,
+      "row": 26,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "teamshcspawn"]
+    },
+    {
+      "col": 8,
+      "row": 26,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "teamshcspawn"]
+    },
+    {
+      "col": 10,
+      "row": 26,
+      "tiletype": "TFloorSHCBase",
+      "walkable": true,
+      "roletags": ["shcbase", "teamshcspawn"]
+    },
+
+    {
+      "col": 6,
+      "row": 23,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "valleyapproach"]
+    },
+    {
+      "col": 7,
+      "row": 23,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "valleyapproach"]
+    },
+    {
+      "col": 8,
+      "row": 23,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "valleyapproach"]
+    },
+    {
+      "col": 9,
+      "row": 23,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "valleyapproach"]
+    },
+    {
+      "col": 10,
+      "row": 23,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "valleyapproach"]
+    },
+
+    {
+      "col": 8,
+      "row": 22,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "capture_a"]
+    },
+    {
+      "col": 9,
+      "row": 22,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "capture_a"]
+    },
+    {
+      "col": 10,
+      "row": 22,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward", "capture_a"]
+    },
+
+    {
+      "col": 8,
+      "row": 21,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward"]
+    },
+    {
+      "col": 6,
+      "row": 21,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward"]
+    },
+    {
+      "col": 10,
+      "row": 21,
+      "tiletype": "TFloorTrench",
+      "walkable": true,
+      "heightoffset": -1.0,
+      "roletags": ["trench", "shcforward"]
+    },
+
+    {
+      "col": 12,
+      "row": 19,
+      "tiletype": "TFloorValley",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["valleyflank", "bazooka_route"]
+    },
+    {
+      "col": 10,
+      "row": 19,
+      "tiletype": "TFloorValley",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["valleyflank", "bazooka_route", "gascanisterdefense"]
+    },
+    {
+      "col": 22,
+      "row": 19,
+      "tiletype": "TFloorValley",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["valleyflank", "bazooka_route", "gascanisterdefense"]
+    },
+
+    {
+      "col": 16,
+      "row": 18,
+      "tiletype": "TFloorValley",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["centralvalley", "gascanisterroute"]
+    },
+    {
+      "col": 15,
+      "row": 18,
+      "tiletype": "TFloorValley",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["centralvalley", "gascanisterroute"]
+    },
+    {
+      "col": 17,
+      "row": 18,
+      "tiletype": "TFloorValley",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["centralvalley", "gascanisterroute"]
+    },
+
+    {
+      "col": 15,
+      "row": 17,
+      "tiletype": "TFloorBridge",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "roletags": ["bridgecenter", "capture_b"]
+    },
+    {
+      "col": 16,
+      "row": 16,
+      "tiletype": "TFloorBridge",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "roletags": ["bridgecenter", "capture_b"]
+    },
+    {
+      "col": 17,
+      "row": 15,
+      "tiletype": "TFloorBridge",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "roletags": ["bridgecenter"]
+    },
+
+    {
+      "col": 16,
+      "row": 14,
+      "tiletype": "TFloorBridgeTower",
+      "walkable": true,
+      "heightoffset": 3.0,
+      "roletags": ["bridgecenter", "tower", "chaingun_perch"]
+    },
+
+    {
+      "col": 22,
+      "row": 10,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "roletags": ["tedizbase", "courtyard", "capture_c"]
+    },
+    {
+      "col": 23,
+      "row": 10,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "roletags": ["tedizbase", "courtyard", "capture_c"]
+    },
+    {
+      "col": 21,
+      "row": 10,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "roletags": ["tedizbase", "courtyard", "capture_c"]
+    },
+
+    {
+      "col": 24,
+      "row": 8,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "roletags": ["tedizbase", "gascanisterarmspot"]
+    },
+    {
+      "col": 22,
+      "row": 7,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "roletags": ["tedizbase"]
+    },
+
+    {
+      "col": 24,
+      "row": 6,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "roletags": ["tedizbase", "teamtedizspawn"]
+    },
+    {
+      "col": 22,
+      "row": 6,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "roletags": ["tedizbase", "teamtedizspawn"]
+    },
+    {
+      "col": 26,
+      "row": 6,
+      "tiletype": "TFloorTedizCourtyard",
+      "walkable": true,
+      "roletags": ["tedizbase", "teamtedizspawn"]
+    },
+
+    {
+      "col": 24,
+      "row": 8,
+      "tiletype": "TFloorTedizRamparts",
+      "walkable": true,
+      "heightoffset": 2.0,
+      "roletags": ["tedizramparts", "tower"]
+    }
+  ]
+}
