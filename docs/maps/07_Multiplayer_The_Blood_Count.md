@@ -1,251 +1,358 @@
 # 07_Multiplayer_The_Blood_Count
 
-## 0. Overview
+## High-Level Overview
 
 **Internal ID:** 07  
-**Working Title:** The Blood Count  
-**Source Chapter:** Spooky – Count Batula’s Mansion and surrounding grounds.  
-**Area Name:** Count Batula’s Mansion (interior) + graveyard and hedge maze (exterior).
+**Canonical Name:** The Blood Count  
+**Location:** Count Batula's Mansion and surrounding grounds (Spooky chapter)  
+**Primary Modes:** 
+- Blood Hunt (Objective – Zombies)
+- Team Deathmatch – Spooky (Zombies On)
+- Deathmatch – Spooky (Zombies On)
 
-**Design Pillars**
+**Player Count Target:** 
+- 2–4 teams (Red / Blue / Green / Yellow)  
+- Up to 16 players total (4 per team)  
 
-- 4‑team TDM/DM arena with an optional objective layer.  
-- Full access to mansion interior and exterior back‑yard/hedge maze.  
-- High‑density zombies across the entire playspace.  
-- Players start unarmed; all combat power is from pickups.  
-- One roaming Fire Imp that only exists while the blood‑vial is held.
-
----
-
-## 1. Map Layout & Zones
-
-### 1.1 High‑Level Zones
-
-- **Central Hall:** Main entrance hall; key crossroads for interior movement and vertical play.  
-- **Dining Room (Grinder Hall):** Large interior room with balcony; optional environmental hazard in variants.  
-- **Library:** Multilevel room with balconies and bookcases; core “high‑risk/high‑reward” zone.  
-- **Graveyard:** Front/side exterior with tombstones and initial zombie waves.  
-- **Hedge Maze:** Back‑yard maze; center is a high‑density zombie cluster and one of the key blood‑vial / Hunting Revolver spawn regions.  
-- **Basement / Dungeon:** Lower level with tight corridors; good for ambushes and choke points.  
-- **Four Team Wings:** Each corner of the castle interior provides a team spawn wing (Red/Blue/Green/Yellow).
-
-### 1.2 Role Tags (Grid)
-
-Example `role_tags` for grid cells:
-
-- `central_hall`, `dining_room`, `library`, `graveyard`, `hedge_maze`, `dungeon`  
-- `team_red_spawn`, `team_blue_spawn`, `team_green_spawn`, `team_yellow_spawn`  
-- `blood_vial_spawn`, `hunting_revolver_spawn`  
-- `zombie_spawn_low`, `zombie_spawn_medium`, `zombie_spawn_high`  
-- `fire_imp_path`  
+**Core Fantasy:**
+Teams of greedy, undead‑adjacent misfits fight through Count Batula’s zombie‑infested mansion to seize the Panther King’s blood‑vial and perform a ritual at their team altar while a relentless Fire Imp hunts the carrier. Zombies are everywhere. Headshots and close‑range shotgun blasts are the only way to keep them down.
 
 ---
 
-## 2. Supported Game Modes
+## Canonical References and Pillars
 
-### 2.1 Game Mode: Zombies (Objective)
+- **Source Chapter:** Spooky (Conker’s Bad Fur Day) – Count Batula’s Mansion and its surrounding graveyard.[^ref_spooky]  
+- **Key Elements Preserved:**
+  - Zombie headshots as the core lethality rule.
+  - Grinder in the dining hall as a lethal environmental hazard.
+  - Mansion wings (library, basement, entrance, exterior) as primary routes.
+- **Spiritual Ancestors:**
+  - Heist (The Vault) – four‑team, central objective loop.
+  - Raptor and Tank – asymmetrical risk/reward routes and instant‑win style objectives.
 
-Primary objective‑based mode with TDM overlay.
-
-- Up to 4 teams (Red/Blue/Green/Yellow), 4 players per team (16‑player max).  
-- Zombies populate the entire map at high density.  
-- A single **Panther King’s Blood‑Vial** pickup exists at any given time:
-  - Spawns at one of multiple potential `blood_vial_spawn` locations.  
-  - After a decay timer expires, despawns and respawns at a different location.  
-- A lone **Fire Imp** exists, but only while a player is carrying the blood‑vial.
-
-Scoring model (suggested):
-
-- Deliver blood‑vial to your team’s ritual altar in your wing for major score.  
-- TDM scoring also active (kills vs deaths), but secondary to objective.
-
-### 2.2 Zombies TDM (No Objective)
-
-- Standard Team Deathmatch in the same map.  
-- Zombies still spawn with high density.  
-- No blood‑vial or Fire Imp; all points come from PvP plus optional PvE bonus scoring.
-
-### 2.3 Zombies DM (Free‑for‑All)
-
-- Free‑for‑all variant in same geometry.  
-- Optional toggle for blood‑vial objective; if enabled, any player can score by delivering the vial to neutral altars.
+> **Design Goal:** This map must feel like a direct multiplayer sequel to Spooky, not a generic horror arena.
 
 ---
 
-## 3. Player Count, Spawns, and Flow
+## Spatial Layout and Zones
 
-### 3.1 Player Limits
+### 1. Global Geometry Summary
 
-- 16 players maximum (LAN/online).  
-- 4 teams, 4 players each for the primary objective mode.  
-- 4‑player split‑screen supported.
+The Blood Count uses a hub‑and‑wings layout centered on the **Dining Hall (Grinder Room)**. All interior wings and the back‑yard maze connect through this central hub. Verticality comes from balconies, staircases, and library mezzanines overlooking the hub and corridors.
 
-### 3.2 Team Spawns
+- **Central Hub:** Dining Hall with Grinder pit.  
+- **Primary Wings (Team Spawns):**
+  - North Wing – Library and Study
+  - South Wing – Crypts / Basement Access
+  - East Wing – Entrance Hall & Front Graveyard
+  - West Wing – Kitchen & Service Corridors
+- **Exterior Zone:** Back‑yard hedge/library maze (high zombie density, Hunting Revolver hotspot).
 
-Team wings are anchored to the four corners of the mansion’s interior:
+### 2. Zone Breakdown
 
-- Team Red: North‑West wing.  
-- Team Blue: North‑East wing.  
-- Team Green: South‑East wing.  
-- Team Yellow: South‑West wing.
+#### 2.1 Dining Hall – Grinder Hub
 
-Each wing:
+- Large rectangular room with central Grinder pit (instant‑death hazard).  
+- Balconies on at least two sides provide elevated sightlines into hub.  
+- Multiple doorways to each wing ensure flow and flanking options.
 
-- Contains 4 spawn points.  
-- Has a “safe” first room with minimal zombie density and low‑tier pickups (e.g., crossbow or basic shotgun).  
-- Opens into the central hall or adjacent corridors, giving players a chance to arm up before entering congested zones.
+**Gameplay Roles:**
+- Central convergence point for Blood Hunt routes.
+- Risky shortcut between spawn wings.
+- Potential shotgun and ammo pickups near balconies and pillars.
 
-Spawn system must:
+#### 2.2 Library Wing (North)
 
-- Avoid spawning players directly into zombie clusters.  
-- Rotate spawn nodes when enemies (players or zombies) are too close or have direct LOS.
+- Multi‑level library stacks, narrow aisles, ladders/ramps to upper mezzanine.  
+- Connects directly to the back‑yard maze through broken wall/doorway.
 
----
+**Gameplay Roles:**
+- Primary **Hunting Revolver** spawn zone (highest zombie density).  
+- Long sightlines for precision weapons.  
+- Stronghold for teams willing to brave heavy zombie presence.
 
-## 4. Blood‑Vial Objective
+#### 2.3 Basement / Crypts (South)
 
-### 4.1 Core Rules
+- Tight corridors, low ceilings, occasional open crypt chambers.  
+- Some dead‑end rooms for ambushes and zombie spawn clusters.
 
-- Only **one** blood‑vial exists at any time.  
-- Spawns at `blood_vial_spawn` nodes across:
-  - Library (most dangerous), hedge maze center, central hall altar, selected dungeon alcove.  
-- Has a **decay timer**: when timer expires, vial disappears and respawns at a new location.  
-- Carrier restrictions:
-  - Cannot run, cannot jump, cannot use weapons (Heavy Carry state).  
-  - Moves slower than normal and is highly vulnerable.
+**Gameplay Roles:**
+- Close‑quarters shotgun territory.  
+- Natural zombie emergence zone.  
+- Offers flanking routes to the hub beneath main corridors.
 
-### 4.2 Fire Imp Behavior
+#### 2.4 Entrance Hall & Front Graveyard (East)
 
-- Fire Imp is absent while no one holds the blood‑vial.  
-- When a player picks up the blood‑vial:
-  - Fire Imp spawns along a `fire_imp_path` near the vial carrier’s general area.  
-  - Immediately begins pathfinding toward the carrier.  
+- Entrance foyer with grand staircase and double doors leading outside.  
+- Front graveyard area with tombstones and sparse cover.
 
-Kill rules:
+**Gameplay Roles:**
+- Mid‑range engagement area.  
+- Safer space for newly spawned players to orient and grab basic weapons.  
+- Connects to other wings via interior corridors and exterior wrap‑around paths.
 
-- Only the **Hunting Revolver** (any range) or **Shotgun** (close‑range lethal blast) can kill the Fire Imp.  
-- Flamethrower does **not** damage, stun, stagger, or slow the Fire Imp.  
-- On death, Fire Imp has a respawn cooldown (e.g., 15 seconds) to allow a “breathing room” window for the carrier.  
-- After cooldown, Fire Imp respawns if the vial is still being carried.
+#### 2.5 Kitchen & Service Wing (West)
 
----
+- Multi‑room kitchen, pantry, and servant corridors, with back‑of‑house access to the Dining Hall.  
+- Narrow, looping routes that favor shotgun and flamethrower.
 
-## 5. Zombies: Behavior and Density
+**Gameplay Roles:**
+- Flanking routes into the hub that avoid main sightlines.  
+- Good place for mid‑tier weapon pickups (SMG / shotgun, light ammo).
 
-### 5.1 Core Zombie Rules
+#### 2.6 Back‑Yard Maze / Garden
 
-- Zombies are present throughout all major zones:
-  - Graveyard and hedge maze: highest density.  
-  - Library and dungeon: high density.  
-  - Central hall and dining room: medium density.  
-  - Team wings: low density to protect spawn stability.
+- Hedge‑style or bookshelf‑style maze behind the mansion, attached to Library Wing.  
+- Limited visibility, heavy zombie spawns, ambient fog.
 
-Damage and death:
-
-- Only **headshots** or **shotgun lethal‑zone blasts** (head/upper torso at close range) kill zombies.  
-- Flamethrower does not kill zombies; it can optionally apply a brief stagger or purely cosmetic burning, but no lethal damage.  
-
-Crawl state:
-
-- When zombies take heavy body/limb damage without qualifying lethal hits:
-  - Transition into a slow “crawl” state.  
-  - Crawl zombies still require headshots or close shotgun blasts to die.  
-- Crawl state adds visual brutality and changes pathing (lower profile).
-
-### 5.2 Spawn Manager
-
-- Maintain target zombie counts per zone:
-  - E.g., hedge maze target higher than library; library higher than central hall.  
-- Activate zombie spawns based on player proximity and line‑of‑sight:  
-  - Prefer spawning out of view in adjacent corridors, graveyard edges, or maze turns.  
-- Despawn or reduce zombie count in team wings to prevent immediate spawn deaths.
+**Gameplay Roles:**
+- **Most dangerous area on the map; primary Hunting Revolver spawn location.**  
+- Ideal ground for zombie swarms and Fire Imp ambushes.  
+- High‑risk, high‑reward traversal route between wings.
 
 ---
 
-## 6. Weapon Pickups and Placement
+## Teams, Spawns, and Flow
 
-### 6.1 Weapon Set
+### 1. Team Structure
 
-- Crossbow.  
-- Shotgun.  
-- Flamethrower.  
-- Hunting Revolver (high‑power, rare).
+- Up to **4 teams**: Red / Blue / Green / Yellow.  
+- Each team has a home “wing” associated with a mansion quadrant.
 
-### 6.2 Placement Logic
+Suggested mapping:
 
-- All players start unarmed (or with only a weak melee hit).  
-- Early pickups:
-  - Crossbows and shotguns placed near exits from team wings into the central hall or graveyard.  
-- Flamethrowers:
-  - Mid‑risk zones such as central hall balconies or dining room side corridors.  
-- Hunting Revolver:
-  - Only spawns at **central and highly dangerous** locations:
-    - Library center (especially in the maze‑like shops of shelves).  
-    - Hedge maze center surrounded by high zombie density.  
+- **Team Red:** Library Wing (North)  
+- **Team Blue:** Crypt/Basement Wing (South)  
+- **Team Green:** Entrance/Graveyard Wing (East)  
+- **Team Yellow:** Kitchen/Service Wing (West)
 
-Balancing constraints:
+### 2. Spawn Bands and Safe Rooms
 
-- At least two potential Hunting Revolver spawn points to prevent predictable camping.  
-- Revolver ammo scarce – designed as a Fire Imp/Zombie elite killer rather than a general‑purpose weapon.  
+Each team begins in a **safe spawn room** at the far end of its wing:
 
----
+- One main spawn room per team with 3–4 spawn nodes.  
+- Room exits into a short “buffer corridor” with low zombie presence and basic weapon pickups (e.g., crossbow or low‑ammo shotgun).  
+- The buffer corridor leads to a wing “midfield” that connects to the Dining Hall hub.
 
-## 7. Movement, Physics, and States
+**Spawn Rules:**
 
-### 7.1 Heavy Carry (Blood‑Vial)
-
-- When carrying the blood‑vial, player enters Heavy Carry state:
-  - Walk speed significantly reduced.  
-  - Jumping disabled.  
-  - Weapon use disabled.  
-- State must integrate with ASID registry as a specific ID so executions and damage rules are consistent across maps.
-
-### 7.2 General Movement
-
-- Standard movement for non‑heavy states; optional tweaks to keep the “slow, deliberate” N64 feel:
-  - Slight inertia on direction changes.  
-  - Emphasis on precise platforming on library balconies and graveyard obstacles.
+- No player should spawn within direct line‑of‑sight of an enemy player.  
+- If all spawn nodes in a team’s wing are compromised (enemy presence within line‑of‑sight or range threshold), the spawn manager rotates to the next safest node cluster in that wing.  
+- DM/TDM variants reuse the same spawn bands but may allocate teams differently.
 
 ---
 
-## 8. Implementation Notes
+## Game Modes
 
-### 8.1 Engine‑Specific Hooks
+### 1. Blood Hunt (Objective – Zombies)
 
-- **UE5:**
-  - `BP_BloodVialObjective` actor for vial logic.  
-  - `BP_FireImpAIController` + pawn for Fire Imp.  
-  - `BP_ZombieBase` with state machine (Idle/Patrol/Chase/Attack/Crawl).  
-- **Unity:**
-  - `BloodVialObjective` MonoBehaviour with state transitions (idle/spawned/held/decayed).  
-  - `FireImpAI` script using NavMesh.  
-  - `ZombieController` with state enum and hitbox tagging for head vs body.  
-- **Godot:**
-  - `BloodVialObjective.gd`, `FireImp.gd`, `Zombie.gd` as nodes with FSMs and navigation agent integration.
+Core mode for The Blood Count. Zombies are always active. Four teams compete to capture the Panther King’s blood‑vial and score at their ritual altar.
 
-### 8.2 Data Contracts
+#### 1.1 Win and Score Conditions
 
-- Grid file: `maps/the_blood_count/the_blood_count_grid_v1.json`.  
-- Entities file: `maps/the_blood_count/the_blood_count_entities_v1.json`.  
-- Zombie spawn config: `data/ai/the_blood_count_zombies_v1.json`.  
-- Fire Imp config: `data/ai/the_blood_count_fire_imp_v1.json`.  
-- Objective config: `data/maps/the_blood_count_objectives_v1.json`.
+- **Primary Objective:** 
+  - Pick up the **Blood Vial** and transport it to your team’s **Ritual Altar** in your home wing.
+- **Scoring:**
+  - Each successful vial turn‑in scores 1 point for that team.
+  - Default match: first team to N points (tunable; e.g., 3) or highest score at time limit.
+- **Sudden Death:** 
+  - Optional rule where the last available vial (after a global timer) is worth extra points or triggers End‑Game panic (increased zombies).
+
+#### 1.2 Blood Vial Behavior
+
+- **Single instance** of the vial active at any time.  
+- **Spawn logic:**
+  - Vial spawn locations rotate among pre‑defined points across the map (e.g., Library maze, Dining Hall hub, Graveyard, Crypt chamber).  
+  - Each spawn has a **decay timer**; if not picked up within time, vial despawns and reappears at the next location.
+- **Heavy Carry Rules (Carrier):**
+  - Cannot sprint/run.  
+  - Cannot jump.  
+  - Cannot use weapons or throw grenades.  
+  - Movement speed reduced to “encumbered walk” profile.
+- **Visibility:**
+  - Vial carrier is highlighted on HUD/minimap with reduced precision (e.g., approximate direction but not exact position) to preserve tension.
+
+#### 1.3 Ritual Altars
+
+- Each team has a unique altar in its home wing (e.g., a blood‑stained shrine, ritual circle, or makeshift sacrificial slab).  
+- Vial turn‑in requires the carrier to reach altar and channel briefly (short interaction time) while completely vulnerable.
 
 ---
 
-## 9. Testing Checklist
+### 2. Team Deathmatch – Spooky (Zombies On)
 
-- Four team spawns:
-  - No spawn kills from zombies or Fire Imp.  
-- Blood‑vial:
-  - Correctly rotates spawn locations on decay.  
-  - Heavy Carry state always applied and cleared correctly.  
-- Fire Imp:
-  - Does not spawn until a player picks up vial.  
-  - Only Hunting Revolver and close‑range shotgun hits can kill it; flamethrower has no effect.  
-  - Respawn timer grants a meaningful “breathing room” to vial carrier.  
-- Zombies:
-  - Only die from headshots / lethal shotgun blasts.  
-  - Crawl behavior triggers from non‑lethal body damage.  
-- Performance:
-  - High zombie density with 16 players and 4‑player split‑screen remains within budget on target platforms.
+- **Objective:** Team‑based kill count; zombies remain active as environmental threats.  
+- **Vial and Fire Imp:** Disabled in this variant.  
+- **Scoring:** Kills against enemy players; zombie kills may or may not contribute (tunable).
+
+### 3. Deathmatch – Spooky (Zombies On)
+
+- **Objective:** Free‑for‑all kill count; same geometry and zombie behavior.  
+- **Vial and Fire Imp:** Disabled.  
+- **Spawn:** Spread across wings and certain central positions to minimize spawn‑camping.
+
+---
+
+## Zombies – Behavior, Spawning, and Lethality
+
+### 1. Core Behavior
+
+Zombies follow a simple but brutal rule set, modeled on Spooky:
+
+- **Movement:** Slow shamble toward nearest living player in line‑of‑sight; slightly faster when they detect the blood‑vial carrier.  
+- **States:** Idle, Shamble, Attack, Crawl, Stunned (optional).  
+- **Attack:** Melee swipe that deals moderate damage and can stagger lightly armored characters.
+
+### 2. Lethality Rules
+
+- **Only true death from:**
+  - **Headshots** from projectile weapons.  
+  - **Close‑range shotgun blasts** that encompass the head/upper torso in their lethal cone.
+- **Non‑lethal damage:**
+  - Body shots from any weapon do not kill.  
+  - Excessive limb/body damage pushes zombies into a **Crawl State**:
+    - Slower movement.
+    - Lower attack range.
+    - Still lethal if ignored.
+  - Crawlers still require headshots or lethal shotgun cone aimed at upper torso/head to die.
+
+### 3. Flamethrower Interactions
+
+- Flamethrower:
+  - **Does not kill zombies.**  
+  - Optional: briefly slows their movement or creates short “panic” animation, but does not change their health state permanently.
+- Design Note:
+  - Emphasizes flamethrower as crowd‑control / area denial rather than hard counter.
+
+### 4. Zombie Spawning and Density
+
+- **Spawn Zones:** 
+  - Back‑yard maze, basement corridors, graveyard, and select hallways.  
+- **Density Target:** 
+  - Always maintain a minimum number of zombies per zone (tunable; e.g., 10–20 actors globally at lower player counts, scaling up to a higher cap for full 16‑player lobbies).
+- **Spawn Logic:** 
+  - Respawn zombies outside immediate player view to avoid popping.  
+  - Adjust spawn rates based on:
+    - Number of active players in the zone.  
+    - Current score (trailing teams may see fewer zombies in their path).
+
+---
+
+## Fire Imp – Behavior and Rules
+
+### 1. Activation Conditions
+
+- Fire Imp is **not present** on the map until a player picks up the Blood Vial.  
+- Once the vial is held:
+  - Fire Imp spawns at a designated “hell portal” or fireplace location.  
+  - Immediately acquires the vial carrier as primary target.
+
+### 2. Targeting and Movement
+
+- **Primary Target:** Blood‑vial carrier at all times.  
+- **Secondary Targets:** Only attacks other players if they significantly obstruct its path or inflict damage.  
+- **Movement Profile:**
+  - Fast, erratic ground movement with small hops.  
+  - Can navigate tight spaces and jump minor gaps; cannot fly.
+
+### 3. Damage and Vulnerabilities
+
+- **Fire Imp can only be killed by:**
+  - **Hunting Revolver:** Any range – a direct hit kills or inflicts very high damage.  
+  - **Shotgun:** Only at close range (within defined lethal radius), requiring accurate blasts.
+- **Immune to:**
+  - Flamethrower (no damage, no stun/slow).  
+  - Light weapons (e.g., SMG, pistols) – optional minor flinch but no real damage.
+- **On Death:**
+  - Fire Imp enters a death animation and despawns.  
+  - Starts a **respawn cooldown** (e.g., 15 seconds) during which the carrier has “breathing room”.
+
+### 4. Respawn Behavior
+
+- After the cooldown:
+  - Fire Imp respawns in a location that favors interception of the current vial carrier (e.g., on their likely route to the altar, not directly in front of them).
+- If the vial is dropped or returned:
+  - Fire Imp despawns or becomes dormant until next vial pickup.
+
+---
+
+## Weapons and Pickups
+
+### 1. Weapon Set
+
+- **Available Weapons:**
+  - Crossbow (precision, slower rate of fire).  
+  - Shotgun (close‑range power, key vs zombies).  
+  - Flamethrower (crowd control, anti‑player but weak vs zombies & Fire Imp).  
+  - Hunting Revolver (high damage, key vs Fire Imp and distant threats).
+- **Optional Additions:**  
+  - Light SMG or pistol for basic self‑defense.
+
+### 2. Placement Philosophy
+
+- **Crossbows:** 
+  - Near balconies, library upper levels, and graveyard overlook points.  
+- **Shotguns:** 
+  - Near stair bases, crypt entrances, and kitchen corridors (tight quarters).  
+- **Flamethrowers:** 
+  - Along chokepoints where players confront zombie clusters (hallway pinch points, maze choke points).  
+- **Hunting Revolver:**
+  - Spawns only in the **back‑yard library/hedge maze** (most dangerous zone with highest zombie density).  
+  - Potential secondary rare spawn in a risky crypt chamber, if needed for balance.
+
+### 3. Ammo and Health
+
+- Ammo and health pickups are scattered near but not on altars and vial spawn points, to prevent camping.  
+- Zombie‑dense areas may have slightly better ammo density as reward.
+
+---
+
+## Technical Constraints and Tuning
+
+### 1. Player Count and Split-Screen
+
+- Map designed to scale **cleanly to 16 players**, with:
+  - Clearly separated team spawn wings.  
+  - Multiple traversal routes to avoid choke congestion.
+- Must remain readable in **4‑player split‑screen**:
+  - Strong silhouettes and lighting contrast in key combat spaces.  
+  - Avoid excessive narrow corridors that cause screen chaos.
+
+### 2. Performance Targets
+
+- Zombies and Fire Imp count toward AI budget; tuning targets:
+  - Maintain stable framerate with up to 16 players + dozens of zombies + Fire Imp.  
+  - LOD and pooling for zombies, gore decals, and particle effects.
+
+### 3. Exposed Variables for Playtesting
+
+List of config parameters to be driven via external config (for rapid tuning):
+
+- Zombie global cap and per‑zone caps.  
+- Zombie respawn delay.  
+- Blood Vial decay timer per spawn location.  
+- Fire Imp respawn interval.  
+- Points per vial delivery, kill values, and DM/TDM scoring thresholds.  
+- Heavy carry movement speed, and line‑of‑sight spawn radius.
+
+---
+
+## Playtest Checklist
+
+A non‑exhaustive checklist to verify core behaviors:
+
+- [ ] Zombies only die from headshots or close‑range shotgun lethal cone.  
+- [ ] Zombies reliably enter crawl state after sufficient limb/body damage.  
+- [ ] Flamethrower does not kill zombies or Fire Imp.  
+- [ ] Fire Imp only spawns once the Blood Vial is picked up.  
+- [ ] Fire Imp can only be killed by Hunting Revolver (any range) and close‑range shotgun blasts.  
+- [ ] Fire Imp respects the respawn cooldown after death (e.g., ~15 seconds).  
+- [ ] Blood Vial carrier cannot run, jump, or fire weapons.  
+- [ ] Vial spawn/decay cycle correctly rotates among all intended locations.  
+- [ ] Each team’s Ritual Altar correctly accepts vial turn‑ins and scores points.  
+- [ ] No spawn‑camping: spawn manager avoids placing players in direct enemy line‑of‑sight.  
+- [ ] TDM and DM variants function correctly with zombies enabled and vial/Fire Imp disabled.
+
+---
+
+[^ref_spooky]: See Conker’s Bad Fur Day – Chapter 7: Spooky and Count Batula’s Mansion coverage for canonical layout and zombie behavior details.  
