@@ -1,0 +1,313 @@
+{
+  "version": "1.0.0",
+  "mapid": "fortress",
+  "schemaversion": "mapentitiesv1",
+  "spawnpoints": [
+    {
+      "id": "spawn_shc_main_01",
+      "team": "shc",
+      "zone": "SHCBase",
+      "col": 6,
+      "row": 26,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamspawn", "teamshcspawn", "shcbase"]
+    },
+    {
+      "id": "spawn_shc_main_02",
+      "team": "shc",
+      "zone": "SHCBase",
+      "col": 8,
+      "row": 26,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamspawn", "teamshcspawn", "shcbase"]
+    },
+    {
+      "id": "spawn_shc_main_03",
+      "team": "shc",
+      "zone": "SHCBase",
+      "col": 10,
+      "row": 26,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamspawn", "teamshcspawn", "shcbase"]
+    },
+    {
+      "id": "spawn_shc_trench_forward_01",
+      "team": "shc",
+      "zone": "SHCForwardTrench",
+      "col": 8,
+      "row": 20,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamspawn", "teamshcspawn", "shcforwardspawn", "trench"]
+    },
+    {
+      "id": "spawn_shc_trench_forward_02",
+      "team": "shc",
+      "zone": "SHCForwardTrench",
+      "col": 6,
+      "row": 21,
+      "yoffset": 0.0,
+      "facingdeg": 10.0,
+      "roletags": ["teamspawn", "teamshcspawn", "shcforwardspawn", "trench"]
+    },
+    {
+      "id": "spawn_shc_trench_forward_03",
+      "team": "shc",
+      "zone": "SHCForwardTrench",
+      "col": 10,
+      "row": 21,
+      "yoffset": 0.0,
+      "facingdeg": -10.0,
+      "roletags": ["teamspawn", "teamshcspawn", "shcforwardspawn", "trench"]
+    },
+    {
+      "id": "spawn_tediz_main_01",
+      "team": "tediz",
+      "zone": "TedizCourtyard",
+      "col": 24,
+      "row": 6,
+      "yoffset": 0.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamspawn", "teamtedizspawn", "tedizbase"]
+    },
+    {
+      "id": "spawn_tediz_main_02",
+      "team": "tediz",
+      "zone": "TedizCourtyard",
+      "col": 22,
+      "row": 6,
+      "yoffset": 0.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamspawn", "teamtedizspawn", "tedizbase"]
+    },
+    {
+      "id": "spawn_tediz_main_03",
+      "team": "tediz",
+      "zone": "TedizCourtyard",
+      "col": 26,
+      "row": 6,
+      "yoffset": 0.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamspawn", "teamtedizspawn", "tedizbase"]
+    },
+    {
+      "id": "spawn_tediz_ramparts_01",
+      "team": "tediz",
+      "zone": "TedizRamparts",
+      "col": 24,
+      "row": 10,
+      "yoffset": 2.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamspawn", "teamtedizspawn", "tedizramparts", "tower"]
+    },
+    {
+      "id": "spawn_neutral_bridge_01",
+      "team": "neutral",
+      "zone": "BridgeCenter",
+      "col": 16,
+      "row": 16,
+      "yoffset": 0.0,
+      "facingdeg": 90.0,
+      "roletags": ["ffa_spawn", "bridgecenter", "capturezone_mid"]
+    },
+    {
+      "id": "spawn_neutral_valley_01",
+      "team": "neutral",
+      "zone": "ValleyFlank",
+      "col": 12,
+      "row": 18,
+      "yoffset": 0.0,
+      "facingdeg": 45.0,
+      "roletags": ["ffa_spawn", "valleyflank", "trench"]
+    }
+  ],
+  "weaponpickups": [
+    {
+      "id": "pickup_shotgun_shc_base_left",
+      "weapontype": "Shotgun",
+      "ammoamount": 16,
+      "respawnseconds": 20.0,
+      "col": 4,
+      "row": 25,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "shcbase", "closequarters"]
+    },
+    {
+      "id": "pickup_smg_shc_trench_mid",
+      "weapontype": "SMG",
+      "ammoamount": 60,
+      "respawnseconds": 20.0,
+      "col": 8,
+      "row": 22,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "shcforward", "trench", "midrange"]
+    },
+    {
+      "id": "pickup_bazooka_valley_left",
+      "weapontype": "Bazooka",
+      "ammoamount": 4,
+      "respawnseconds": 40.0,
+      "col": 10,
+      "row": 19,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "heavyweapon", "bazooka", "valleyflank", "gascanisterdefense"]
+    },
+    {
+      "id": "pickup_bazooka_valley_right",
+      "weapontype": "Bazooka",
+      "ammoamount": 4,
+      "respawnseconds": 40.0,
+      "col": 22,
+      "row": 19,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "heavyweapon", "bazooka", "valleyflank", "gascanisterdefense"]
+    },
+    {
+      "id": "pickup_chaingun_bridge_tower",
+      "weapontype": "Chaingun",
+      "ammoamount": 200,
+      "respawnseconds": 45.0,
+      "col": 16,
+      "row": 14,
+      "yoffset": 3.0,
+      "roletags": ["weaponpickup", "heavyweapon", "chaingun", "bridgecenter", "tower"]
+    },
+    {
+      "id": "pickup_sniper_tediz_ramparts",
+      "weapontype": "SniperRifle",
+      "ammoamount": 10,
+      "respawnseconds": 30.0,
+      "col": 24,
+      "row": 8,
+      "yoffset": 3.0,
+      "roletags": ["weaponpickup", "sniper", "tedizramparts", "longsightline"]
+    },
+    {
+      "id": "pickup_rocket_ammo_tediz_courtyard",
+      "weapontype": "BazookaAmmo",
+      "ammoamount": 4,
+      "respawnseconds": 35.0,
+      "col": 22,
+      "row": 7,
+      "yoffset": 0.4,
+      "roletags": ["ammopickup", "heavyweapon", "tedizbase"]
+    },
+    {
+      "id": "pickup_rocket_ammo_shc_valley_supply",
+      "weapontype": "BazookaAmmo",
+      "ammoamount": 4,
+      "respawnseconds": 35.0,
+      "col": 10,
+      "row": 21,
+      "yoffset": 0.4,
+      "roletags": ["ammopickup", "heavyweapon", "shcforward", "trench"]
+    }
+  ],
+  "objectivepickups": [
+    {
+      "id": "pickup_gas_canister_central_valley",
+      "objectivetype": "GasCanister",
+      "heavycarryasid": "ASID050",
+      "respawnseconds": 0.0,
+      "dropondeath": true,
+      "col": 16,
+      "row": 18,
+      "yoffset": 0.9,
+      "roletags": ["objectivepickup", "gascanister", "centralvalley", "gascanisterroute"]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "objective_capture_shc_trench",
+      "objectivetype": "CaptureZone",
+      "team": "neutral",
+      "maxhealth": 0,
+      "col": 10,
+      "row": 22,
+      "yoffset": 0.0,
+      "radiuscells": 3.5,
+      "roletags": ["capturezone", "capture_a", "shcforward", "trench", "totalwar"]
+    },
+    {
+      "id": "objective_capture_bridge_center",
+      "objectivetype": "CaptureZone",
+      "team": "neutral",
+      "maxhealth": 0,
+      "col": 16,
+      "row": 16,
+      "yoffset": 0.0,
+      "radiuscells": 3.5,
+      "roletags": ["capturezone", "capture_b", "bridgecenter", "totalwar"]
+    },
+    {
+      "id": "objective_capture_tediz_courtyard",
+      "objectivetype": "CaptureZone",
+      "team": "neutral",
+      "maxhealth": 0,
+      "col": 22,
+      "row": 10,
+      "yoffset": 0.0,
+      "radiuscells": 3.0,
+      "roletags": ["capturezone", "capture_c", "tedizbase", "courtyard", "totalwar"]
+    },
+    {
+      "id": "objective_gas_inlet_tediz_base",
+      "objectivetype": "GasInlet",
+      "team": "shc",
+      "maxhealth": 1,
+      "col": 24,
+      "row": 8,
+      "yoffset": 0.0,
+      "radiuscells": 1.5,
+      "roletags": ["gasinlet", "gascanisterarmspot", "tedizbase", "totalwar"]
+    },
+    {
+      "id": "objective_gas_inlet_shc_base",
+      "objectivetype": "GasInlet",
+      "team": "tediz",
+      "maxhealth": 1,
+      "col": 8,
+      "row": 24,
+      "yoffset": 0.0,
+      "radiuscells": 1.5,
+      "roletags": ["gasinlet", "gascanisterarmspot", "shcbase", "totalwar"]
+    }
+  ],
+  "hazardvolumes": [
+    {
+      "id": "hazard_fortress_gas_wave_tediz",
+      "hazardtype": "FortressGasWave",
+      "centercol": 24,
+      "centerrow": 6,
+      "radiuscells": 8.0,
+      "minyoffset": -1.0,
+      "maxyoffset": 6.0,
+      "gridinclusionrule": "include all tiles with roletags [\"tedizbase\"]",
+      "roletags": ["hazard", "gaswave", "tedizbase", "gascanistereffect"]
+    },
+    {
+      "id": "hazard_fortress_gas_wave_shc",
+      "hazardtype": "FortressGasWave",
+      "centercol": 8,
+      "centerrow": 26,
+      "radiuscells": 8.0,
+      "minyoffset": -1.0,
+      "maxyoffset": 6.0,
+      "gridinclusionrule": "include all tiles with roletags [\"shcbase\"]",
+      "roletags": ["hazard", "gaswave", "shcbase", "gascanistereffect"]
+    }
+  ],
+  "npcspawners": [],
+  "meta": {
+    "recommendedplayers": 16,
+    "supportedmodes": [
+      "TotalWarFortress",
+      "TeamDeathmatchVariant",
+      "GasCanisterRun"
+    ],
+    "notes": "First-pass Fortress entities: three capture zones, a central gas canister pickup, heavy weapon placements, and gas inlet objectives in each base. Gas wave hazards are triggered by arming the canister at an enemy inlet."
+  }
+}
