@@ -106,11 +106,7 @@ pub fn emit_unreal<W: Write>(
     // Weapon pickups.
     let mut pickups: Vec<UnrealWeaponPickupOut> = Vec::new();
     for wp in &entities.weapon_pickups {
-        if let Some(class_path) = tileset
-            .entity_mappings
-            .weapon_pickup
-            .get(&wp.r#type)
-        {
+        if let Some(class_path) = tileset.entity_mappings.weapon_pickup.get(&wp.r#type) {
             let (x, y, z) = grid.cell_to_world(wp.col, wp.row, wp.y_offset);
             pickups.push(UnrealWeaponPickupOut {
                 id: wp.id.clone(),
@@ -127,14 +123,9 @@ pub fn emit_unreal<W: Write>(
         // All hazards use the same BP, behavior is driven by `hazard_profile_id`.
         // tileset.entity_mappings.hazard_volume maps logical types (hub_gas, sublevel_acid,
         // library_grinder) to a BP_HazardVolume-derived class.
-        if let Some(class_path) = tileset
-            .entity_mappings
-            .hazard_volume
-            .get(&hv.r#type)
-        {
+        if let Some(class_path) = tileset.entity_mappings.hazard_volume.get(&hv.r#type) {
             let (cx, cy, cz) = grid.cell_to_world(hv.center_col, hv.center_row, 0.0);
             let radius = hv.radius_cells as f32 * grid.cell_size;
-
             let y_min = grid.y_level + hv.y_min_offset;
             let y_max = grid.y_level + hv.y_max_offset;
 
@@ -147,11 +138,7 @@ pub fn emit_unreal<W: Write>(
                 id: hv.id.clone(),
                 r#type: hv.r#type.clone(),
                 class_path: class_path.clone(),
-                center: UnrealVec3 {
-                    x: cx,
-                    y: cy,
-                    z: cz,
-                },
+                center: UnrealVec3 { x: cx, y: cy, z: cz },
                 radius,
                 y_min,
                 y_max,
@@ -160,14 +147,10 @@ pub fn emit_unreal<W: Write>(
         }
     }
 
-    // Objectives (unchanged, but share the same pattern).
+    // Objectives.
     let mut objectives: Vec<UnrealObjectiveOut> = Vec::new();
     for obj in &entities.objectives {
-        if let Some(class_path) = tileset
-            .entity_mappings
-            .objective
-            .get(&obj.r#type)
-        {
+        if let Some(class_path) = tileset.entity_mappings.objective.get(&obj.r#type) {
             let (x, y, z) = grid.cell_to_world(obj.col, obj.row, obj.y_offset);
             objectives.push(UnrealObjectiveOut {
                 id: obj.id.clone(),
@@ -179,7 +162,10 @@ pub fn emit_unreal<W: Write>(
     }
 
     let out_obj = UnrealLevelOut {
-        level_name: grid.level_name.clone().unwrap_or_else(|| "LVUnknown".to_string()),
+        level_name: grid
+            .level_name
+            .clone()
+            .unwrap_or_else(|| "LVUnknown".to_string()),
         hub_y_level: grid.y_level,
         tilesets,
         spawns,
