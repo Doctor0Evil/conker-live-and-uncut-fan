@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "profiles": [
+    {
+      "id": "hub_gas_v1",
+      "hazard_type": "gas",
+      "damage_per_second": 60.0,
+      "tick_interval": 0.10,
+      "immunity_asids": [
+        "ASID_EXECUTION",
+        "ASID_RESPAWN_INVULN"
+      ],
+      "visual_effect_id": "VFX_HUB_GAS",
+      "audio_cue_id": "SFX_HUB_GAS_LOOP",
+      "activation_controller": "AlienBaseAirlockController",
+      "debug_label": "Alien Base – Hub Floor Gas (Standard)"
+    },
+    {
+      "id": "sublevel_acid_v1",
+      "hazard_type": "acid",
+      "damage_per_second": 90.0,
+      "tick_interval": 0.10,
+      "immunity_asids": [
+        "ASID_EXECUTION",
+        "ASID_RESPAWN_INVULN"
+      ],
+      "visual_effect_id": "VFX_SUBLEVEL_ACID",
+      "audio_cue_id": "SFX_SUBLEVEL_ACID_LOOP",
+      "activation_controller": "AlienBaseAirlockController",
+      "debug_label": "Alien Base – Sublevel Acid (Standard)"
+    },
+    {
+      "id": "fortress_gaswave_v1",
+      "hazard_type": "gas",
+      "damage_per_second": 60.0,
+      "tick_interval": 0.10,
+      "immunity_asids": [
+        "ASID_EXECUTION",
+        "ASID_RESPAWN_INVULN"
+      ],
+      "visual_effect_id": "VFX_FORTRESS_GASWAVE",
+      "audio_cue_id": "SFX_FORTRESS_GASWAVE_LOOP",
+      "activation_controller": "GasCanisterController",
+      "debug_label": "Fortress – Gas Wave (Canister Detonation)"
+    },
+    {
+      "id": "hub_gas_hell_mode_v1",
+      "hazard_type": "gas",
+      "damage_per_second": 100.0,
+      "tick_interval": 0.05,
+      "immunity_asids": [
+        "ASID_EXECUTION",
+        "ASID_RESPAWN_INVULN"
+      ],
+      "visual_effect_id": "VFX_HUB_GAS_HELL",
+      "audio_cue_id": "SFX_HUB_GAS_HELL_LOOP",
+      "activation_controller": "AlienBaseAirlockController",
+      "debug_label": "Alien Base – Hub Gas (Hell Mode)"
+    }
+  ]
+}
