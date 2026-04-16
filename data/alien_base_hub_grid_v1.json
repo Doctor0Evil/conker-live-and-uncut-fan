@@ -1,0 +1,167 @@
+{
+  "version": "1.0.0",
+  "grid_size": {
+    "cols": 17,
+    "rows": 17
+  },
+  "cell_size": 4.0,
+  "y_level": 0.0,
+  "origin": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "cells": [
+    {
+      "col": 8,
+      "row": 8,
+      "tile_type": "T_Platform_EggBase",
+      "walkable": true,
+      "role_tags": ["egg_platform", "hub_floor"]
+    },
+
+    {
+      "col": 8,
+      "row": 7,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 8,
+      "row": 9,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 7,
+      "row": 8,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 9,
+      "row": 8,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+
+    {
+      "col": 8,
+      "row": 6,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 8,
+      "row": 10,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 6,
+      "row": 8,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 10,
+      "row": 8,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+
+    {
+      "col": 8,
+      "row": 5,
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "walkable": true,
+      "role_tags": ["hub_floor", "hazard_zone"]
+    },
+    {
+      "col": 8,
+      "row": 11,
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "walkable": true,
+      "role_tags": ["hub_floor", "hazard_zone"]
+    },
+    {
+      "col": 5,
+      "row": 8,
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "walkable": true,
+      "role_tags": ["hub_floor", "hazard_zone"]
+    },
+    {
+      "col": 11,
+      "row": 8,
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "walkable": true,
+      "role_tags": ["hub_floor", "hazard_zone"]
+    },
+
+    {
+      "col": 8,
+      "row": 4,
+      "tile_type": "T_Floor_IndustrialHazardStripe",
+      "walkable": true,
+      "role_tags": ["hub_floor", "corridor_entry_north"]
+    },
+    {
+      "col": 8,
+      "row": 12,
+      "tile_type": "T_Floor_IndustrialHazardStripe",
+      "walkable": true,
+      "role_tags": ["hub_floor", "corridor_entry_south"]
+    },
+    {
+      "col": 4,
+      "row": 8,
+      "tile_type": "T_Floor_IndustrialHazardStripe",
+      "walkable": true,
+      "role_tags": ["hub_floor", "corridor_entry_west"]
+    },
+    {
+      "col": 12,
+      "row": 8,
+      "tile_type": "T_Floor_IndustrialHazardStripe",
+      "walkable": true,
+      "role_tags": ["hub_floor", "corridor_entry_east"]
+    },
+
+    {
+      "col": 8,
+      "row": 3,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["hub_wall"]
+    },
+    {
+      "col": 8,
+      "row": 13,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["hub_wall"]
+    },
+    {
+      "col": 3,
+      "row": 8,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["hub_wall"]
+    },
+    {
+      "col": 13,
+      "row": 8,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["hub_wall"]
+    }
+  ]
+}
