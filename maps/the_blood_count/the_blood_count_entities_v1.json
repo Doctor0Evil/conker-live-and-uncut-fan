@@ -1,0 +1,137 @@
+{
+  "version": "1.0.0",
+  "map_id": "the_blood_count",
+  "schema_version": "1.0.0",
+  "spawns": [
+    {
+      "id": "spawn_team_red_01",
+      "team": "red",
+      "col": 8,
+      "row": 4,
+      "y_offset": 0.0,
+      "role_tags": ["team_red_spawn", "north_wing_spawn"]
+    },
+    {
+      "id": "spawn_team_blue_01",
+      "team": "blue",
+      "col": 4,
+      "row": 8,
+      "y_offset": 0.0,
+      "role_tags": ["team_blue_spawn", "west_wing_spawn"]
+    },
+    {
+      "id": "spawn_team_green_01",
+      "team": "green",
+      "col": 12,
+      "row": 8,
+      "y_offset": 0.0,
+      "role_tags": ["team_green_spawn", "east_wing_spawn"]
+    },
+    {
+      "id": "spawn_team_yellow_01",
+      "team": "yellow",
+      "col": 8,
+      "row": 12,
+      "y_offset": 0.0,
+      "role_tags": ["team_yellow_spawn", "south_wing_spawn"]
+    }
+  ],
+  "weapon_pickups": [
+    {
+      "id": "pickup_hunting_revolver_central",
+      "weapon_type": "HuntingRevolver",
+      "col": 8,
+      "row": 8,
+      "y_offset": 0.5,
+      "role_tags": ["central_hall_pickup", "blood_vial_defense"]
+    },
+    {
+      "id": "pickup_shotgun_altar_approach",
+      "weapon_type": "Shotgun",
+      "col": 8,
+      "row": 6,
+      "y_offset": 0.5,
+      "role_tags": ["altar_route_pickup"]
+    }
+  ],
+  "objective_pickups": [
+    {
+      "id": "pickup_blood_vial",
+      "objective_type": "BloodVial",
+      "col": 8,
+      "row": 8,
+      "y_offset": 0.9,
+      "respawn_seconds": 0,
+      "heavy_carry_asid": "ASID_050",
+      "drop_on_death": true,
+      "role_tags": ["blood_vial_source", "central_hall_objective"]
+    }
+  ],
+  "objectives": [
+    {
+      "id": "objective_ritual_altar_red",
+      "objective_type": "RitualAltar",
+      "team": "red",
+      "col": 8,
+      "row": 2,
+      "y_offset": 0.0,
+      "role_tags": ["ritual_altar", "blood_vial_score_spot", "team_red_altar"]
+    }
+  ],
+  "hazards": [
+    {
+      "id": "hazard_fire_imp_trigger",
+      "hazard_type": "FireImpTrigger",
+      "col": 8,
+      "row": 8,
+      "radius_cells": 6,
+      "y_min_offset": -1.0,
+      "y_max_offset": 3.0,
+      "role_tags": ["fire_imp_activation_zone", "central_hall"]
+    }
+  ],
+  "npc_spawners": [
+    {
+      "id": "spawner_zombie_central_hall",
+      "npc_type": "Zombie",
+      "col": 10,
+      "row": 8,
+      "y_offset": 0.0,
+      "max_alive": 4,
+      "spawn_interval_seconds": 8.0,
+      "activation_role_tags": ["central_hall"],
+      "role_tags": ["zombie_spawn", "central_hall"]
+    },
+    {
+      "id": "spawner_zombie_hedge_maze",
+      "npc_type": "Zombie",
+      "col": 8,
+      "row": 15,
+      "y_offset": 0.0,
+      "max_alive": 6,
+      "spawn_interval_seconds": 10.0,
+      "activation_role_tags": ["hedge_maze"],
+      "role_tags": ["zombie_spawn", "hedge_maze"]
+    },
+    {
+      "id": "spawner_fire_imp",
+      "npc_type": "FireImp",
+      "col": 2,
+      "row": 8,
+      "y_offset": 0.0,
+      "max_alive": 1,
+      "spawn_interval_seconds": 20.0,
+      "activation_role_tags": ["blood_vial_held"],
+      "role_tags": ["fire_imp", "offscreen_spawn"]
+    }
+  ],
+  "meta": {
+    "recommended_players": 16,
+    "supported_modes": ["BloodVialRun", "TeamDeathmatchVariant"],
+    "notes": [
+      "Central hall is neutral ground with initial blood-vial pickup.",
+      "Each team has a wing spawn and a path to the hall and hedge maze.",
+      "Ritual altar is currently implemented only for Red to keep the layout minimal; other team altars can mirror this pattern."
+    ]
+  }
+}
