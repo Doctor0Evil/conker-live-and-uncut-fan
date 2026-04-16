@@ -1,0 +1,25 @@
+{
+  "profiles": [
+    {
+      "id": "team_standard",
+      "projectile_scale": 1.0,
+      "melee_scale": 1.0,
+      "aoe_scale": 0.5,
+      "executions_affect_teammates": false
+    },
+    {
+      "id": "team_soft",
+      "projectile_scale": 0.5,
+      "melee_scale": 0.5,
+      "aoe_scale": 0.25,
+      "executions_affect_teammates": false
+    },
+    {
+      "id": "no_friendly_fire",
+      "projectile_scale": 0.0,
+      "melee_scale": 0.0,
+      "aoe_scale": 0.0,
+      "executions_affect_teammates": false
+    }
+  ]
+}
