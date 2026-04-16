@@ -1,0 +1,190 @@
+{
+  "version": "1.0.0",
+  "map_id": "the_blood_count",
+  "schema_version": "1.0.0",
+  "gridsize": {
+    "cols": 17,
+    "rows": 17
+  },
+  "cellsize": 4.0,
+  "ylevel": 0.0,
+  "origin": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "cells": [
+    {
+      "col": 8,
+      "row": 8,
+      "tiletype": "TFloorMansionHall",
+      "walkable": true,
+      "roletags": ["central_hall", "blood_vial_route"]
+    },
+    {
+      "col": 8,
+      "row": 7,
+      "tiletype": "TFloorMansionHall",
+      "walkable": true,
+      "roletags": ["central_hall"]
+    },
+    {
+      "col": 8,
+      "row": 9,
+      "tiletype": "TFloorMansionHall",
+      "walkable": true,
+      "roletags": ["central_hall"]
+    },
+    {
+      "col": 7,
+      "row": 8,
+      "tiletype": "TFloorMansionHall",
+      "walkable": true,
+      "roletags": ["central_hall"]
+    },
+    {
+      "col": 9,
+      "row": 8,
+      "tiletype": "TFloorMansionHall",
+      "walkable": true,
+      "roletags": ["central_hall"]
+    },
+
+    {
+      "col": 8,
+      "row": 5,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["north_wing_corridor", "team_red_spawn", "blood_vial_route"]
+    },
+    {
+      "col": 8,
+      "row": 4,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["north_wing_room", "team_red_spawn"]
+    },
+    {
+      "col": 5,
+      "row": 8,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["west_wing_corridor", "team_blue_spawn", "blood_vial_route"]
+    },
+    {
+      "col": 4,
+      "row": 8,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["west_wing_room", "team_blue_spawn"]
+    },
+    {
+      "col": 11,
+      "row": 8,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["east_wing_corridor", "team_green_spawn", "blood_vial_route"]
+    },
+    {
+      "col": 12,
+      "row": 8,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["east_wing_room", "team_green_spawn"]
+    },
+    {
+      "col": 8,
+      "row": 11,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["south_wing_corridor", "team_yellow_spawn", "blood_vial_route"]
+    },
+    {
+      "col": 8,
+      "row": 12,
+      "tiletype": "TFloorMansionWing",
+      "walkable": true,
+      "roletags": ["south_wing_room", "team_yellow_spawn"]
+    },
+
+    {
+      "col": 8,
+      "row": 2,
+      "tiletype": "TFloorRitualAltar",
+      "walkable": true,
+      "roletags": ["ritual_altar", "team_red_altar", "blood_vial_score_spot"]
+    },
+    {
+      "col": 8,
+      "row": 1,
+      "tiletype": "TFloorRitualAltar",
+      "walkable": true,
+      "roletags": ["ritual_altar"]
+    },
+
+    {
+      "col": 8,
+      "row": 15,
+      "tiletype": "TFloorHedgePath",
+      "walkable": true,
+      "roletags": ["hedge_maze", "blood_vial_route"]
+    },
+    {
+      "col": 7,
+      "row": 15,
+      "tiletype": "TFloorHedgePath",
+      "walkable": true,
+      "roletags": ["hedge_maze"]
+    },
+    {
+      "col": 9,
+      "row": 15,
+      "tiletype": "TFloorHedgePath",
+      "walkable": true,
+      "roletags": ["hedge_maze"]
+    },
+
+    {
+      "col": 6,
+      "row": 15,
+      "tiletype": "THedgeWall",
+      "walkable": false,
+      "roletags": ["hedge_wall", "hedge_maze"]
+    },
+    {
+      "col": 10,
+      "row": 15,
+      "tiletype": "THedgeWall",
+      "walkable": false,
+      "roletags": ["hedge_wall", "hedge_maze"]
+    },
+
+    {
+      "col": 8,
+      "row": 3,
+      "tiletype": "TWallMansion",
+      "walkable": false,
+      "roletags": ["mansion_wall", "altar_backdrop"]
+    },
+    {
+      "col": 8,
+      "row": 14,
+      "tiletype": "TWallMansionExterior",
+      "walkable": false,
+      "roletags": ["mansion_exterior_wall"]
+    },
+    {
+      "col": 3,
+      "row": 8,
+      "tiletype": "TWallMansion",
+      "walkable": false,
+      "roletags": ["mansion_wall"]
+    },
+    {
+      "col": 13,
+      "row": 8,
+      "tiletype": "TWallMansion",
+      "walkable": false,
+      "roletags": ["mansion_wall"]
+    }
+  ]
+}
