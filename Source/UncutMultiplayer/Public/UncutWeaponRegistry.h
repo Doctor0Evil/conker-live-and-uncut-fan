@@ -56,5 +56,6 @@ public:
 		return false;
 	}
 
+	// Implementation lives in UncutWeaponRegistry.cpp
 	static UUncutWeaponRegistry* Get(const UObject* WorldContext);
 };
