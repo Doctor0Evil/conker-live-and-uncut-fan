@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "maps": [
+    {
+      "id": "alienbasehub",
+      "name": "Alien Base Hub",
+      "n64ancestor": "HeistUgaBugaHybrid",
+      "gridpath": "maps/alienbase/alienbasehubgridv1.json",
+      "entitiespath": "maps/alienbase/alienbasehubentitiesv1.json",
+      "tilesetpaths": {
+        "unreal": "tilesets/unreal/alienbasetilesv1.json",
+        "unity": "tilesets/unity/alienbasetilesv1.json",
+        "godot": "tilesets/godot/alienbasetilesv1.json"
+      },
+      "recommendedplayers": 16,
+      "supportedmodes": ["Invasion","Deathmatch"],
+      "notes": "Hub-only prototype for Alien Base multi."
+    },
+    {
+      "id": "beachdead",
+      "name": "Beach Dead Supermap",
+      "n64ancestor": "BeachTotalWar",
+      "gridpath": "maps/beachdead/beachdeadgridv2.json",
+      "entitiespath": "maps/beachdead/beachdeadentitiesv2.json",
+      "tilesetpaths": {
+        "unreal": "tilesets/unreal/beachdeadtilesv1.json",
+        "unity": "tilesets/unity/beachdeadtilesv1.json",
+        "godot": "tilesets/godot/beachdeadtilesv1.json"
+      },
+      "recommendedplayers": 16,
+      "supportedmodes": [
+        "BeachFrenchiesDay",
+        "BeachFrenchiesNight",
+        "TotalWarValley",
+        "ColorsValley",
+        "DeathmatchBeach",
+        "DeathmatchValley"
+      ],
+      "notes": "Extended SHC base → valley → beach → bunker → Casualties Dept. Mode behavior is controlled via config/modes/beachdead_modeprofilesv1.json."
+    }
+  ]
+}
