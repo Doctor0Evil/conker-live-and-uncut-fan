@@ -1,0 +1,160 @@
+{
+  "$id": "https://gamemode.ai/schemas/multiplayer_map_grid_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Multiplayer Map Grid v1",
+  "description": "Tile grid layout for Conker: Live & Uncut multiplayer maps, using a fixed 4x4 world-unit grid.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "map_id",
+    "map_name",
+    "grid",
+    "cell_size",
+    "tileset_id",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Semantic version of the grid schema this file targets, e.g. \"1.0.0\".",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "content_version": {
+      "type": "string",
+      "description": "Optional semantic version of the map content, independent of the schema version.",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "map_id": {
+      "type": "string",
+      "description": "Stable identifier for this map, e.g. \"01_Multiplayer_Beach_Dead\".",
+      "minLength": 1
+    },
+    "map_name": {
+      "type": "string",
+      "description": "Human-readable name for the map, for editor UIs and debug logs.",
+      "minLength": 1
+    },
+    "tileset_id": {
+      "type": "string",
+      "description": "ID of the tileset definition this grid references (used to validate tile_type).",
+      "minLength": 1
+    },
+    "cell_size": {
+      "type": "number",
+      "description": "World-space size of a single grid cell in Unreal/Unity/Godot units. For this project, 4.0 is the standard.",
+      "exclusiveMinimum": 0
+    },
+    "grid": {
+      "type": "object",
+      "description": "Grid dimensions and row-major cell data.",
+      "additionalProperties": false,
+      "required": ["width", "height", "rows"],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of cells along the X axis."
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of cells along the Y axis."
+        },
+        "origin": {
+          "type": "object",
+          "description": "Optional world-space origin for cell (0,0). If omitted, tools assume (0,0,0).",
+          "required": ["x", "y", "z"],
+          "additionalProperties": false,
+          "properties": {
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "z": { "type": "number" }
+          }
+        },
+        "rows": {
+          "type": "array",
+          "description": "Row-major cell data; length must equal height. Each row must have exactly width cells.",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/Cell" }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Non-runtime metadata used by tools and documentation.",
+      "additionalProperties": false,
+      "required": ["author", "created_at"],
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Free-form identifier for the author or tool that last modified this file."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of when this grid was first created."
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of the last major edit."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form notes for designers and AI-Chat context."
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Cell": {
+      "type": "object",
+      "description": "A single grid cell at (x, y). Tools infer indices from row/column position; coordinates are not stored per-cell.",
+      "additionalProperties": false,
+      "required": ["tile_type"],
+      "properties": {
+        "tile_type": {
+          "type": "string",
+          "description": "Identifier for the type of tile to place here. Must exist in the referenced tileset."
+        },
+        "role_tags": {
+          "type": "array",
+          "description": "Optional tags describing this cell's gameplay role (e.g. \"trench\", \"shc_base\", \"mg_nest\").",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "height_offset": {
+          "type": "number",
+          "description": "Optional world-space vertical offset in units, relative to the default tile height. Used for stairs, ramps, and multi-level layouts."
+        },
+        "rotation_deg": {
+          "type": "number",
+          "description": "Optional yaw rotation in degrees applied to the tile instance (e.g. 0, 90, 180, 270).",
+          "minimum": -360,
+          "maximum": 360
+        },
+        "variant_id": {
+          "type": "string",
+          "description": "Optional variant ID within the tile_type, used to select alternate meshes or materials."
+        },
+        "flags": {
+          "type": "array",
+          "description": "Optional implementation-specific flags for engine emitters (e.g. \"no_collision\", \"nav_blocker\").",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}
