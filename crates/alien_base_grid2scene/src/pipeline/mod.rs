@@ -202,3 +202,34 @@ pub fn emit_unity(grid: &Grid, entities: &Entities, tileset: &Tileset, out_dir: 
 pub fn emit_godot(grid: &Grid, entities: &Entities, tileset: &Tileset, out_dir: &Path) -> Result<()> {
     super::emitter_godot::emit(grid, entities, tileset, out_dir)
 }
+
+pub fn summarize_map(grid: &Grid, entities: &Entities) -> String {
+    use std::collections::HashSet;
+
+    let mut tile_types: HashSet<&str> = HashSet::new();
+    for c in &grid.cells {
+        tile_types.insert(c.tile_type.as_str());
+    }
+
+    let summary = format!(
+        "[grid2scene] Summary:\n\
+         - Cells: {cells}\n\
+         - Unique tile_types: {tiles}\n\
+         - Spawn points: {spawns}\n\
+         - Weapon pickups: {weapons}\n\
+         - Objective pickups: {obj_pickups}\n\
+         - Objectives: {objectives}\n\
+         - Hazard volumes: {hazards}\n\
+         - NPC spawners: {spawners}\n",
+        cells = grid.cells.len(),
+        tiles = tile_types.len(),
+        spawns = entities.spawn_points.len(),
+        weapons = entities.weapon_pickups.len(),
+        obj_pickups = entities.objective_pickups.len(),
+        objectives = entities.objectives.len(),
+        hazards = entities.hazard_volumes.len(),
+        spawners = entities.npc_spawners.len(),
+    );
+
+    summary
+}
