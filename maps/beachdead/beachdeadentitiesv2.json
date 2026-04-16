@@ -1,0 +1,144 @@
+{
+  "version": "2.0.0",
+  "contentversion": "2.0.0",
+  "mapid": "01MultiplayerBeachDead",
+  "schemaversion": "mapentitiesv1.0.0",
+
+  "spawnpoints": [
+    { "id": "spawn_shc_base_a", "team": "attackers", "zone": "SHC_Base", "col": 5,  "row": 1,  "yoffset": 0.0, "facingdeg": 90.0,  "roletags": ["shc_base","attackerspawnband_shc"] },
+    { "id": "spawn_shc_base_b", "team": "attackers", "zone": "SHC_Base", "col": 6,  "row": 2,  "yoffset": 0.0, "facingdeg": 90.0,  "roletags": ["shc_base","attackerspawnband_shc"] },
+
+    { "id": "spawn_attackers_initial_a", "team": "attackers", "zone": "Beach", "col": 8,  "row": 14, "yoffset": 0.0, "facingdeg": 0.0,   "roletags": ["beach","attackerspawnband"] },
+    { "id": "spawn_attackers_initial_b", "team": "attackers", "zone": "Beach", "col": 12, "row": 14, "yoffset": 0.0, "facingdeg": 0.0,   "roletags": ["beach","attackerspawnband"] },
+
+    { "id": "spawn_attackers_fallback1_a", "team": "attackers", "zone": "Beach", "col": 6,  "row": 16, "yoffset": 0.0, "facingdeg": 0.0,   "roletags": ["beach","attackerfallbackband1"] },
+    { "id": "spawn_attackers_fallback1_b", "team": "attackers", "zone": "Beach", "col": 14, "row": 16, "yoffset": 0.0, "facingdeg": 0.0,   "roletags": ["beach","attackerfallbackband1"] },
+
+    { "id": "spawn_attackers_fallback2_a", "team": "attackers", "zone": "Beach", "col": 8,  "row": 18, "yoffset": 0.0, "facingdeg": 0.0,   "roletags": ["beach","attackerfallbackband2"] },
+    { "id": "spawn_attackers_fallback2_b", "team": "attackers", "zone": "Beach", "col": 16, "row": 18, "yoffset": 0.0, "facingdeg": 0.0,   "roletags": ["beach","attackerfallbackband2"] },
+
+    { "id": "spawn_defenders_main_a", "team": "defenders", "zone": "BunkerExterior", "col": 10, "row": 23, "yoffset": 0.0, "facingdeg": 180.0, "roletags": ["bunker_exterior","defenderspawnband"] },
+    { "id": "spawn_defenders_main_b", "team": "defenders", "zone": "BunkerExterior", "col": 12, "row": 23, "yoffset": 0.0, "facingdeg": 180.0, "roletags": ["bunker_exterior","defenderspawnband"] },
+
+    { "id": "spawn_defenders_interior_a", "team": "defenders", "zone": "AssaultCorridor", "col": 12, "row": 25, "yoffset": 0.0, "facingdeg": 180.0, "roletags": ["assault_corridor","defenders_interior"] },
+    { "id": "spawn_defenders_casualties_a", "team": "defenders", "zone": "CasualtiesDept", "col": 11, "row": 30, "yoffset": 0.0, "facingdeg": 180.0, "roletags": ["casualties_dept","defenders_interior"] }
+  ],
+
+  "weaponpickups": [
+    { "id": "pickup_sniper_tower_roof",  "weapontype": "SniperRifle", "ammoamount": 6, "respawnseconds": 20.0, "col": 20, "row": 25, "yoffset": 4.5, "roletags": ["tower","mgnest","defense_weapon"] },
+    { "id": "pickup_bazooka_valley",     "weapontype": "Bazooka",     "ammoamount": 2, "respawnseconds": 25.0, "col": 12, "row": 10, "yoffset": 0.5, "roletags": ["valley","heavy_weapon","totalwar_only"] },
+    { "id": "pickup_shotgun_beach_trench","weapontype": "Shotgun",    "ammoamount": 8, "respawnseconds": 15.0, "col": 10, "row": 16, "yoffset": 0.5, "roletags": ["beach","trench","attacker_weapon"] }
+  ],
+
+  "objectivepickups": [
+    {
+      "id": "pickup_gas_canister_valley",
+      "objectivetype": "GasCanister",
+      "heavycarryasid": "ASID050",
+      "respawnseconds": 0.0,
+      "dropondeath": true,
+      "col": 13,
+      "row": 10,
+      "yoffset": 0.5,
+      "roletags": ["valley","totalwar_objective","instant_win_trigger"]
+    }
+  ],
+
+  "objectives": [
+    {
+      "id": "objective_fence1",
+      "objectivetype": "Fence",
+      "team": "defenders",
+      "maxhealth": 1000,
+      "col": 12,
+      "row": 17,
+      "yoffset": 0.0,
+      "radiuscells": 8.0,
+      "roletags": ["fence1","beach_blockade"]
+    },
+    {
+      "id": "objective_fence2",
+      "objectivetype": "Fence",
+      "team": "defenders",
+      "maxhealth": 1200,
+      "col": 12,
+      "row": 20,
+      "yoffset": 0.0,
+      "radiuscells": 8.0,
+      "roletags": ["fence2","beach_blockade"]
+    },
+    {
+      "id": "objective_fence3",
+      "objectivetype": "Fence",
+      "team": "defenders",
+      "maxhealth": 1400,
+      "col": 12,
+      "row": 22,
+      "yoffset": 0.0,
+      "radiuscells": 6.0,
+      "roletags": ["fence3","beach_blockade"]
+    },
+    {
+      "id": "objective_bunker_door",
+      "objectivetype": "BunkerDoor",
+      "team": "defenders",
+      "maxhealth": 1500,
+      "col": 12,
+      "row": 23,
+      "yoffset": 0.0,
+      "radiuscells": 3.0,
+      "roletags": ["bunkerdoor","bunker_exterior","escape_blocker"]
+    },
+    {
+      "id": "objective_escape_zone",
+      "objectivetype": "EscapeZone",
+      "team": "attackers",
+      "maxhealth": 1,
+      "col": 12,
+      "row": 30,
+      "yoffset": 0.0,
+      "radiuscells": 3.0,
+      "roletags": ["casualties_dept","objectivezone_escape","beach_mode_only"]
+    },
+    {
+      "id": "objective_gas_release",
+      "objectivetype": "GasTrigger",
+      "team": "neutral",
+      "maxhealth": 1,
+      "col": 13,
+      "row": 23,
+      "yoffset": 0.0,
+      "radiuscells": 0.0,
+      "roletags": ["totalwar_only","gas_trigger","valley_hazard_source"]
+    }
+  ],
+
+  "hazardvolumes": [
+    {
+      "id": "hazard_valley_gas",
+      "hazardtype": "FloorGas",
+      "centercol": 12,
+      "centerrow": 10,
+      "radiuscells": 10.0,
+      "minyoffset": -1.0,
+      "maxyoffset": 3.0,
+      "gridinclusionrule": "",
+      "roletags": ["valley","totalwar_only","instant_win_hazard"]
+    }
+  ],
+
+  "npcspawners": [],
+
+  "meta": {
+    "recommendedplayers": 16,
+    "supportedmodes": [
+      "BeachFrenchiesDay",
+      "BeachFrenchiesNight",
+      "TotalWarValley",
+      "ColorsValley",
+      "DeathmatchBeach",
+      "DeathmatchValley"
+    ],
+    "notes": "Spawn bands and objectives shared across Beach, Colors, and Total War variants. Fence objectives drive attacker spawn progression; gas canister + valley gas hazard emulate Total War instant win."
+  }
+}
