@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AlienBaseHubGrid",
+  "type": "object",
+  "required": ["version", "grid_size", "cell_size", "y_level", "cells"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic version of this grid layout."
+    },
+    "grid_size": {
+      "type": "object",
+      "description": "Number of cells along each axis for the hub floor grid.",
+      "required": ["cols", "rows"],
+      "properties": {
+        "cols": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of cells along X (columns)."
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of cells along Z (rows)."
+        }
+      }
+    },
+    "cell_size": {
+      "type": "number",
+      "minimum": 0.1,
+      "description": "Size of one cell in world units (used to compute X/Z from col/row)."
+    },
+    "y_level": {
+      "type": "number",
+      "description": "World-space Y for this hub floor layer (typically 0.0)."
+    },
+    "origin": {
+      "type": "object",
+      "description": "Optional offset so that grid (0,0) maps to a specific world coordinate.",
+      "required": ["x", "z"],
+      "properties": {
+        "x": { "type": "number" },
+        "z": { "type": "number" }
+      },
+      "default": { "x": 0.0, "z": 0.0 }
+    },
+    "cells": {
+      "type": "array",
+      "description": "Sparse list of cell definitions; any missing cell is treated as empty/void.",
+      "items": {
+        "type": "object",
+        "required": ["col", "row", "tile_type"],
+        "properties": {
+          "col": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Column index in [0, grid_size.cols)."
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Row index in [0, grid_size.rows)."
+          },
+          "tile_type": {
+            "type": "string",
+            "description": "Logical tile identifier (e.g., T_Floor_IndustrialPlain)."
+          },
+          "walkable": {
+            "type": "boolean",
+            "description": "If false, this cell should be solid/blocked.",
+            "default": true
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Optional semantic tags used by tools (hub_floor, hazard_zone, egg_platform, corridor_entry_north, etc.).",
+            "items": { "type": "string" },
+            "default": []
+          }
+        }
+      }
+    }
+  }
+}
