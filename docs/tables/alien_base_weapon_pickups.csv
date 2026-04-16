@@ -1,0 +1,8 @@
+pickup_id,display_name,weapon_type,slot_role,x,y,z,yaw,spawn_on_start,respawn_seconds,notes
+objective_alien_egg,Alien Egg,Objective,Center,0.0,0.0,0.0,0.0,TRUE,0,"Central objective or visual centerpiece for Invasion-style modes."
+pickup_melee_slot_ne,Chainsaw / Sabre,Melee,NE_CloseQuarters,15.0,0.0,15.0,225.0,TRUE,15,"Close-quarters defense near the north-east corridor; high risk/high reward."
+pickup_area_denial_slot_nw,Flamethrower,AreaDenial,NW_AreaControl,-15.0,0.0,15.0,135.0,TRUE,20,"Crowd control defending north entrance; ideal for clearing rushes."
+pickup_midrange_slot_se,SMG,MidRange,SE_Skirmish,15.0,0.0,-15.0,315.0,TRUE,12,"Bread-and-butter mid-range weapon for strafing around the hub."
+pickup_flank_slot_sw,Shotgun,CloseRange,SW_Flank,-15.0,0.0,-15.0,45.0,TRUE,18,"Rewards flanking routes into the south-west side of the hub."
+pickup_sniper_nest,Sniper Rifle,LongRange,Elevated_Sniper,0.0,25.0,-30.0,0.0,TRUE,25,"High-ground oversight of the hub floor and partial view into south approach."
+pickup_heavy_bazooka_sublevel,Bazooka,Heavy,Sublevel_Heavy,0.0,-10.0,40.0,180.0,TRUE,30,"Hidden in sub-level tunnel; heavy weapon with no-jump movement penalty."
