@@ -39,3 +39,23 @@ jobs:
             tilesets/unreal_alien_base_tiles_v1.json
             tilesets/unity_alien_base_tiles_v1.json
             tilesets/godot_alien_base_tiles_v1.json
+
+  build-scenes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build grid2scene and xtask
+        run: cargo build --workspace
+
+      - name: Generate Alien Base hub for Unreal
+        run: cargo xtask alien-base-hub-unreal
+
+      - name: Generate Alien Base hub for Unity
+        run: cargo xtask alien-base-hub-unity
+
+      - name: Generate Alien Base hub for Godot
+        run: cargo xtask alien-base-hub-godot
