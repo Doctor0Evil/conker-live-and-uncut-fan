@@ -1,0 +1,235 @@
+{
+  "version": "1.0.0",
+  "mapid": "alienbasehub",
+  "schemaversion": "mapentitiesv1",
+  "spawnpoints": [
+    {
+      "id": "spawn_team_red_outer_01",
+      "team": "red",
+      "zone": "OuterRingNorth",
+      "col": 8,
+      "row": 2,
+      "yoffset": 0.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamspawn", "teamredspawn", "outerring", "northentrance"]
+    },
+    {
+      "id": "spawn_team_blue_outer_01",
+      "team": "blue",
+      "zone": "OuterRingEast",
+      "col": 14,
+      "row": 8,
+      "yoffset": 0.0,
+      "facingdeg": 270.0,
+      "roletags": ["teamspawn", "teambluespawn", "outerring", "eastentrance"]
+    },
+    {
+      "id": "spawn_team_green_outer_01",
+      "team": "green",
+      "zone": "OuterRingSouth",
+      "col": 8,
+      "row": 14,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamspawn", "teamgreenspawn", "outerring", "southentrance"]
+    },
+    {
+      "id": "spawn_team_yellow_outer_01",
+      "team": "yellow",
+      "zone": "OuterRingWest",
+      "col": 2,
+      "row": 8,
+      "yoffset": 0.0,
+      "facingdeg": 90.0,
+      "roletags": ["teamspawn", "teamyellowspawn", "outerring", "westentrance"]
+    },
+    {
+      "id": "spawn_hub_neutral_ffa_01",
+      "team": "neutral",
+      "zone": "HubFloor",
+      "col": 8,
+      "row": 8,
+      "yoffset": 0.0,
+      "facingdeg": 45.0,
+      "roletags": ["ffa_spawn", "hubcenter", "hazardhubfloorgas"]
+    }
+  ],
+  "weaponpickups": [
+    {
+      "id": "pickup_shotgun_hub_north",
+      "weapontype": "Shotgun",
+      "ammoamount": 16,
+      "respawnseconds": 20.0,
+      "col": 8,
+      "row": 4,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "shotgun", "hubring", "north"]
+    },
+    {
+      "id": "pickup_smg_hub_east",
+      "weapontype": "SMG",
+      "ammoamount": 60,
+      "respawnseconds": 18.0,
+      "col": 12,
+      "row": 8,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "smg", "hubring", "east"]
+    },
+    {
+      "id": "pickup_flame_hub_south",
+      "weapontype": "Flamethrower",
+      "ammoamount": 40,
+      "respawnseconds": 30.0,
+      "col": 8,
+      "row": 12,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "flamethrower", "hubring", "south"]
+    },
+    {
+      "id": "pickup_crossbow_hub_west",
+      "weapontype": "Crossbow",
+      "ammoamount": 12,
+      "respawnseconds": 25.0,
+      "col": 4,
+      "row": 8,
+      "yoffset": 0.4,
+      "roletags": ["weaponpickup", "crossbow", "hubring", "west"]
+    },
+    {
+      "id": "pickup_bazooka_upper_catwalk",
+      "weapontype": "Bazooka",
+      "ammoamount": 4,
+      "respawnseconds": 40.0,
+      "col": 10,
+      "row": 6,
+      "yoffset": 3.0,
+      "roletags": ["weaponpickup", "heavyweapon", "bazooka", "uppercatwalk"]
+    }
+  ],
+  "objectivepickups": [],
+  "objectives": [
+    {
+      "id": "objective_alien_egg_hub",
+      "objectivetype": "AlienEgg",
+      "team": "neutral",
+      "maxhealth": 1500,
+      "col": 8,
+      "row": 8,
+      "yoffset": 0.5,
+      "radiuscells": 2.0,
+      "roletags": ["objective", "alienegg", "hubcenter", "invasiontrigger"]
+    },
+    {
+      "id": "objective_airlock_control_a",
+      "objectivetype": "AirlockControl",
+      "team": "neutral",
+      "maxhealth": 0,
+      "col": 4,
+      "row": 4,
+      "yoffset": 0.0,
+      "radiuscells": 1.0,
+      "roletags": ["airlockcontrol", "airlock_a", "hazardhubfloorgas"]
+    },
+    {
+      "id": "objective_airlock_control_b",
+      "objectivetype": "AirlockControl",
+      "team": "neutral",
+      "maxhealth": 0,
+      "col": 12,
+      "row": 12,
+      "yoffset": 0.0,
+      "radiuscells": 1.0,
+      "roletags": ["airlockcontrol", "airlock_b", "hazardsublevelacid"]
+    }
+  ],
+  "hazardvolumes": [
+    {
+      "id": "hazard_hub_floor_gas",
+      "hazardtype": "HubFloorGas",
+      "centercol": 8,
+      "centerrow": 8,
+      "radiuscells": 4.0,
+      "minyoffset": -0.5,
+      "maxyoffset": 2.5,
+      "gridinclusionrule": "include all tiles with roletags [\"hazardhubfloorgas\"]",
+      "roletags": ["hazard", "hazardhubfloorgas", "gas", "airlockhazard"]
+    },
+    {
+      "id": "hazard_sublevel_acid_pit",
+      "hazardtype": "SublevelAcid",
+      "centercol": 8,
+      "centerrow": 8,
+      "radiuscells": 3.0,
+      "minyoffset": -4.0,
+      "maxyoffset": -0.5,
+      "gridinclusionrule": "include all tiles with roletags [\"hazardsublevelacid\"]",
+      "roletags": ["hazard", "hazardsublevelacid", "acid", "airlockhazard"]
+    }
+  ],
+  "npcspawners": [
+    {
+      "id": "spawner_alien_vent_north",
+      "npctype": "Alien",
+      "col": 8,
+      "row": 3,
+      "yoffset": 3.5,
+      "maxalive": 3,
+      "spawnintervalseconds": 10.0,
+      "activationroletags": ["invasion_active"],
+      "roletags": ["npcspawn", "alien", "vent", "northvent"]
+    },
+    {
+      "id": "spawner_alien_vent_east",
+      "npctype": "Alien",
+      "col": 13,
+      "row": 8,
+      "yoffset": 3.5,
+      "maxalive": 3,
+      "spawnintervalseconds": 10.0,
+      "activationroletags": ["invasion_active"],
+      "roletags": ["npcspawn", "alien", "vent", "eastvent"]
+    },
+    {
+      "id": "spawner_alien_vent_south",
+      "npctype": "Alien",
+      "col": 8,
+      "row": 13,
+      "yoffset": 3.5,
+      "maxalive": 3,
+      "spawnintervalseconds": 10.0,
+      "activationroletags": ["invasion_active"],
+      "roletags": ["npcspawn", "alien", "vent", "southvent"]
+    },
+    {
+      "id": "spawner_alien_vent_west",
+      "npctype": "Alien",
+      "col": 3,
+      "row": 8,
+      "yoffset": 3.5,
+      "maxalive": 3,
+      "spawnintervalseconds": 10.0,
+      "activationroletags": ["invasion_active"],
+      "roletags": ["npcspawn", "alien", "vent", "westvent"]
+    },
+    {
+      "id": "spawner_alien_egg_guard",
+      "npctype": "Alien",
+      "col": 8,
+      "row": 8,
+      "yoffset": 1.5,
+      "maxalive": 2,
+      "spawnintervalseconds": 6.0,
+      "activationroletags": ["egg_damaged"],
+      "roletags": ["npcspawn", "alien", "eggdefender", "hubcenter"]
+    }
+  ],
+  "meta": {
+    "recommendedplayers": 16,
+    "supportedmodes": [
+      "Invasion",
+      "TeamDeathmatchVariant",
+      "EggHunt"
+    ],
+    "notes": "Alien Base Hub entities: four team spawns on the outer ring, central Alien Egg objective, hub gas and sublevel acid hazard volumes, and Alien NPC spawners for the Invasion variant. Airlock control objectives and activationroletags are intended to be driven by the AlienBaseAirlockController state machine."
+  }
+}
