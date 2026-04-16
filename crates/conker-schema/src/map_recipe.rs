@@ -1,4 +1,17 @@
-// Destination: crates/conker-schema/src/map_recipe.rs
+// in crates/conker-schema/src/map_recipe.rs (or an adjacent file)
+//
+// #[derive(...)]
+// pub struct ConkerMapRecipe {
+//     ...
+//     #[serde(default)]
+//     pub npc_refs: Vec<NpcRef>,
+// }
+//
+// #[derive(Debug, Clone, Serialize, Deserialize, JsonSchema)]
+// #[serde(rename_all = "camelCase")]
+// pub struct NpcRef {
+//     pub npc_id: String,
+// }
 
 use serde::{Deserialize, Serialize};
 use schemars::JsonSchema;
