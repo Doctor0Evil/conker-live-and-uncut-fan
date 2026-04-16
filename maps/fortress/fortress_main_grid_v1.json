@@ -1,0 +1,242 @@
+{
+  "version": "1.0.0",
+  "contentversion": "1.0.0",
+  "mapid": "03MultiplayerFortress_Main",
+  "schemaversion": "mapgridv1.0.0",
+  "gridsize": { "cols": 32, "rows": 24 },
+  "cellsize": 4.0,
+  "ylevel": 0.0,
+  "origin": { "x": 0.0, "z": 0.0 },
+  "metadata": {
+    "notes": "Fortress main battlefield - 32x24 grid. Two bases (SHC/Tediz), central valley with bridge, trench network, and capture points.",
+    "game_modes": ["Total War", "Colors", "Team Deathmatch"],
+    "player_count": "8v8 (16 players)",
+    "tile_palette_ref": "docs/multiplayer/03_Multiplayer_Fortress_Tile_Palette.md"
+  },
+  "cells": [
+    { "col": 2, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["shc_base", "spawn_room", "team_shc_spawn"] },
+    { "col": 3, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["shc_base", "spawn_room", "team_shc_spawn"] },
+    { "col": 4, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["shc_base", "spawn_room", "team_shc_spawn"] },
+    { "col": 5, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["shc_base", "spawn_room", "team_shc_spawn"] },
+    
+    { "col": 2, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["shc_base", "armory", "weapon_pickup_light"] },
+    { "col": 3, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["shc_base", "armory", "weapon_pickup_light"] },
+    { "col": 4, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["shc_base", "armory", "weapon_pickup_light"] },
+    { "col": 5, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["shc_base", "armory", "weapon_pickup_light"] },
+    
+    { "col": 3, "row": 4, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["shc_base", "courtyard", "base_exit"] },
+    { "col": 4, "row": 4, "tiletype": "TFloorIndustrialHazardStripe", "walkable": true, "roletags": ["shc_base", "courtyard", "base_exit"] },
+    
+    { "col": 2, "row": 5, "tiletype": "TWallConcreteBunker", "walkable": false, "roletags": ["shc_base", "outer_wall", "defensive_position"] },
+    { "col": 3, "row": 5, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["shc_base", "trench_entrance"] },
+    { "col": 4, "row": 5, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["shc_base", "trench_entrance"] },
+    { "col": 5, "row": 5, "tiletype": "TWallConcreteBunker", "walkable": false, "roletags": ["shc_base", "outer_wall", "defensive_position"] },
+    
+    { "col": 2, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    { "col": 3, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    { "col": 4, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    { "col": 5, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    
+    { "col": 2, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    { "col": 3, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    { "col": 4, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    { "col": 5, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "shc_trench"] },
+    
+    { "col": 2, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "mid_trench"] },
+    { "col": 3, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "mid_trench"] },
+    { "col": 4, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "mid_trench"] },
+    { "col": 5, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "left_flank", "mid_trench"] },
+    
+    { "col": 8, "row": 6, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_alpha", "left_tower"] },
+    { "col": 9, "row": 6, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_alpha", "left_tower"] },
+    { "col": 8, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_alpha", "left_tower"] },
+    { "col": 9, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_alpha", "left_tower"] },
+    
+    { "col": 12, "row": 6, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    { "col": 13, "row": 6, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    { "col": 14, "row": 6, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    { "col": 15, "row": 6, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    
+    { "col": 12, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "bridge_control", "central_point"] },
+    { "col": 13, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "bridge_control", "central_point"] },
+    { "col": 14, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "bridge_control", "central_point"] },
+    { "col": 15, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "bridge_control", "central_point"] },
+    
+    { "col": 12, "row": 8, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    { "col": 13, "row": 8, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    { "col": 14, "row": 8, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    { "col": 15, "row": 8, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["bridge", "central_crossing", "chokepoint"] },
+    
+    { "col": 22, "row": 6, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_beta", "right_tower"] },
+    { "col": 23, "row": 6, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_beta", "right_tower"] },
+    { "col": 22, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_beta", "right_tower"] },
+    { "col": 23, "row": 7, "tiletype": "TFloorCaptureZone", "walkable": true, "roletags": ["capture_point", "tower_beta", "right_tower"] },
+    
+    { "col": 26, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    { "col": 27, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    { "col": 28, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    { "col": 29, "row": 6, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    
+    { "col": 26, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    { "col": 27, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    { "col": 28, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    { "col": 29, "row": 7, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "tediz_trench"] },
+    
+    { "col": 26, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "mid_trench"] },
+    { "col": 27, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "mid_trench"] },
+    { "col": 28, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "mid_trench"] },
+    { "col": 29, "row": 8, "tiletype": "TFloorTrenchMud", "walkable": true, "roletags": ["trench", "right_flank", "mid_trench"] },
+    
+    { "col": 26, "row": 5, "tiletype": "TWallConcreteBunker", "walkable": false, "roletags": ["tediz_base", "outer_wall", "defensive_position"] },
+    { "col": 27, "row": 5, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "trench_entrance"] },
+    { "col": 28, "row": 5, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "trench_entrance"] },
+    { "col": 29, "row": 5, "tiletype": "TWallConcreteBunker", "walkable": false, "roletags": ["tediz_base", "outer_wall", "defensive_position"] },
+    
+    { "col": 26, "row": 4, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "courtyard", "base_exit"] },
+    { "col": 27, "row": 4, "tiletype": "TFloorIndustrialHazardStripe", "walkable": true, "roletags": ["tediz_base", "courtyard", "base_exit"] },
+    { "col": 28, "row": 4, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "courtyard", "base_exit"] },
+    
+    { "col": 26, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "armory", "weapon_pickup_light"] },
+    { "col": 27, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "armory", "weapon_pickup_light"] },
+    { "col": 28, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "armory", "weapon_pickup_light"] },
+    { "col": 29, "row": 3, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["tediz_base", "armory", "weapon_pickup_light"] },
+    
+    { "col": 26, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["tediz_base", "spawn_room", "team_tediz_spawn"] },
+    { "col": 27, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["tediz_base", "spawn_room", "team_tediz_spawn"] },
+    { "col": 28, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["tediz_base", "spawn_room", "team_tediz_spawn"] },
+    { "col": 29, "row": 2, "tiletype": "TFloorSpawnZone", "walkable": true, "roletags": ["tediz_base", "spawn_room", "team_tediz_spawn"] },
+    
+    { "col": 14, "row": 10, "tiletype": "TFloorIndustrialHazardStripe", "walkable": true, "roletags": ["gas_chamber_spawn", "canister_spawn", "central_valley"] },
+    { "col": 15, "row": 10, "tiletype": "TFloorIndustrialHazardStripe", "walkable": true, "roletags": ["gas_chamber_spawn", "canister_spawn", "central_valley"] },
+    
+    { "col": 6, "row": 12, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["heavy_weapon_spawn", "bazooka_location", "exposed_position"] },
+    { "col": 25, "row": 12, "tiletype": "TFloorIndustrialPlain", "walkable": true, "roletags": ["heavy_weapon_spawn", "bazooka_location", "exposed_position"] },
+    
+    { "col": 14, "row": 14, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["heavy_weapon_spawn", "chaingun_location", "catwalk", "exposed_position"] },
+    { "col": 15, "row": 14, "tiletype": "TFloorMetalGrate", "walkable": true, "roletags": ["heavy_weapon_spawn", "chaingun_location", "catwalk", "exposed_position"] },
+    
+    { "col": 10, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "left_flank_route", "shc_to_center"] },
+    { "col": 11, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "left_flank_route", "shc_to_center"] },
+    { "col": 12, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 13, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 14, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 15, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 16, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 17, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 18, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 19, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 20, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "center_tunnel"] },
+    { "col": 21, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "right_flank_route", "tediz_to_center"] },
+    { "col": 22, "row": 16, "tiletype": "TFloorTunnelRibs", "walkable": true, "roletags": ["underground_tunnel", "right_flank_route", "tediz_to_center"] }
+  ],
+  "entities": [
+    {
+      "entity_id": "gas_canister_spawn_01",
+      "entity_type": "pickup_gas_canister",
+      "col": 14,
+      "row": 10,
+      "roletags": ["objective", "gas_canister", "total_war_only"],
+      "properties": {
+        "respawn_time_seconds": 60.0,
+        "carry_speed_multiplier": 0.5,
+        "delivery_bonus_tickets": 50
+      }
+    },
+    {
+      "entity_id": "bazooka_spawn_left",
+      "entity_type": "pickup_bazooka",
+      "col": 6,
+      "row": 12,
+      "roletags": ["heavy_weapon", "high_risk"],
+      "properties": {
+        "respawn_time_seconds": 45.0,
+        "ammo_count": 3
+      }
+    },
+    {
+      "entity_id": "bazooka_spawn_right",
+      "entity_type": "pickup_bazooka",
+      "col": 25,
+      "row": 12,
+      "roletags": ["heavy_weapon", "high_risk"],
+      "properties": {
+        "respawn_time_seconds": 45.0,
+        "ammo_count": 3
+      }
+    },
+    {
+      "entity_id": "chaingun_spawn_catwalk",
+      "entity_type": "pickup_chaingun",
+      "col": 14,
+      "row": 14,
+      "roletags": ["heavy_weapon", "high_risk", "exposed"],
+      "properties": {
+        "respawn_time_seconds": 60.0,
+        "ammo_count": 200
+      }
+    },
+    {
+      "entity_id": "capture_point_alpha",
+      "entity_type": "control_point",
+      "col": 8,
+      "row": 6,
+      "roletags": ["capture_point", "tower_alpha"],
+      "properties": {
+        "capture_rate_per_second": 1.0,
+        "ticket_generation_rate": 0.5,
+        "initial_owner": "neutral"
+      }
+    },
+    {
+      "entity_id": "capture_point_bridge",
+      "entity_type": "control_point",
+      "col": 13,
+      "row": 7,
+      "roletags": ["capture_point", "central_bridge"],
+      "properties": {
+        "capture_rate_per_second": 1.0,
+        "ticket_generation_rate": 1.0,
+        "initial_owner": "neutral",
+        "is_primary": true
+      }
+    },
+    {
+      "entity_id": "capture_point_beta",
+      "entity_type": "control_point",
+      "col": 22,
+      "row": 6,
+      "roletags": ["capture_point", "tower_beta"],
+      "properties": {
+        "capture_rate_per_second": 1.0,
+        "ticket_generation_rate": 0.5,
+        "initial_owner": "neutral"
+      }
+    },
+    {
+      "entity_id": "trigger_gas_delivery_shc",
+      "entity_type": "trigger_gas_chamber",
+      "col": 3,
+      "row": 3,
+      "roletags": ["gas_delivery_zone", "shc_base_interior"],
+      "properties": {
+        "warning_time_seconds": 5.0,
+        "gas_duration_seconds": 20.0,
+        "damage_per_second": 15.0,
+        "interaction_prompt": "Arm Gas Canister at SHC Base?"
+      }
+    },
+    {
+      "entity_id": "trigger_gas_delivery_tediz",
+      "entity_type": "trigger_gas_chamber",
+      "col": 27,
+      "row": 3,
+      "roletags": ["gas_delivery_zone", "tediz_base_interior"],
+      "properties": {
+        "warning_time_seconds": 5.0,
+        "gas_duration_seconds": 20.0,
+        "damage_per_second": 15.0,
+        "interaction_prompt": "Arm Gas Canister at Tediz Base?"
+      }
+    }
+  ]
+}
