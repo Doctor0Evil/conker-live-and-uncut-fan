@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grid_size": {
     "cols": 17,
     "rows": 17
@@ -16,7 +16,7 @@
       "row": 8,
       "tile_type": "T_Platform_EggBase",
       "walkable": true,
-      "role_tags": ["egg_platform", "hub_floor"]
+      "role_tags": ["egg_platform", "hub_floor", "objective_zone"]
     },
 
     {
@@ -140,28 +140,354 @@
       "row": 3,
       "tile_type": "T_Wall_PanelRiveted",
       "walkable": false,
-      "role_tags": ["hub_wall"]
+      "role_tags": ["hub_wall", "corridor_north_start"]
     },
     {
       "col": 8,
       "row": 13,
       "tile_type": "T_Wall_PanelRiveted",
       "walkable": false,
-      "role_tags": ["hub_wall"]
+      "role_tags": ["hub_wall", "corridor_south_start"]
     },
     {
       "col": 3,
       "row": 8,
       "tile_type": "T_Wall_PanelRiveted",
       "walkable": false,
-      "role_tags": ["hub_wall"]
+      "role_tags": ["hub_wall", "corridor_west_start"]
     },
     {
       "col": 13,
       "row": 8,
       "tile_type": "T_Wall_PanelRiveted",
       "walkable": false,
-      "role_tags": ["hub_wall"]
+      "role_tags": ["hub_wall", "corridor_east_start"]
+    },
+
+    {
+      "col": 7,
+      "row": 7,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 9,
+      "row": 7,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 7,
+      "row": 9,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 9,
+      "row": 9,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+
+    {
+      "col": 6,
+      "row": 6,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 10,
+      "row": 6,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 6,
+      "row": 10,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+    {
+      "col": 10,
+      "row": 10,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["hub_floor"]
+    },
+
+    {
+      "col": 8,
+      "row": 2,
+      "tile_type": "T_Corridor_Straight_NS",
+      "walkable": true,
+      "role_tags": ["corridor_north", "alien_vent_spawn"]
+    },
+    {
+      "col": 8,
+      "row": 14,
+      "tile_type": "T_Corridor_Straight_NS",
+      "walkable": true,
+      "role_tags": ["corridor_south", "spawn_corridor"]
+    },
+    {
+      "col": 2,
+      "row": 8,
+      "tile_type": "T_Corridor_Straight_EW",
+      "walkable": true,
+      "role_tags": ["corridor_west", "spawn_corridor"]
+    },
+    {
+      "col": 14,
+      "row": 8,
+      "tile_type": "T_Corridor_Straight_EW",
+      "walkable": true,
+      "role_tags": ["corridor_east", "spawn_corridor"]
+    },
+
+    {
+      "col": 8,
+      "row": 1,
+      "tile_type": "T_Room_SpawnChamber",
+      "walkable": true,
+      "role_tags": ["spawn_zone_a", "quarantine_zone"]
+    },
+    {
+      "col": 8,
+      "row": 15,
+      "tile_type": "T_Room_SpawnChamber",
+      "walkable": true,
+      "role_tags": ["spawn_zone_b", "hangar_access"]
+    },
+    {
+      "col": 1,
+      "row": 8,
+      "tile_type": "T_Room_SpawnChamber",
+      "walkable": true,
+      "role_tags": ["spawn_zone_d", "reactor_core"]
+    },
+    {
+      "col": 15,
+      "row": 8,
+      "tile_type": "T_Room_SpawnChamber",
+      "walkable": true,
+      "role_tags": ["spawn_zone_c", "medical_wing"]
+    },
+
+    {
+      "col": 6,
+      "row": 2,
+      "tile_type": "T_Catwalk_Straight_EW",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+    {
+      "col": 10,
+      "row": 2,
+      "tile_type": "T_Catwalk_Straight_EW",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+    {
+      "col": 6,
+      "row": 14,
+      "tile_type": "T_Catwalk_Straight_EW",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+    {
+      "col": 10,
+      "row": 14,
+      "tile_type": "T_Catwalk_Straight_EW",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+    {
+      "col": 2,
+      "row": 6,
+      "tile_type": "T_Catwalk_Straight_NS",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+    {
+      "col": 2,
+      "row": 10,
+      "tile_type": "T_Catwalk_Straight_NS",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+    {
+      "col": 14,
+      "row": 6,
+      "tile_type": "T_Catwalk_Straight_NS",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+    {
+      "col": 14,
+      "row": 10,
+      "tile_type": "T_Catwalk_Straight_NS",
+      "walkable": true,
+      "role_tags": ["catwalk_ring", "elevated_path"]
+    },
+
+    {
+      "col": 5,
+      "row": 5,
+      "tile_type": "T_PickupPlatform_NW",
+      "walkable": true,
+      "role_tags": ["weapon_spawn", "flamethrower_slot"]
+    },
+    {
+      "col": 11,
+      "row": 5,
+      "tile_type": "T_PickupPlatform_NE",
+      "walkable": true,
+      "role_tags": ["weapon_spawn", "chainsaw_slot"]
+    },
+    {
+      "col": 5,
+      "row": 11,
+      "tile_type": "T_PickupPlatform_SW",
+      "walkable": true,
+      "role_tags": ["weapon_spawn", "shotgun_slot"]
+    },
+    {
+      "col": 11,
+      "row": 11,
+      "tile_type": "T_PickupPlatform_SE",
+      "walkable": true,
+      "role_tags": ["weapon_spawn", "smg_slot"]
+    },
+
+    {
+      "col": 8,
+      "row": 0,
+      "tile_type": "T_LadderShaft_Vertical",
+      "walkable": true,
+      "role_tags": ["vertical_access", "catwalk_ladder_north"]
+    },
+    {
+      "col": 8,
+      "row": 16,
+      "tile_type": "T_LadderShaft_Vertical",
+      "walkable": true,
+      "role_tags": ["vertical_access", "catwalk_ladder_south"]
+    },
+    {
+      "col": 0,
+      "row": 8,
+      "tile_type": "T_LadderShaft_Vertical",
+      "walkable": true,
+      "role_tags": ["vertical_access", "catwalk_ladder_west"]
+    },
+    {
+      "col": 16,
+      "row": 8,
+      "tile_type": "T_LadderShaft_Vertical",
+      "walkable": true,
+      "role_tags": ["vertical_access", "catwalk_ladder_east"]
+    },
+
+    {
+      "col": 8,
+      "row": 1,
+      "tile_type": "T_Sublevel_Access",
+      "walkable": true,
+      "role_tags": ["sublevel_entrance", "hazard_zone", "heavy_weapon_route"],
+      "y_offset": -10.0
+    },
+
+    {
+      "col": 7,
+      "row": 1,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "north_wall"]
+    },
+    {
+      "col": 9,
+      "row": 1,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "north_wall"]
+    },
+    {
+      "col": 7,
+      "row": 15,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "south_wall"]
+    },
+    {
+      "col": 9,
+      "row": 15,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "south_wall"]
+    },
+    {
+      "col": 1,
+      "row": 7,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "west_wall"]
+    },
+    {
+      "col": 1,
+      "row": 9,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "west_wall"]
+    },
+    {
+      "col": 15,
+      "row": 7,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "east_wall"]
+    },
+    {
+      "col": 15,
+      "row": 9,
+      "tile_type": "T_Wall_PanelRiveted",
+      "walkable": false,
+      "role_tags": ["outer_wall", "east_wall"]
+    },
+
+    {
+      "col": 0,
+      "row": 0,
+      "tile_type": "T_Wall_Corner_NW",
+      "walkable": false,
+      "role_tags": ["outer_wall", "corner_nw"]
+    },
+    {
+      "col": 16,
+      "row": 0,
+      "tile_type": "T_Wall_Corner_NE",
+      "walkable": false,
+      "role_tags": ["outer_wall", "corner_ne"]
+    },
+    {
+      "col": 0,
+      "row": 16,
+      "tile_type": "T_Wall_Corner_SW",
+      "walkable": false,
+      "role_tags": ["outer_wall", "corner_sw"]
+    },
+    {
+      "col": 16,
+      "row": 16,
+      "tile_type": "T_Wall_Corner_SE",
+      "walkable": false,
+      "role_tags": ["outer_wall", "corner_se"]
     }
   ]
 }
