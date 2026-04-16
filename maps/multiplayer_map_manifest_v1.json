@@ -1,0 +1,50 @@
+{
+  "version": "1.0.0",
+  "maps": [
+    {
+      "id": "alienbasehub",
+      "name": "Alien Base Hub",
+      "n64_ancestor": "Heist/UgaBuga Hybrid",
+      "grid_path": "maps/alienbase/alienbasehub_gridv1.json",
+      "entities_path": "maps/alienbase/alienbasehub_entitiesv1.json",
+      "tileset_paths": {
+        "unreal": "tilesets/unreal/alienbase_tiles_v1.json",
+        "unity": "tilesets/unity/alienbase_tiles_v1.json",
+        "godot": "tilesets/godot/alienbase_tiles_v1.json"
+      },
+      "recommended_players": 16,
+      "supported_modes": ["Invasion", "Deathmatch"],
+      "notes": "Hub-only prototype for Alien Base multi."
+    },
+    {
+      "id": "beachdead",
+      "name": "Beach Dead",
+      "n64_ancestor": "Beach",
+      "grid_path": "maps/beachdead/beachdead_gridv1.json",
+      "entities_path": "maps/beachdead/beachdead_entitiesv1.json",
+      "tileset_paths": {
+        "unreal": "tilesets/unreal/beachdead_tiles_v1.json",
+        "unity": "tilesets/unity/beachdead_tiles_v1.json",
+        "godot": "tilesets/godot/beachdead_tiles_v1.json"
+      },
+      "recommended_players": 16,
+      "supported_modes": ["BeachAssault", "TeamDeathmatch"],
+      "notes": "Frontline slice (Fence 1 trench) initially."
+    },
+    {
+      "id": "thebloodcount",
+      "name": "The Blood Count",
+      "n64_ancestor": "Spooky / Count Batula",
+      "grid_path": "maps/thebloodcount/thebloodcount_gridv1.json",
+      "entities_path": "maps/thebloodcount/thebloodcount_entitiesv1.json",
+      "tileset_paths": {
+        "unreal": "tilesets/unreal/thebloodcount_tiles_v1.json",
+        "unity": "tilesets/unity/thebloodcount_tiles_v1.json",
+        "godot": "tilesets/godot/thebloodcount_tiles_v1.json"
+      },
+      "recommended_players": 16,
+      "supported_modes": ["BloodVialRun", "TeamDeathmatchVariant"],
+      "notes": "Central hall + hedge maze slice."
+    }
+  ]
+}
