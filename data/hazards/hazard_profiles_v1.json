@@ -1,0 +1,93 @@
+{
+  "version": "1.0.0",
+  "profiles": [
+    {
+      "id": "gas_standard_floor",
+      "display_name": "Airlock Floor Gas",
+      "damage_per_second": 60.0,
+      "tick_interval_seconds": 0.1,
+      "max_stack_count": 1,
+      "hazard_kind": "gas",
+      "movement_modifiers": {
+        "speed_multiplier": 1.0,
+        "jump_disabled": false
+      },
+      "status_effects": [],
+      "asid_immunity_tags": [
+        "ASID_EXECUTION",
+        "ASID_RESPAWN_INVULN"
+      ],
+      "vfx_id": "VFX080",
+      "sfx_loop_id": "SFX950",
+      "sfx_enter_id": "SFX951",
+      "sfx_exit_id": "SFX952",
+      "score_on_kill": {
+        "enabled": true,
+        "points_per_kill": 1,
+        "credit_to_instigator_team": true
+      }
+    },
+    {
+      "id": "acid_sublevel_fast",
+      "display_name": "Sublevel Acid",
+      "damage_per_second": 90.0,
+      "tick_interval_seconds": 0.1,
+      "max_stack_count": 1,
+      "hazard_kind": "acid",
+      "movement_modifiers": {
+        "speed_multiplier": 0.85,
+        "jump_disabled": false
+      },
+      "status_effects": [
+        "burn_dot"
+      ],
+      "asid_immunity_tags": [
+        "ASID_EXECUTION",
+        "ASID_RESPAWN_INVULN"
+      ],
+      "vfx_id": "VFX081",
+      "sfx_loop_id": "SFX960",
+      "sfx_enter_id": "SFX961",
+      "sfx_exit_id": "SFX962",
+      "score_on_kill": {
+        "enabled": true,
+        "points_per_kill": 1,
+        "credit_to_instigator_team": true
+      }
+    },
+    {
+      "id": "library_grinder_instant",
+      "display_name": "Dining Hall Grinder",
+      "damage_per_second": 9999.0,
+      "tick_interval_seconds": 0.05,
+      "max_stack_count": 1,
+      "hazard_kind": "grinder",
+      "movement_modifiers": {
+        "speed_multiplier": 1.0,
+        "jump_disabled": false
+      },
+      "status_effects": [
+        "gib_on_death"
+      ],
+      "asid_immunity_tags": [
+        "ASID_RESPAWN_INVULN"
+      ],
+      "vfx_id": "VFX110",
+      "sfx_loop_id": "SFX700",
+      "sfx_enter_id": "SFX701",
+      "sfx_exit_id": "SFX702",
+      "score_on_kill": {
+        "enabled": true,
+        "points_per_kill": 2,
+        "credit_to_instigator_team": true
+      },
+      "special_rules": {
+        "respawn_blood_vial_on_player_kill": true,
+        "respawn_blood_vial_on_zombie_kill": true,
+        "blood_vial_respawn_delay_seconds": 1.0,
+        "blood_vial_spawn_strategy": "nearest_valid_vial_spawn",
+        "count_kills_toward_stats": true
+      }
+    }
+  ]
+}
