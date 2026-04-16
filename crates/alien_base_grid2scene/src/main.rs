@@ -1,12 +1,14 @@
+use std::fs;
+use std::path::PathBuf;
+
+use anyhow::{anyhow, Context, Result};
 use clap::{Parser, ValueEnum};
-use std::{fs::File, io::BufWriter, path::PathBuf};
+use serde::Deserialize;
 
 mod model;
 mod pipeline;
 
-use model::{entities::Entities, grid::Grid, tileset::Tileset};
-use pipeline::loader::{load_entities, load_grid, load_tileset};
-use pipeline::{emitter_godot, emitter_unity, emitter_unreal};
+use crate::model::{Entities, Grid, Tileset};
 
 #[derive(Debug, Clone, ValueEnum)]
 enum Engine {
@@ -15,141 +17,181 @@ enum Engine {
     Godot,
 }
 
-#[derive(Debug, Clone, ValueEnum)]
-enum MapId {
-    M01BeachDead,
-    M02TheHeist,
-    M03Fortress,
-    M04AlienBase,
-    M05RaptorTemple,
-    M06TmsSpamono,
-}
-
-struct MapPaths {
-    grid: PathBuf,
-    entities: PathBuf,
-    tileset_unreal: PathBuf,
-    tileset_unity: PathBuf,
-    tileset_godot: PathBuf,
-}
-
-fn resolve_paths(map: &MapId) -> MapPaths {
-    let base = PathBuf::from("data");
-    let tilesets_base = PathBuf::from("tilesets");
-
-    let (grid_name, entities_name, tileset_stub) = match map {
-        MapId::M01BeachDead => (
-            "beach_dead_mid_grid_v1.json",
-            "beach_dead_mid_entities_v1.json",
-            "beach_dead_tiles_v1.json",
-        ),
-        MapId::M02TheHeist => (
-            "the_heist_hub_grid_v1.json",
-            "the_heist_hub_entities_v1.json",
-            "heist_tiles_v1.json",
-        ),
-        MapId::M03Fortress => (
-            "fortress_valley_grid_v1.json",
-            "fortress_valley_entities_v1.json",
-            "fortress_tiles_v1.json",
-        ),
-        MapId::M04AlienBase => (
-            "alien_base_hub_grid_v1.json",
-            "alien_base_hub_entities_v1.json",
-            "alien_base_tiles_v1.json",
-        ),
-        MapId::M05RaptorTemple => (
-            "raptor_temple_hub_grid_v1.json",
-            "raptor_temple_hub_entities_v1.json",
-            "raptor_temple_tiles_v1.json",
-        ),
-        MapId::M06TmsSpamono => (
-            "tms_spamono_mid_grid_v1.json",
-            "tms_spamono_mid_entities_v1.json",
-            "tms_spamono_tiles_v1.json",
-        ),
-    };
-
-    let grid = base.join(grid_name);
-    let entities = base.join(entities_name);
-
-    let tileset_unreal = tilesets_base.join("unreal").join(tileset_stub);
-    let tileset_unity = tilesets_base.join("unity").join(tileset_stub);
-    let tileset_godot = tilesets_base.join("godot").join(tileset_stub);
-
-    MapPaths {
-        grid,
-        entities,
-        tileset_unreal,
-        tileset_unity,
-        tileset_godot,
-    }
-}
-
-#[derive(Parser, Debug)]
-#[command(author, version, about = "Conker: Live & Uncut grid → scene generator")]
+#[derive(Debug, Parser)]
+#[command(
+    name = "grid2scene",
+    about = "Conker: Live & Uncut grid → scene generator (grid + entities → UE5 / Unity / Godot)."
+)]
 struct Cli {
-    /// Target engine (unreal/unity/godot)
+    /// Map ID to process (as defined in the Map Manifest).
+    #[arg(long)]
+    map: Option<String>,
+
+    /// Process all maps defined in the Map Manifest.
+    #[arg(long)]
+    all: bool,
+
+    /// Target engine.
     #[arg(long, value_enum)]
     engine: Engine,
 
-    /// Map id (M01BeachDead..M06TmsSpamono)
-    #[arg(long, value_enum)]
-    map: MapId,
+    /// Path to the Map Manifest JSON (map_manifest_v1).
+    #[arg(long, default_value = "maps/multiplayer_map_manifest_v1.json")]
+    manifest: PathBuf,
 
-    /// Optional override for grid JSON; if not set, defaults are used based on map
-    #[arg(long)]
-    input: Option<PathBuf>,
+    /// Output directory for generated engine artifacts.
+    #[arg(long, default_value = "build")]
+    out_dir: PathBuf,
 
-    /// Optional override for entities JSON; if not set, defaults are used based on map
+    /// Perform validation only (schema + tileset + tag checks); do not write any engine output.
     #[arg(long)]
-    entities: Option<PathBuf>,
+    validate: bool,
 
-    /// Optional override for tileset JSON; if not set, defaults are used based on map + engine
+    /// Perform a dry run (parse + validate + plan) but do not write any output files.
     #[arg(long)]
-    tileset: Option<PathBuf>,
-
-    /// Output file path (engine-specific layout)
-    #[arg(long)]
-    out: PathBuf,
+    dry_run: bool,
 }
 
-fn main() -> anyhow::Result<()> {
+#[derive(Debug, Deserialize)]
+struct MapEntry {
+    id: String,
+    name: String,
+    grid_path: String,
+    entities_path: String,
+    #[serde(default)]
+    tileset_paths: TilesetPaths,
+    #[serde(default)]
+    recommended_players: Option<u32>,
+    #[serde(default)]
+    supported_modes: Vec<String>,
+    #[serde(default)]
+    notes: Option<String>,
+}
+
+#[derive(Debug, Deserialize, Default)]
+struct TilesetPaths {
+    #[serde(default)]
+    unreal: Option<String>,
+    #[serde(default)]
+    unity: Option<String>,
+    #[serde(default)]
+    godot: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+struct MapManifest {
+    version: String,
+    maps: Vec<MapEntry>,
+}
+
+fn main() -> Result<()> {
     let cli = Cli::parse();
 
-    let defaults = resolve_paths(&cli.map);
+    if cli.map.is_none() && !cli.all {
+        return Err(anyhow!(
+            "You must provide either --map <id> or --all when invoking grid2scene."
+        ));
+    }
 
-    let grid_path = cli.input.unwrap_or(defaults.grid);
-    let entities_path = cli.entities.unwrap_or(defaults.entities);
+    let manifest_bytes = fs::read(&cli.manifest)
+        .with_context(|| format!("Failed to read manifest {:?}", cli.manifest))?;
+    let manifest: MapManifest =
+        serde_json::from_slice(&manifest_bytes).context("Failed to parse Map Manifest JSON")?;
 
-    let tileset_path = if let Some(ts) = cli.tileset {
-        ts
-    } else {
-        match cli.engine {
-            Engine::Unreal => defaults.tileset_unreal,
-            Engine::Unity => defaults.tileset_unity,
-            Engine::Godot => defaults.tileset_godot,
+    if cli.all {
+        for entry in &manifest.maps {
+            process_map(entry, &cli)?;
         }
+    } else if let Some(ref id) = cli.map {
+        let entry = manifest
+            .maps
+            .iter()
+            .find(|m| &m.id == id)
+            .ok_or_else(|| anyhow!("Map id '{}' not found in manifest.", id))?;
+        process_map(entry, &cli)?;
+    }
+
+    Ok(())
+}
+
+fn process_map(entry: &MapEntry, cli: &Cli) -> Result<()> {
+    println!(
+        "[grid2scene] Processing map '{}' ({}) for engine {:?}",
+        entry.id, entry.name, cli.engine
+    );
+
+    let grid_path = PathBuf::from(&entry.grid_path);
+    let entities_path = PathBuf::from(&entry.entities_path);
+
+    let grid_bytes = fs::read(&grid_path)
+        .with_context(|| format!("Failed to read grid file {:?}", grid_path))?;
+    let entities_bytes = fs::read(&entities_path)
+        .with_context(|| format!("Failed to read entities file {:?}", entities_path))?;
+
+    let grid: Grid = serde_json::from_slice(&grid_bytes)
+        .with_context(|| format!("Failed to parse grid JSON {:?}", grid_path))?;
+    let entities: Entities = serde_json::from_slice(&entities_bytes)
+        .with_context(|| format!("Failed to parse entities JSON {:?}", entities_path))?;
+
+    let tileset_path = match cli.engine {
+        Engine::Unreal => entry
+            .tileset_paths
+            .unreal
+            .as_ref()
+            .ok_or_else(|| anyhow!("No Unreal tileset path configured for map '{}'", entry.id))?,
+        Engine::Unity => entry
+            .tileset_paths
+            .unity
+            .as_ref()
+            .ok_or_else(|| anyhow!("No Unity tileset path configured for map '{}'", entry.id))?,
+        Engine::Godot => entry
+            .tileset_paths
+            .godot
+            .as_ref()
+            .ok_or_else(|| anyhow!("No Godot tileset path configured for map '{}'", entry.id))?,
     };
 
-    let grid: Grid = load_grid(&grid_path)?;
-    let entities: Entities = load_entities(&entities_path)?;
-    let tileset: Tileset = load_tileset(&tileset_path)?;
+    let tileset_bytes = fs::read(tileset_path)
+        .with_context(|| format!("Failed to read tileset file {}", tileset_path))?;
+    let tileset: Tileset =
+        serde_json::from_slice(&tileset_bytes).context("Failed to parse tileset JSON")?;
 
-    let file = File::create(&cli.out)?;
-    let mut writer = BufWriter::new(file);
-
-    match cli.engine {
-        Engine::Unreal => {
-            emitter_unreal::emit_unreal(&grid, &entities, &tileset, &mut writer)?;
-        }
-        Engine::Unity => {
-            emitter_unity::emit_unity(&grid, &entities, &tileset, &mut writer)?;
-        }
-        Engine::Godot => {
-            emitter_godot::emit_godot(&grid, &entities, &tileset, &mut writer)?;
+    // 1. Runtime validation against tileset and grid/entity relationships.
+    if cli.validate || cli.dry_run {
+        pipeline::validate_map(&grid, &entities, &tileset)
+            .with_context(|| format!("Validation failed for map '{}'", entry.id))?;
+        println!("[grid2scene] Validation OK for map '{}'", entry.id);
+        if cli.validate {
+            return Ok(());
         }
     }
+
+    if cli.dry_run {
+        println!(
+            "[grid2scene] Dry run complete for map '{}', no output written.",
+            entry.id
+        );
+        return Ok(());
+    }
+
+    // 2. Emit engine-specific artifacts.
+    let out_dir = cli.out_dir.join(&entry.id);
+    fs::create_dir_all(&out_dir)
+        .with_context(|| format!("Failed to create output directory {:?}", out_dir))?;
+
+    match cli.engine {
+        Engine::Unreal => pipeline::emit_unreal(&grid, &entities, &tileset, &out_dir)
+            .with_context(|| "Failed to emit Unreal output")?,
+        Engine::Unity => pipeline::emit_unity(&grid, &entities, &tileset, &out_dir)
+            .with_context(|| "Failed to emit Unity output")?,
+        Engine::Godot => pipeline::emit_godot(&grid, &entities, &tileset, &out_dir)
+            .with_context(|| "Failed to emit Godot output")?,
+    }
+
+    println!(
+        "[grid2scene] Finished map '{}' for engine {:?}, output at {:?}",
+        entry.id, cli.engine, out_dir
+    );
 
     Ok(())
 }
