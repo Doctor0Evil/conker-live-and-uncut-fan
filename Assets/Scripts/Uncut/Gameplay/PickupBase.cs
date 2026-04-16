@@ -13,10 +13,14 @@ namespace UncutMultiplayer.Gameplay
     public struct WeaponPickupSpec
     {
         public string WeaponId;           // e.g. "Chainsaw", "Bazooka"
-        public bool IsHeavyCarry;         // maps to ASID050
+        public bool IsHeavyCarry;         // maps to ASID050 (can mirror WeaponStats.IsHeavyCarry)
         public float RespawnTimeSeconds;  // 0 = no respawn
         public float InteractionRadius;   // ≈ 2.0f in Alien Base hub
     }
+
+    // Scriptable registry + JSON were defined previously; we just consume it here.
+    //  - WeaponRegistry.TryGet(string id, out WeaponStats stats)
+    //  - WeaponStats has IsHeavyCarry, MovementSpeedMult, etc.
 
     [RequireComponent(typeof(SphereCollider))]
     public class PickupBase : MonoBehaviour
@@ -38,6 +42,9 @@ namespace UncutMultiplayer.Gameplay
 
         [SerializeField]
         private LayerMask characterLayerMask = ~0; // filter if needed
+
+        [SerializeField]
+        private WeaponRegistry weaponRegistry;
 
         private PickupState state = PickupState.Available;
         private float respawnTimer;
@@ -87,7 +94,6 @@ namespace UncutMultiplayer.Gameplay
             if (character == null)
                 return;
 
-            // Apply pickup via interface: weapon registry + ASID050 heavy carry
             if (!ApplyPickupToCharacter(character, pickupSpec))
                 return;
 
@@ -102,12 +108,39 @@ namespace UncutMultiplayer.Gameplay
 
         protected virtual bool ApplyPickupToCharacter(IUncutCharacter character, WeaponPickupSpec spec)
         {
-            // Expected to:
-            //  1. Look up spec.WeaponId in your weaponstatsv1.json-backed table
-            //  2. Give weapon / ammo to character
-            //  3. If spec.IsHeavyCarry, enable HeavyCarry (ASID050) on character
-            // Return true if pickup consumed, false to leave it
-            return character.GiveWeaponPickup(spec.WeaponId, spec.IsHeavyCarry);
+            if (weaponRegistry == null)
+            {
+                Debug.LogError("PickupBase: WeaponRegistry is not assigned.");
+                return false;
+            }
+
+            if (!weaponRegistry.TryGet(spec.WeaponId, out var stats))
+            {
+                Debug.LogWarning($"PickupBase: No stats for weapon '{spec.WeaponId}'.");
+                return false;
+            }
+
+            if (!character.GiveWeapon(stats))
+            {
+                return false;
+            }
+
+            var heavyCarry = (character as Component)?.GetComponent<IHeavyCarryAdapter>();
+            if (heavyCarry != null)
+            {
+                // Prefer stats.IsHeavyCarry from JSON; spec.IsHeavyCarry can act as a local override
+                bool isHeavy = stats.IsHeavyCarry || spec.IsHeavyCarry;
+                if (isHeavy)
+                {
+                    heavyCarry.EnterHeavyCarry(stats);
+                }
+                else
+                {
+                    heavyCarry.ClearHeavyCarry();
+                }
+            }
+
+            return true;
         }
 
         private void SetState(PickupState newState)
@@ -126,10 +159,17 @@ namespace UncutMultiplayer.Gameplay
         public PickupState State => state;
     }
 
-    // Example character interface that your player controller implements
+    // Character side: used by PickupBase
     public interface IUncutCharacter
     {
-        // Applies weapon + heavy-carry (ASID050) from your weapon registry
-        bool GiveWeaponPickup(string weaponId, bool isHeavyCarry);
+        // Gives weapon using stats from WeaponRegistry / weaponstatsv1.json
+        bool GiveWeapon(WeaponStats stats);
+    }
+
+    // Heavy-carry / ASID050 adapter on the character controller
+    public interface IHeavyCarryAdapter
+    {
+        void EnterHeavyCarry(WeaponStats stats);
+        void ClearHeavyCarry();
     }
 }
