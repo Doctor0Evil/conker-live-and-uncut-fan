@@ -1,10 +1,10 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "maps": [
     {
       "id": "alienbasehub",
       "name": "Alien Base Hub",
-      "n64ancestor": "HeistUgaBugaHybrid",
+      "n64ancestor": "Heist/UgaBuga Hybrid",
       "gridpath": "maps/alienbase/alienbasehubgridv1.json",
       "entitiespath": "maps/alienbase/alienbasehubentitiesv1.json",
       "tilesetpaths": {
@@ -13,13 +13,17 @@
         "godot": "tilesets/godot/alienbasetilesv1.json"
       },
       "recommendedplayers": 16,
-      "supportedmodes": ["Invasion","Deathmatch"],
-      "notes": "Hub-only prototype for Alien Base multi."
+      "supportedmodes": [
+        "Invasion",
+        "TeamDeathmatchVariant",
+        "EggHunt"
+      ],
+      "notes": "Hub-only prototype for Alien Base multi: outer ring spawns, central Alien Egg objective, hub gas and sublevel acid hazards."
     },
     {
       "id": "beachdead",
       "name": "Beach Dead Supermap",
-      "n64ancestor": "BeachTotalWar",
+      "n64ancestor": "Beach/TotalWar",
       "gridpath": "maps/beachdead/beachdeadgridv2.json",
       "entitiespath": "maps/beachdead/beachdeadentitiesv2.json",
       "tilesetpaths": {
@@ -37,6 +41,43 @@
         "DeathmatchValley"
       ],
       "notes": "Extended SHC base → valley → beach → bunker → Casualties Dept. Mode behavior is controlled via config/modes/beachdead_modeprofilesv1.json."
+    },
+    {
+      "id": "thebloodcount",
+      "name": "The Blood Count",
+      "n64ancestor": "Spooky Count Batula",
+      "gridpath": "maps/thebloodcount/thebloodcountgridv1.json",
+      "entitiespath": "maps/thebloodcount/thebloodcountentitiesv1.json",
+      "tilesetpaths": {
+        "unreal": "tilesets/unreal/thebloodcounttilesv1.json",
+        "unity": "tilesets/unity/thebloodcounttilesv1.json",
+        "godot": "tilesets/godot/thebloodcounttilesv1.json"
+      },
+      "recommendedplayers": 16,
+      "supportedmodes": [
+        "BloodVialRun",
+        "TeamDeathmatchVariant"
+      ],
+      "notes": "Central hall plus hedge maze slice with Blood Vial objective, zombies, and Fire Imp trigger."
+    },
+    {
+      "id": "fortress",
+      "name": "Fortress",
+      "n64ancestor": "TotalWar",
+      "gridpath": "maps/fortress/fortressgridv1.json",
+      "entitiespath": "maps/fortress/fortressentitiesv1.json",
+      "tilesetpaths": {
+        "unreal": "tilesets/unreal/fortresstilesv1.json",
+        "unity": "tilesets/unity/fortresstilesv1.json",
+        "godot": "tilesets/godot/fortresstilesv1.json"
+      },
+      "recommendedplayers": 16,
+      "supportedmodes": [
+        "TotalWarFortress",
+        "TeamDeathmatchVariant",
+        "GasCanisterRun"
+      ],
+      "notes": "Expanded Total War layout: SHC base south, Tediz fortress north, central bridge capture, flank trenches, gas-canister objective and base gas inlets."
     }
   ]
 }
