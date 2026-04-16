@@ -276,4 +276,90 @@ To achieve a total of **200** comprehensive research and development directives,
 259. **Coding Task:** Implement a **Save/Load System** for **Grid2Scene Projects**. Allow AI‑Chat to output a **diff** of a map file (e.g., "Change cell [5,10] from `trench` to `mg_nest`") rather than re‑generating the entire 200KB JSON file.
 260. **Research Question:** How can we **quantify the "Fun Factor"** of AI‑generated map layouts? Can we run simulated bot matches and measure metrics like **Encounter Frequency**, **Time to Action**, and **Chokepoint Death Density** to automatically rank map variants?
 
+Based on the schema‑centric architecture outlined in your document—formalizing delivery objectives, unifying hazard profiles, and standardizing zombie kill mechanics with controlled exceptions—here are **30 additional coding tasks** (261–290) that integrate directly with the existing `Doctor0Evil/conker-live-and-uncut-fan` repository structure and its data‑driven pipelines.
+
+These tasks are designed to be **precise directives for AI‑Chat agents**, referencing specific schemas, file paths, and engine components to ensure the generated code is immediately actionable and maintainable.
+
+### 261–270: Implementing Generic Delivery Objective Types
+
+261. **Directive:** Extend `schemas/multiplayer/map_entities_v1.schema.json` to include `objective_type` enum values: `"BabyDinoFeeder"` and `"EggCookPan"`. Add required sub‑properties: `accepted_carried_asid` (integer) for the feeder, and `cook_duration` (float) for the pan.
+
+262. **Coding Task:** Create a new base class `ABaseDeliveryObjective` (Unreal) / `DeliveryObjectiveBase` (Unity/Godot) that inherits from the existing `ABaseObjective`. This class must expose virtual methods `bool CanAcceptDelivery(APawn* Carrier)` and `void ProcessDelivery(APawn* Carrier)`.
+
+263. **Directive:** In the **Unreal Engine Emitter** (`grid2scene/src/emitter_unreal.rs`), add a case for `objective_type: "BabyDinoFeeder"` that spawns an actor of class `ABP_BabyDinoFeeder_C` and configures it with the `accepted_carried_asid` value from the JSON.
+
+264. **Coding Task:** Implement `ABP_BabyDinoFeeder::ProcessDelivery` in Unreal C++. The function must:
+    - Verify the carrier's `CurrentCarriedASID` matches `AcceptedCarriedASID`.
+    - Award `ScoreValue` to the carrier's team.
+    - Call `ForceASIDTransition(ASID_DEATH_FED)` on the carried pawn to trigger the hard‑lock execution state.
+    - Play `SFX_DINO_EAT` and `VFX_BLOOD_SPRAY` at the feeder's location.
+
+265. **Coding Task:** Implement `ABP_EggCookPan::ProcessDelivery` in Unity C#. The function must:
+    - Verify the carrier is holding an object with `ASID_EGG_RAW`.
+    - Destroy the carried egg object.
+    - Start a `CookDuration` timer visible via a progress bar widget.
+    - Upon completion, award `ScoreValue` and broadcast a `OnEggCooked` event to update the game mode.
+
+266. **Objective:** Create a **Mode Profile** entry for Raptor Temple (`config/modes/raptor_temple_mode_profiles_v1.json`) that references the new objective types and enables the `ASID_RAPTOR_POUNCE_EXEC` ability for Team Raptor by default.
+
+267. **Coding Task:** Add validation to the `grid2scene --validate` flag that checks: if an entity has `objective_type: "BabyDinoFeeder"`, its corresponding grid cell must have a `role_tag` containing `"baby_dino_nest"` or similar, ensuring logical placement.
+
+268. **Research Question:** How should the "Egg Cooking" objective handle multiple players interacting simultaneously? Define a queuing or denial system and document it in `Docs/GDD/05_Multiplayer_Raptor_Temple.md`.
+
+269. **Directive:** Create a **reusable UI widget** (`WBP_DeliveryObjectivePrompt`) that displays context‑sensitive text ("Feed Caveman to Baby Dino", "Cook Egg") and a progress bar. The widget must be data‑driven, reading the prompt text from the objective's `InteractionPrompt` property defined in the entities JSON.
+
+270. **Coding Task:** Write a **unit test** (Google Test for Unreal, NUnit for Unity) that verifies `ProcessDelivery` correctly rejects a carrier who is not holding the required `accepted_carried_asid`.
+
+### 271–280: Unifying Hazard Systems with Data‑Driven Profiles
+
+271. **Objective:** Create the JSON schema for hazard profiles: `schemas/hazards/hazard_profiles_v1.schema.json`. It must define arrays of `damage_per_second`, `tick_interval`, `immunity_asids`, `visual_effect_id`, and `audio_cue_id`.
+
+272. **Coding Task:** Implement `UHazardProfileDataAsset` (Unreal) / `HazardProfileSO` (Unity ScriptableObject) / `HazardProfileResource` (Godot). These assets are populated at editor time from the JSON data and used at runtime to configure `HazardVolume` actors.
+
+273. **Directive:** Refactor `AAlienBaseVolumeHubFloorGas` and `AAlienBaseVolumeSublevelAcid` to inherit from a new base class `AHazardVolume`. Move all DoT and immunity logic into `AHazardVolume::ApplyDamageOverTime()`.
+
+274. **Coding Task:** In `AHazardVolume::ApplyDamageOverTime()`, implement a check against `ImmunityASIDs`. For each pawn inside the volume, query its `CurrentASIDSet` and skip damage if any ASID matches the profile's immunity list.
+
+275. **Coding Task:** Modify the **Alien Base Airlock Controller** to activate its associated `AHazardVolume` by calling `ActivateHazard()` and `DeactivateHazard()` instead of directly toggling visibility or collision. The hazard volume itself handles VFX/SFX based on its loaded profile.
+
+276. **Directive:** Extend the **Fortress Gas Canister** state machine (`AGasCanister::ArmAtBase`) to locate the `AHazardVolume` with `role_tag: "gas_cloud_zone"` and call `ActivateHazard()` with a duration defined in the mode profile.
+
+277. **Coding Task:** Add a **Runtime Profile Switcher** function to `AHazardVolume`: `void ReloadProfile(FName NewProfileID)`. This allows a single hazard volume to change behavior (e.g., from "hub_gas_v1" to "hub_gas_hardmode") mid‑match via console command or game mode event.
+
+278. **Objective:** Create a **default hazard profile** file `config/hazards/default_hazard_profiles_v1.json` with entries: `"hub_gas_v1"`, `"sublevel_acid_v1"`, `"fortress_gas_v1"`, and `"fire_imp_burning_v1"`.
+
+279. **Coding Task:** Write a **debug console command** (`uncut_hazard.reload_profile <ProfileID>`) that reloads the specified JSON profile and applies it to all active `AHazardVolume` instances, enabling rapid iteration during playtesting.
+
+280. **Research Question:** How can we visually communicate hazard immunity during execution states? Design a **HUD icon** (e.g., a green shield) that appears when the player is inside a hazard volume but an active ASID grants immunity, and implement it in all three engines.
+
+### 281–290: Standardizing Zombie Crawl Mechanics & Exception Handling
+
+281. **Objective:** Add a new **damage modifier rule** to `config/damage_rules_v1.json`: `"crawling_zombie_rule"` with properties `"only_headshot_kills"`, `"shotgun_point_blank_multiplier"`, and `"exception_asids"` (array of ASIDs that bypass the rule).
+
+282. **Coding Task:** In the shared `UDamageSubsystem` (or equivalent), implement a function `bool ShouldApplyDamageToCrawlingZombie(AActor* Victim, const FDamageEvent& DamageEvent)`. This function reads the rule from the config and evaluates:
+    - Is the hit bone `"head"` or `"neck"`?
+    - Is the weapon a shotgun and is the distance < `PointBlankThreshold`?
+    - Is the attacker in one of the `exception_asids`?
+
+283. **Directive:** Create a new ASID `ASID_ZOMBIE_CRAWL` (value 805). When a zombie's health falls below `CrawlHealthThreshold`, the damage system must call `ForceASIDTransition(ASID_ZOMBIE_CRAWL)` instead of applying lethal damage, unless the kill conditions are met.
+
+284. **Coding Task:** Implement the **Crawl State Behavior** in the Zombie AI controller:
+    - Movement speed reduced to 150 units/s.
+    - Only head and upper torso hitboxes remain active for damage.
+    - Attack range reduced and limited to a "grab" animation.
+
+285. **Coding Task:** Add an **exception whitelist** to the Zombie's `TakeDamage` function. If the instigator pawn has an active ASID from `exception_asids` (e.g., `ASID_RAPTOR_POUNCE_EXEC`), any damage source (even a body shot) should bypass the crawl state and kill the zombie instantly.
+
+286. **Objective:** Create a **debug visualizer** for the crawling zombie rule. When enabled (`uncut_debug.zombie_crawl 1`), draw a red sphere on the zombie's head hitbox and a green sphere on immune body parts.
+
+287. **Coding Task:** Write a **validation test** that spawns a zombie, damages it to the crawl threshold with a pistol (body shot), and asserts that the zombie enters `ASID_ZOMBIE_CRAWL` and does not die from subsequent pistol body shots.
+
+288. **Research Question:** Should the "Crawling Zombie" rule apply to **friendly fire** in team modes? Document the design decision and implement a configurable toggle in `gameplay_config.json` (`zombie_crawl_friendly_fire: true/false`).
+
+289. **Directive:** In the **Blood Count entities JSON** (`blood_count_entities_v1.json`), add a `"zombie_crawl_settings"` override section that allows per‑map tuning of `CrawlHealthThreshold` and `PointBlankThreshold` without altering the global damage rules.
+
+290. **Coding Task:** Implement the **Fire Imp's interaction** with crawling zombies. Since the Fire Imp hunts the blood‑vial carrier, it should prioritize attacking the carrier even if a crawling zombie is nearby. Add a `ThreatPriority` system that gives the carrier a higher weight than crawling zombies.
+
+These 30 tasks seamlessly extend the existing 260‑item roadmap, ensuring that the formalized objectives, unified hazards, and standardized zombie rules are not just documented but fully realized as robust, data‑driven code that maintains the original *Conker's Bad Fur Day* feel while leveraging modern engineering practices.
+
 This list provides a comprehensive and actionable roadmap for developing the Conker: Live & Uncut fan project. By addressing these items, AI-Chat will be able to provide more precise and helpful code generation, ensuring the final product remains faithful to the original N64 multiplayer philosophy.
