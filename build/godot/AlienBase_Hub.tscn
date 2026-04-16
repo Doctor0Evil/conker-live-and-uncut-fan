@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource path="res://AlienBase/HubMeshLibrary.tres" type="MeshLibrary" id=1]
+
+[node name="AlienBaseHub" type="Node3D"]
+
+[node name="HubGrid" type="GridMap" parent="."]
+mesh_library = ExtResource("1")
+cell_size = Vector3(4, 4, 4)
+
+[node name="EggPlatform" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
