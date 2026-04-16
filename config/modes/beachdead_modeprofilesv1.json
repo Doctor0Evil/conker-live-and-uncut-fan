@@ -1,0 +1,67 @@
+{
+  "version": "1.0.0",
+  "mapid": "01MultiplayerBeachDead",
+  "schemaversion": "modeprofilesv1.0.0",
+  "modes": [
+    {
+      "id": "BeachFrenchiesDay",
+      "displayname": "Beach (Frenchies) – Day",
+      "enabledzones": ["beach","bunker_exterior","tower","assault_corridor","casualties_dept"],
+      "enabledspawnroletags": ["attackerspawnband","attackerfallbackband1","attackerfallbackband2","defenderspawnband"],
+      "enabledobjectiveroletags": ["fence1","fence2","fence3","bunkerdoor","objectivezone_escape"],
+      "enabledhazardroletags": [],
+      "lightingprofile": "BeachDay",
+      "notes": "Classic evac from surf to truck/casualties interior. No valley or SHC base access."
+    },
+    {
+      "id": "BeachFrenchiesNight",
+      "displayname": "Beach (Frenchies) – Night",
+      "enabledzones": ["beach","bunker_exterior","tower","assault_corridor","casualties_dept"],
+      "enabledspawnroletags": ["attackerspawnband","attackerfallbackband1","attackerfallbackband2","defenderspawnband"],
+      "enabledobjectiveroletags": ["fence1","fence2","fence3","bunkerdoor","objectivezone_escape"],
+      "enabledhazardroletags": [],
+      "lightingprofile": "BeachNightStealth",
+      "notes": "Same layout as day evac, but with low ambient light and stronger spotlights/searchlights."
+    },
+    {
+      "id": "TotalWarValley",
+      "displayname": "Total War – Valley",
+      "enabledzones": ["shc_base","valley","bunker_exterior","tower"],
+      "enabledspawnroletags": ["shc_base","defenderspawnband"],
+      "enabledobjectiveroletags": ["gas_trigger"],
+      "enabledhazardroletags": ["instant_win_hazard"],
+      "lightingprofile": "WarOvercast",
+      "notes": "Symmetric SHC vs Tediz; gas canister pickup and valley gas hazard enabled for instant win."
+    },
+    {
+      "id": "ColorsValley",
+      "displayname": "Colors – Valley CTF",
+      "enabledzones": ["shc_base","valley","bunker_exterior"],
+      "enabledspawnroletags": ["shc_base","defenderspawnband"],
+      "enabledobjectiveroletags": [],
+      "enabledhazardroletags": [],
+      "lightingprofile": "WarOvercast",
+      "notes": "CTF variant using valley and bases only; beach fences/objectives disabled."
+    },
+    {
+      "id": "DeathmatchBeach",
+      "displayname": "Deathmatch – Beach/Bunker",
+      "enabledzones": ["beach","bunker_exterior","tower"],
+      "enabledspawnroletags": ["attackerspawnband","defenderspawnband"],
+      "enabledobjectiveroletags": [],
+      "enabledhazardroletags": [],
+      "lightingprofile": "BeachDay",
+      "notes": "DM slice restricted to beach, bunkerlip, and tower roof; fences remain as static cover."
+    },
+    {
+      "id": "DeathmatchValley",
+      "displayname": "Deathmatch – Valley/Bases",
+      "enabledzones": ["shc_base","valley","bunker_exterior"],
+      "enabledspawnroletags": ["shc_base","defenderspawnband"],
+      "enabledobjectiveroletags": [],
+      "enabledhazardroletags": [],
+      "lightingprofile": "WarOvercast",
+      "notes": "DM slice using SHC base, valley, and Tediz bunkerlip, suited for 16‑player classic war arenas."
+    }
+  ]
+}
