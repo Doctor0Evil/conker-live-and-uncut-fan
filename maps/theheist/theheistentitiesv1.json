@@ -1,0 +1,271 @@
+{
+  "version": "1.0.0",
+  "mapid": "theheist",
+  "schemaversion": "mapentitiesv1.0.0",
+  "spawnpoints": [
+    {
+      "id": "spawn_team_red_01",
+      "team": "red",
+      "zone": "team_red_lobby",
+      "col": 15,
+      "row": 4,
+      "yoffset": 0.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamredspawn", "team_red_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_red_02",
+      "team": "red",
+      "zone": "team_red_lobby",
+      "col": 14,
+      "row": 4,
+      "yoffset": 0.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamredspawn", "team_red_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_red_03",
+      "team": "red",
+      "zone": "team_red_lobby",
+      "col": 16,
+      "row": 4,
+      "yoffset": 0.0,
+      "facingdeg": 180.0,
+      "roletags": ["teamredspawn", "team_red_spawn", "team_spawn_lobby"]
+    },
+
+    {
+      "id": "spawn_team_blue_01",
+      "team": "blue",
+      "zone": "team_blue_lobby",
+      "col": 4,
+      "row": 15,
+      "yoffset": 0.0,
+      "facingdeg": 90.0,
+      "roletags": ["teambluespawn", "team_blue_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_blue_02",
+      "team": "blue",
+      "zone": "team_blue_lobby",
+      "col": 4,
+      "row": 14,
+      "yoffset": 0.0,
+      "facingdeg": 90.0,
+      "roletags": ["teambluespawn", "team_blue_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_blue_03",
+      "team": "blue",
+      "zone": "team_blue_lobby",
+      "col": 4,
+      "row": 16,
+      "yoffset": 0.0,
+      "facingdeg": 90.0,
+      "roletags": ["teambluespawn", "team_blue_spawn", "team_spawn_lobby"]
+    },
+
+    {
+      "id": "spawn_team_green_01",
+      "team": "green",
+      "zone": "team_green_lobby",
+      "col": 26,
+      "row": 15,
+      "yoffset": 0.0,
+      "facingdeg": 270.0,
+      "roletags": ["teamgreenspawn", "team_green_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_green_02",
+      "team": "green",
+      "zone": "team_green_lobby",
+      "col": 26,
+      "row": 14,
+      "yoffset": 0.0,
+      "facingdeg": 270.0,
+      "roletags": ["teamgreenspawn", "team_green_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_green_03",
+      "team": "green",
+      "zone": "team_green_lobby",
+      "col": 26,
+      "row": 16,
+      "yoffset": 0.0,
+      "facingdeg": 270.0,
+      "roletags": ["teamgreenspawn", "team_green_spawn", "team_spawn_lobby"]
+    },
+
+    {
+      "id": "spawn_team_yellow_01",
+      "team": "yellow",
+      "zone": "team_yellow_lobby",
+      "col": 15,
+      "row": 26,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamyellowspawn", "team_yellow_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_yellow_02",
+      "team": "yellow",
+      "zone": "team_yellow_lobby",
+      "col": 14,
+      "row": 26,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamyellowspawn", "team_yellow_spawn", "team_spawn_lobby"]
+    },
+    {
+      "id": "spawn_team_yellow_03",
+      "team": "yellow",
+      "zone": "team_yellow_lobby",
+      "col": 16,
+      "row": 26,
+      "yoffset": 0.0,
+      "facingdeg": 0.0,
+      "roletags": ["teamyellowspawn", "team_yellow_spawn", "team_spawn_lobby"]
+    }
+  ],
+
+  "weaponpickups": [
+    {
+      "id": "pickup_shotgun_lobby_north",
+      "weapontype": "Shotgun",
+      "ammoamount": 8,
+      "respawnseconds": 20.0,
+      "col": 15,
+      "row": 11,
+      "yoffset": 0.5,
+      "roletags": ["heist_lobby", "north_lobby_weapon"]
+    },
+    {
+      "id": "pickup_shotgun_lobby_south",
+      "weapontype": "Shotgun",
+      "ammoamount": 8,
+      "respawnseconds": 20.0,
+      "col": 15,
+      "row": 19,
+      "yoffset": 0.5,
+      "roletags": ["heist_lobby", "south_lobby_weapon"]
+    },
+    {
+      "id": "pickup_uzi_lobby_west",
+      "weapontype": "Uzi",
+      "ammoamount": 60,
+      "respawnseconds": 20.0,
+      "col": 11,
+      "row": 15,
+      "yoffset": 0.5,
+      "roletags": ["heist_lobby", "west_lobby_weapon"]
+    },
+    {
+      "id": "pickup_uzi_lobby_east",
+      "weapontype": "Uzi",
+      "ammoamount": 60,
+      "respawnseconds": 20.0,
+      "col": 19,
+      "row": 15,
+      "yoffset": 0.5,
+      "roletags": ["heist_lobby", "east_lobby_weapon"]
+    }
+  ],
+
+  "objectivepickups": [
+    {
+      "id": "pickup_money_bag",
+      "objectivetype": "MoneyBag",
+      "heavycarryasid": "ASID050",
+      "respawnseconds": 0.0,
+      "dropondeath": true,
+      "col": 15,
+      "row": 15,
+      "yoffset": 0.9,
+      "roletags": ["money_bag_spawn", "vault", "money_bag_route"]
+    }
+  ],
+
+  "objectives": [
+    {
+      "id": "objective_scorezone_red",
+      "objectivetype": "CaptureZone",
+      "team": "red",
+      "maxhealth": 1,
+      "col": 15,
+      "row": 4,
+      "yoffset": 0.0,
+      "radiuscells": 1.5,
+      "roletags": ["money_bag_score_zone", "team_red_base", "team_red_spawn"]
+    },
+    {
+      "id": "objective_scorezone_blue",
+      "objectivetype": "CaptureZone",
+      "team": "blue",
+      "maxhealth": 1,
+      "col": 4,
+      "row": 15,
+      "yoffset": 0.0,
+      "radiuscells": 1.5,
+      "roletags": ["money_bag_score_zone", "team_blue_base", "team_blue_spawn"]
+    },
+    {
+      "id": "objective_scorezone_green",
+      "objectivetype": "CaptureZone",
+      "team": "green",
+      "maxhealth": 1,
+      "col": 26,
+      "row": 15,
+      "yoffset": 0.0,
+      "radiuscells": 1.5,
+      "roletags": ["money_bag_score_zone", "team_green_base", "team_green_spawn"]
+    },
+    {
+      "id": "objective_scorezone_yellow",
+      "objectivetype": "CaptureZone",
+      "team": "yellow",
+      "maxhealth": 1,
+      "col": 15,
+      "row": 26,
+      "yoffset": 0.0,
+      "radiuscells": 1.5,
+      "roletags": ["money_bag_score_zone", "team_yellow_base", "team_yellow_spawn"]
+    },
+
+    {
+      "id": "objective_gas_trigger",
+      "objectivetype": "GasTrigger",
+      "team": "",
+      "maxhealth": 1,
+      "col": 15,
+      "row": 9,
+      "yoffset": 0.5,
+      "radiuscells": 0.5,
+      "roletags": ["gas_trigger", "gas_control_room", "throne_room"]
+    }
+  ],
+
+  "hazardvolumes": [
+    {
+      "id": "hazard_gas_chamber_floor",
+      "hazardtype": "FloorGas",
+      "centercol": 15,
+      "centerrow": 5,
+      "radiuscells": 1.5,
+      "minyoffset": -1.0,
+      "maxyoffset": 2.0,
+      "gridinclusionrule": "include all gas_chamber hazard_zone tiles",
+      "roletags": ["gas_chamber", "hazard_zone", "hazardhubfloorgas"]
+    }
+  ],
+
+  "npcspawners": [],
+
+  "meta": {
+    "recommendedplayers": 16,
+    "supportedmodes": [
+      "HeistMoneyBag",
+      "TeamDeathmatchVariant"
+    ],
+    "notes": "Basic Heist entities: four team spawn lobbies, single MoneyBag heavy-carry pickup, four team score zones, and a gas chamber trigger plus gas floor hazard volume."
+  }
+}
