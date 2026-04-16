@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "maps": [
+    {
+      "id": "01_Multiplayer_Beach_Dead",
+      "design_doc": "docs/multiplayer/01_Multiplayer_Beach_Dead.md",
+      "grid": "data/beach_dead_grid_v1.json",
+      "entities": "data/beach_dead_entities_v1.json"
+    },
+    {
+      "id": "02_Multiplayer_The_Heist",
+      "design_doc": "docs/multiplayer/02_Multiplayer_The_Heist.md",
+      "grid": "data/heist_grid_v1.json",
+      "entities": "data/heist_entities_v1.json"
+    },
+    {
+      "id": "03_Multiplayer_Fortress",
+      "design_doc": "docs/multiplayer/03_Multiplayer_Fortress.md",
+      "grid": "data/fortress_grid_v1.json",
+      "entities": "data/fortress_entities_v1.json"
+    },
+    {
+      "id": "04_Multiplayer_Alien_Base",
+      "design_doc": "docs/multiplayer/04_Multiplayer_Alien_Base.md",
+      "grid": "data/alien_base_hub_grid_v1.json",
+      "entities": "data/alien_base_hub_entities_v1.json"
+    },
+    {
+      "id": "05_Multiplayer_Raptor_Temple",
+      "design_doc": "docs/multiplayer/05_Multiplayer_Raptor_Temple_Layout.md",
+      "grid": "data/raptor_temple_grid_v1.json",
+      "entities": "data/raptor_temple_entities_v1.json"
+    },
+    {
+      "id": "06_Multiplayer_TMS_Spamono",
+      "design_doc": "docs/multiplayer/06_Multiplayer_TMS_Spamono.md",
+      "grid": "data/tms_spamono_grid_v1.json",
+      "entities": "data/tms_spamono_entities_v1.json"
+    }
+  ]
+}
