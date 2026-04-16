@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AlienBaseTileset",
+  "type": "object",
+  "required": ["version", "engine", "tile_mappings", "entity_mappings"],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "engine": {
+      "type": "string",
+      "enum": ["unreal", "unity", "godot"]
+    },
+    "tile_mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tile_type", "asset_id"],
+        "properties": {
+          "tile_type": {
+            "type": "string"
+          },
+          "asset_id": {
+            "type": "string",
+            "description": "Engine-specific identifier (mesh path, prefab path, MeshLibrary item name/index)."
+          }
+        }
+      }
+    },
+    "entity_mappings": {
+      "type": "object",
+      "required": ["spawn", "weapon_pickup", "hazard_volume", "objective"],
+      "properties": {
+        "spawn": {
+          "type": "object",
+          "properties": {
+            "prefab_or_class": { "type": "string" }
+          }
+        },
+        "weapon_pickup": {
+          "type": "object",
+          "properties": {
+            "Chainsaw": { "type": "string" },
+            "Flamethrower": { "type": "string" },
+            "SMG": { "type": "string" },
+            "Shotgun": { "type": "string" },
+            "SniperRifle": { "type": "string" },
+            "Bazooka": { "type": "string" }
+          }
+        },
+        "hazard_volume": {
+          "type": "object",
+          "properties": {
+            "FloorGas": { "type": "string" },
+            "SublevelAcid": { "type": "string" }
+          }
+        },
+        "objective": {
+          "type": "object",
+          "properties": {
+            "Egg": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
