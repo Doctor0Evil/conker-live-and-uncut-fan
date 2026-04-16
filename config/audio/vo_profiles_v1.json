@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "default_mode": "bleeped",
+  "profiles": [
+    {
+      "id": "VO_CONKER_TAUNT_01",
+      "uncut": "Audio/VO/Uncut/conker_taunt_01",
+      "bleeped": "Audio/VO/Bleeped/conker_taunt_01_bleep"
+    }
+  ]
+}
