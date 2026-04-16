@@ -47,4 +47,19 @@
       "notes": "Central hall + hedge maze slice."
     }
   ]
+},
+{
+  "id": "theheist",
+  "name": "The Heist",
+  "n64ancestor": "Heist",
+  "gridpath": "maps/theheist/theheistgridv1.json",
+  "entitiespath": "maps/theheist/theheistentitiesv1.json",
+  "tilesetpaths": {
+    "unreal": "tilesets/unreal/theheisttilesv1.json",
+    "unity": "tilesets/unity/theheisttilesv1.json",
+    "godot": "tilesets/godot/theheisttilesv1.json"
+  },
+  "recommendedplayers": 16,
+  "supportedmodes": ["HeistMoneyBag", "TeamDeathmatchVariant"],
+  "notes": "Greybox Heist bank with gas chamber."
 }
