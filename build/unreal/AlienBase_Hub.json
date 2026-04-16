@@ -1,0 +1,39 @@
+{
+  "level_name": "LV_AlienBase_Multi",
+  "hub_y_level": 0.0,
+  "tile_sets": [
+    {
+      "tile_type": "T_Floor_IndustrialPlain",
+      "mesh_path": "/Game/AlienBase/Meshes/SM_Floor_IndustrialPlain",
+      "instances": [
+        { "x": 0.0, "y": 0.0, "z": 4.0 },
+        { "x": 4.0, "y": 0.0, "z": 0.0 }
+      ]
+    },
+    {
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "mesh_path": "/Game/AlienBase/Meshes/SM_Floor_GrateGasEmitter",
+      "instances": [
+        { "x": 0.0, "y": 0.0, "z": 12.0 }
+      ]
+    },
+    {
+      "tile_type": "T_Wall_PanelRiveted",
+      "mesh_path": "/Game/AlienBase/Meshes/SM_Wall_PanelRiveted",
+      "instances": [
+        { "x": 0.0, "y": 0.0, "z": 20.0 }
+      ]
+    }
+  ],
+  "special": {
+    "egg_platform": {
+      "tile_type": "T_Platform_EggBase",
+      "mesh_path": "/Game/AlienBase/Meshes/SM_EggPlatform",
+      "position": { "x": 0.0, "y": 0.0, "z": 0.0 }
+    },
+    "hazard_floor_volume_bounds": {
+      "center": { "x": 0.0, "y": 0.0, "z": 0.0 },
+      "radius": 24.0
+    }
+  }
+}
