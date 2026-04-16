@@ -161,16 +161,23 @@ fn process_map(entry: &MapEntry, cli: &Cli) -> Result<()> {
         pipeline::validate_map(&grid, &entities, &tileset)
             .with_context(|| format!("Validation failed for map '{}'", entry.id))?;
         println!("[grid2scene] Validation OK for map '{}'", entry.id);
+
+        if cli.dry_run {
+            // If requested, print a summary instead of writing files.
+            let summary = pipeline::summarize_map(&grid, &entities);
+            println!("{}", summary);
+            return Ok(());
+        }
+
         if cli.validate {
             return Ok(());
         }
     }
 
     if cli.dry_run {
-        println!(
-            "[grid2scene] Dry run complete for map '{}', no output written.",
-            entry.id
-        );
+        // Dry-run without explicit --validate: still provide a summary.
+        let summary = pipeline::summarize_map(&grid, &entities);
+        println!("{}", summary);
         return Ok(());
     }
 
