@@ -1,0 +1,96 @@
+{
+  "version": "1.0.0",
+  "grid_size": {
+    "cols": 17,
+    "rows": 9
+  },
+  "cell_size": 4.0,
+  "y_level": 0.0,
+  "origin": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "cells": [
+    {
+      "col": 8,
+      "row": 4,
+      "tile_type": "T_Floor_Sand_Flat",
+      "walkable": true,
+      "role_tags": ["mid_lane_center"]
+    },
+
+    {
+      "col": 7,
+      "row": 4,
+      "tile_type": "T_Floor_Sand_Crater",
+      "walkable": true,
+      "role_tags": ["mid_lane_cover"]
+    },
+    {
+      "col": 9,
+      "row": 4,
+      "tile_type": "T_Floor_Sand_Crater",
+      "walkable": true,
+      "role_tags": ["mid_lane_cover"]
+    },
+
+    {
+      "col": 5,
+      "row": 3,
+      "tile_type": "T_Floor_Trench_Mud",
+      "walkable": true,
+      "role_tags": ["trench_left"]
+    },
+    {
+      "col": 6,
+      "row": 3,
+      "tile_type": "T_Floor_Trench_Mud",
+      "walkable": true,
+      "role_tags": ["trench_left"]
+    },
+    {
+      "col": 10,
+      "row": 3,
+      "tile_type": "T_Floor_Trench_Mud",
+      "walkable": true,
+      "role_tags": ["trench_right"]
+    },
+    {
+      "col": 11,
+      "row": 3,
+      "tile_type": "T_Floor_Trench_Mud",
+      "walkable": true,
+      "role_tags": ["trench_right"]
+    },
+
+    {
+      "col": 5,
+      "row": 2,
+      "tile_type": "T_Wall_Trench_Berm",
+      "walkable": false,
+      "role_tags": ["trench_left_wall"]
+    },
+    {
+      "col": 11,
+      "row": 2,
+      "tile_type": "T_Wall_Trench_Berm",
+      "walkable": false,
+      "role_tags": ["trench_right_wall"]
+    },
+
+    {
+      "col": 8,
+      "row": 1,
+      "tile_type": "T_Obstacle_TankTrap",
+      "walkable": false,
+      "role_tags": ["obstacle_tanktrap"]
+    },
+    {
+      "col": 8,
+      "row": 6,
+      "tile_type": "T_Obstacle_BarbedWire",
+      "walkable": false,
+      "role_tags": ["obstacle_barbedwire"]
+    }
+  ]
+}
