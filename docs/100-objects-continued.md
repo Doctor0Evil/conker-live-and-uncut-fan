@@ -137,6 +137,12 @@ Based on the comprehensive design documents and the data-driven pipeline establi
 99. **Directive:** Design a system for toggling game rules and variables (e.g., zombie density, hazard timers, friendly fire) via a configuration file (`gameplay_config.json`) or console commands to facilitate rapid playtesting and balancing.
 100. **Objective:** After generating a greybox for a map, create a playtesting checklist specific to that map (e.g., `beach_dead_playtest_checklist.md`) that covers all unique features (e.g., "Can you destroy Fence 1?", "Does the Fire Imp spawn correctly?").
 
+Building upon the foundational work laid out in the previous 100 objectives, and specifically integrating the now‑first‑class status of **Fortress** and **Alien Base**, the following research topics and engineering directives are designed to ensure the fan‑made *Conker: Live & Uncut* not only replicates the **N64 *Bad Fur Day* multiplayer feel** but surpasses the limitations of the original hardware and the compromised *Live & Reloaded* release.
+
+These items are structured to train AI‑Chat agents to produce code that balances **exact preservation of N64 game mechanics** (timing, collision, input response) with **modern scalability** (16+ players, dense AI hordes, high particle counts) while operating within a reasonable memory budget (e.g., 512 MB RAM) and without reliance on emulation.
+
+---
+
 ### 101–120: Core Gameplay Fidelity & N64 Mechanical Preservation
 
 101. **Research Question:** What is the exact acceleration curve, friction value, and air control coefficient of Conker's movement in the N64 *Bad Fur Day* engine? Provide a mathematical model to be implemented in modern physics engines (PhysX/Godot Physics/Jolt) to ensure the "floaty" yet snappy N64 platforming feel is preserved.
@@ -191,11 +197,5 @@ Based on the comprehensive design documents and the data-driven pipeline establi
 138. **Objective:** Write a **Fuzz Testing Harness** for the `mapgridv1.schema.json` validator. This tool should generate millions of random but schema-valid JSON files to ensure the `grid2scene` Rust crate never panics or crashes.
 139. **Coding Task:** Implement **Split-Screen Profile Management**. On PC, allow Player 1 to use Keyboard/Mouse while Players 2-4 use Xbox controllers, with individual audio mix settings and Profanity Toggles per player.
 140. **Directive:** Create a **"Developer Commentary" Mode** triggerable via console command (`uncut_commentary 1`). When toggled, floating text bubbles appear in maps explaining the history of the E3 2003 demo features (e.g., "Here is where the Helicopter Gunner seat would have been in Live & Uncut.").
-
+     
 This list provides a comprehensive and actionable roadmap for developing the Conker: Live & Uncut fan project. By addressing these items, AI-Chat will be able to provide more precise and helpful code generation, ensuring the final product remains faithful to the original N64 multiplayer philosophy.
-
-Building upon the foundational work laid out in the previous 100 objectives, and specifically integrating the now‑first‑class status of **Fortress** and **Alien Base**, the following research topics and engineering directives are designed to ensure the fan‑made *Conker: Live & Uncut* not only replicates the **N64 *Bad Fur Day* multiplayer feel** but surpasses the limitations of the original hardware and the compromised *Live & Reloaded* release.
-
-These items are structured to train AI‑Chat agents to produce code that balances **exact preservation of N64 game mechanics** (timing, collision, input response) with **modern scalability** (16+ players, dense AI hordes, high particle counts) while operating within a reasonable memory budget (e.g., 512 MB RAM) and without reliance on emulation.
-
----
