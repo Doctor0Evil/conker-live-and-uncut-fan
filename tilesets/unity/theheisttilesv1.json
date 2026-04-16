@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "engine": "unity",
+  "tilemappings": [
+    {
+      "tiletype": "TFloorVaultRoom",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorVaultRoom.prefab"
+    },
+    {
+      "tiletype": "TFloorVaultAntechamber",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorVaultAntechamber.prefab"
+    },
+    {
+      "tiletype": "TFloorBankMarble",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorBankMarble.prefab"
+    },
+    {
+      "tiletype": "TFloorBankLobby",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorBankLobby.prefab"
+    },
+    {
+      "tiletype": "TFloorCorridor",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorCorridor.prefab"
+    },
+    {
+      "tiletype": "TFloorTeamLobby",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorTeamLobby.prefab"
+    },
+    {
+      "tiletype": "TFloorGasControl",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorGasControl.prefab"
+    },
+    {
+      "tiletype": "TFloorGasCorridor",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorGasCorridor.prefab"
+    },
+    {
+      "tiletype": "TFloorGasChamber",
+      "assetid": "Assets/Prefabs/TheHeist/TFloorGasChamber.prefab"
+    }
+  ],
+  "entitymappings": {
+    "spawn": {
+      "prefaborclass": "Assets/Prefabs/TheHeist/SpawnPointHeist.prefab"
+    },
+    "weaponpickup": {
+      "Shotgun": "Assets/Prefabs/TheHeist/PickupShotgun.prefab",
+      "Uzi": "Assets/Prefabs/TheHeist/PickupUzi.prefab"
+    },
+    "hazardvolume": {
+      "FloorGas": "Assets/Prefabs/TheHeist/HeistVolumeGasFloor.prefab"
+    },
+    "objective": {
+      "CaptureZone": "Assets/Prefabs/TheHeist/HeistCaptureZone.prefab",
+      "GasTrigger": "Assets/Prefabs/TheHeist/HeistGasTrigger.prefab",
+      "MoneyBag": "Assets/Prefabs/TheHeist/HeistMoneyBagObjective.prefab"
+    }
+  }
+}
