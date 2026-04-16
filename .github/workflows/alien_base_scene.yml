@@ -1,0 +1,41 @@
+name: Alien Base Hub Validation
+
+on:
+  pull_request:
+    paths:
+      - 'data/alien_base_hub_*.json'
+      - 'tilesets/*alien_base*.json'
+      - 'schemas/*.json'
+      - 'crates/alien_base_grid2scene/**'
+      - 'xtask/**'
+  push:
+    branches: [ main ]
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate hub grid JSON
+        uses: dsanders11/json-schema-validate-action@v1
+        with:
+          schema: schemas/alien_base_hub_grid.schema.json
+          files: |
+            data/alien_base_hub_grid_v1.json
+
+      - name: Validate entities JSON
+        uses: dsanders11/json-schema-validate-action@v1
+        with:
+          schema: schemas/alien_base_entities.schema.json
+          files: |
+            data/alien_base_hub_entities_v1.json
+
+      - name: Validate tilesets JSON
+        uses: dsanders11/json-schema-validate-action@v1
+        with:
+          schema: schemas/alien_base_tileset.schema.json
+          files: |
+            tilesets/unreal_alien_base_tiles_v1.json
+            tilesets/unity_alien_base_tiles_v1.json
+            tilesets/godot_alien_base_tiles_v1.json
