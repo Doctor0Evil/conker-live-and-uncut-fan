@@ -1,0 +1,36 @@
+name: Uncut CI Metadata Checks
+
+on:
+  push:
+    paths:
+      - "docs/systems/**"
+      - "data/weapons/**"
+      - "Config/**"
+      - "Assets/Config/**"
+      - "godot/Systems/ASID/**"
+      - "crates/uncut_ci_checks/**"
+  pull_request:
+    paths:
+      - "docs/systems/**"
+      - "data/weapons/**"
+      - "Config/**"
+      - "Assets/Config/**"
+      - "godot/Systems/ASID/**"
+      - "crates/uncut_ci_checks/**"
+
+jobs:
+  metadata-checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build uncut_ci_checks
+        run: cargo build -p uncut_ci_checks --release
+
+      - name: Run metadata checks
+        run: cargo run -p uncut_ci_checks --release
