@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+  "grid_size": {
+    "cols": 17,
+    "rows": 17
+  },
+  "cell_size": 4.0,
+  "y_level": 0.0,
+  "origin": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "cells": [
+    {
+      "col": 8,
+      "row": 14,
+      "tile_type": "T_Floor_Sand",
+      "walkable": true,
+      "role_tags": ["beach", "attacker_spawn_band"]
+    },
+    {
+      "col": 8,
+      "row": 13,
+      "tile_type": "T_Floor_Sand",
+      "walkable": true,
+      "role_tags": ["beach"]
+    },
+
+    {
+      "col": 8,
+      "row": 11,
+      "tile_type": "T_Floor_TrenchMud",
+      "walkable": true,
+      "role_tags": ["trench", "fence1_trench"]
+    },
+    {
+      "col": 7,
+      "row": 11,
+      "tile_type": "T_Floor_TrenchMud",
+      "walkable": true,
+      "role_tags": ["trench", "fence1_trench"]
+    },
+    {
+      "col": 9,
+      "row": 11,
+      "tile_type": "T_Floor_TrenchMud",
+      "walkable": true,
+      "role_tags": ["trench", "fence1_trench"]
+    },
+
+    {
+      "col": 8,
+      "row": 10,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["no_mans_land"]
+    },
+
+    {
+      "col": 8,
+      "row": 9,
+      "tile_type": "T_Wall_Fence",
+      "walkable": false,
+      "role_tags": ["fence1"]
+    },
+    {
+      "col": 7,
+      "row": 9,
+      "tile_type": "T_Wall_Fence",
+      "walkable": false,
+      "role_tags": ["fence1"]
+    },
+    {
+      "col": 9,
+      "row": 9,
+      "tile_type": "T_Wall_Fence",
+      "walkable": false,
+      "role_tags": ["fence1"]
+    },
+
+    {
+      "col": 8,
+      "row": 7,
+      "tile_type": "T_Floor_IndustrialPlain",
+      "walkable": true,
+      "role_tags": ["fortress_approach"]
+    },
+
+    {
+      "col": 8,
+      "row": 5,
+      "tile_type": "T_Wall_Fortress",
+      "walkable": false,
+      "role_tags": ["fortress_wall"]
+    }
+  ]
+}
