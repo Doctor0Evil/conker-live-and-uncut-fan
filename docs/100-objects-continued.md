@@ -137,4 +137,65 @@ Based on the comprehensive design documents and the data-driven pipeline establi
 99. **Directive:** Design a system for toggling game rules and variables (e.g., zombie density, hazard timers, friendly fire) via a configuration file (`gameplay_config.json`) or console commands to facilitate rapid playtesting and balancing.
 100. **Objective:** After generating a greybox for a map, create a playtesting checklist specific to that map (e.g., `beach_dead_playtest_checklist.md`) that covers all unique features (e.g., "Can you destroy Fence 1?", "Does the Fire Imp spawn correctly?").
 
+### 101–120: Core Gameplay Fidelity & N64 Mechanical Preservation
+
+101. **Research Question:** What is the exact acceleration curve, friction value, and air control coefficient of Conker's movement in the N64 *Bad Fur Day* engine? Provide a mathematical model to be implemented in modern physics engines (PhysX/Godot Physics/Jolt) to ensure the "floaty" yet snappy N64 platforming feel is preserved.
+102. **Research Question:** Document the precise damage falloff and spread patterns for the N64 Shotgun and Uzi. How can we replicate the "projectile" vs "hitscan" hybrid nature of the original Bazooka in a modern networked environment?
+103. **Objective:** Create a **Time Step Calibration Tool**. This tool should measure input-to-photon latency of the modern PC port against an original N64 console running on a CRT to achieve sub-frame parity in movement response.
+104. **Coding Task:** Implement the N64-specific **"B-Button Context Zone"** system. This requires a volume-based trigger system that overlaps Conker's interaction sphere and switches the action prompt based on `interaction_type` (e.g., `USE_SWITCH`, `CLIMB_LADDER`, `PUSH_BLOCK`).
+105. **Research Question:** How did the N64 *Bad Fur Day* handle collision detection for the "Tail Spin" and "Frying Pan" melee attacks? What is the exact hitbox shape, active frame window, and knockback vector to recreate the "juggling" combo potential?
+106. **Directive:** Analyze frame data from the N64 original to build a **Master Animation Timing Table** (`animation_timing_v1.json`) that maps every `ASID` to exact duration in milliseconds. This table must be the single source of truth for the ASID state machine to prevent animation cancel exploits.
+107. **Coding Task:** Implement a **Deterministic Physics Rollback System** for offline/LAN play. While online will use server-authoritative, the single-player and local split-screen experience must exactly replicate the N64's local frame-perfect behavior.
+108. **Research Question:** What is the memory layout and compression algorithm used for the N64 "MusyX" audio bank? How can we extract the raw ADPCM samples and impulse responses for reverb to achieve an acoustically identical soundscape on modern audio hardware?
+109. **Coding Task:** Create a **Camera Collision System** that mimics the N64 *Bad Fur Day* behavior: the camera must *slide* along geometry rather than pop forward, and it must have the exact same "ceiling bump" stiffness.
+110. **Objective:** Define a strict **Vertical Slice Target** spec: "The first 30 seconds of Beach Dead gameplay on a Windows 10 PC must be indistinguishable from N64 footage in terms of control, animation timing, and audio sync when viewed at 240p."
+
+### 121–140: Performance Optimization for High Density (512MB RAM / High Particle Counts)
+
+111. **Research Question:** What is the most CPU-efficient method for managing 16-player **Execution Immunity (ASID)** lookups? Compare ECS (Entity Component System) bitmasks against standard OOP virtual calls to ensure 60+ FPS during Katana multi-kills with full gore VFX.
+112. **Directive:** Design a **Tiered Particle Pooling System** that allocates a fixed 64MB memory block for VFX. Define the maximum concurrent instances for `VFX_010` (Blood Spray), `VFX_080` (Steam), and `VFX_020` (Sparks) with a smart FIFO culling system that prioritizes particles close to the player camera.
+113. **Coding Task:** Implement **Aggressive Mesh LODing for Tilesets**. The `grid2scene` tool must generate 3 distinct LOD levels for each 4x4 tile (Full Poly, Imposter Card, and fully Culled) to keep draw calls under 1,500 in dense areas like Fortress trenches.
+114. **Research Question:** How can we leverage modern GPU Compute Shaders to offload the **Zombie Crawl Transition Logic**? The N64 handled this on CPU; can we move the limb-damage threshold checks to the GPU to support hundreds of active zombies?
+115. **Objective:** Create a **Memory Budget Dashboard**. A runtime overlay that tracks texture memory (target: 128MB), audio banks (target: 64MB), and dynamic actor allocations to ensure the game never exceeds the 512MB soft limit on low-end integrated graphics.
+116. **Coding Task:** Implement a **Visibility Culling Volume** specifically for the **Alien Base Hub Floor Gas**. The particle VFX and damage tick should be globally disabled if no player is within a 40-unit radius of the hazard volume to save CPU cycles.
+117. **Directive:** For the **Blood Count Zombie Horde**, implement an **Animation LOD System**. Zombies beyond 30 units update their skeletal mesh at 15 FPS; beyond 60 units, they swap to a vertex-animated shader (VAT) or a simple billboarded sprite.
+118. **Research Question:** What is the optimal spatial hashing algorithm (e.g., Grid Hash vs. Octree) for managing the **Fire Imp's** hunting logic across the expansive Fortress map to ensure pathfinding updates do not stall the main thread?
+119. **Objective:** Profile the **grid2scene Rust tool** for memory usage when compiling the 200x200 grid for Raptor Temple. Optimize the intermediate data structures to ensure the tool can process all 7 maps in under 5 seconds on a 4-core machine.
+120. **Coding Task:** Write a **Custom Memory Allocator** (C++/Rust) for the game runtime that pre-allocates slabs for common objects: `ConkerPlayerState` (16 slots), `ZombieAI` (64 slots), and `BulletProjectile` (128 slots).
+
+### 141–160: Asset Pipeline & Data-Driven Content Generation
+
+121. **Research Question:** Can we automate the conversion of N64 **Display Lists (F3DEX2)** into modern **glTF 2.0** models using a custom Python script? Focus on preserving vertex colors (used extensively for lighting in N64 Conker) as emissive or base color layers in modern shaders.
+122. **Objective:** Create a **Texture Atlas Baker** that takes the thousands of tiny 32x32 and 64x64 N64 RGBA16 textures and packs them into optimized 2048x2048 atlases while preserving the exact UV coordinates in the map grid JSON.
+123. **Directive:** Develop an AI-Chat prompt template for generating **Map Grid JSON** from a simple ASCII drawing. Example: Input `SSS...TTT` outputs a valid `fortress_main_grid_v1.json` with correct `tile_type` enums.
+124. **Coding Task:** Enhance the `grid2scene` tool to output a **Heatmap Preview** (PNG image) of the map where cells are colored by `role_tag` (Red=Spawn, Blue=Objective, Green=Hazard). This allows designers to validate flow without loading the engine.
+125. **Research Question:** How can we use the **N64 Conker Decompilation** (`mkst/conker`) to auto-generate the `weapon_stats_v1.json` file? Write a parser that reads the C structs for `weaponInfo` to ensure 100% damage value accuracy.
+126. **Objective:** Establish a **Modular Tileset Standard**. Document the pivot point (0,0,0 at bottom center) and collision primitive (a single box or slope mesh) so artists can create new "Uncut" tiles (e.g., expanded Fortress bunker) that snap perfectly to the existing N64 grid.
+127. **Coding Task:** Implement a **Runtime Tileset Swapper**. This system should allow a single map grid to load a "Low Poly" tileset or a "High Fidelity" tileset based on the user's graphics settings without changing the underlying gameplay collision data.
+128. **Directive:** Create a **Gore Decal Manager** that uses a single texture array for all blood splatters (`PRT_GORE_LIME`, `PRT_GORE_RED`). This reduces draw calls from 200 individual decals to just 1 or 2 batches.
+
+### 161–180: Network Architecture for 16-Player Fidelity
+
+129. **Research Question:** What is the exact network bandwidth cost of synchronizing the **Alien Egg's** 4-stage health and visual cracking state? Design a compact bit-packed struct to update 16 clients with minimal overhead.
+130. **Coding Task:** Implement **Client-Side Prediction for Heavy Carry**. When a player picks up the Blood-Vial or Money Bag, the client should immediately apply the `ASID_050` speed penalty before the server confirms it, rolling back only if the server denies the pickup.
+131. **Objective:** Design a **Lag Compensation System** for the **Chainsaw**. Since the Chainsaw is a continuous hitbox, document how to rewind the victim's position on the server to validate the hit based on the attacker's latency (up to 150ms).
+132. **Directive:** Create a **Network Priority Scheduler**. During the **Fortress Gas Canister** countdown, voice lines (`SFX_800`) and siren VFX updates should take bandwidth priority over distant zombie footstep sounds.
+133. **Research Question:** How can we implement a **Mesh Replication** strategy for the destructible **Beach Dead Fences**? Should they be replicated as a simple byte state (0-100 health) or as physics-enabled debris?
+134. **Coding Task:** Implement **Deterministic AI Pathfinding** for the **Fire Imp**. The Imp's movement must be predictable so that the server can run the AI logic and the clients can simply interpolate the position without constant correction snapping.
+
+### 181–200: Community, AI-Assisted Development & Tooling
+
+135. **Objective:** Create a **`AI_CHAT_KNOWLEDGE.md`** file. This document must distill the 200+ pages of design docs into a 5,000 token context window primer on the project's **ASID** philosophy, **Grid2Scene** data flow, and **Uncut Multiplayer** goals for code generation LLMs.
+136. **Directive:** Build a **Headless Game Server** executable. This build of the game should run without rendering (using a Null renderer) to allow for dedicated server hosting on Linux machines with just 256MB of RAM.
+137. **Research Question:** What is the legal and technical process for loading **Original N64 Voice Lines** from a user-supplied ROM file at runtime? Can we design a hashing system that verifies the user owns the correct `baserom.us.z64` before enabling the uncensored VO pack?
+138. **Objective:** Write a **Fuzz Testing Harness** for the `mapgridv1.schema.json` validator. This tool should generate millions of random but schema-valid JSON files to ensure the `grid2scene` Rust crate never panics or crashes.
+139. **Coding Task:** Implement **Split-Screen Profile Management**. On PC, allow Player 1 to use Keyboard/Mouse while Players 2-4 use Xbox controllers, with individual audio mix settings and Profanity Toggles per player.
+140. **Directive:** Create a **"Developer Commentary" Mode** triggerable via console command (`uncut_commentary 1`). When toggled, floating text bubbles appear in maps explaining the history of the E3 2003 demo features (e.g., "Here is where the Helicopter Gunner seat would have been in Live & Uncut.").
+
 This list provides a comprehensive and actionable roadmap for developing the Conker: Live & Uncut fan project. By addressing these items, AI-Chat will be able to provide more precise and helpful code generation, ensuring the final product remains faithful to the original N64 multiplayer philosophy.
+
+Building upon the foundational work laid out in the previous 100 objectives, and specifically integrating the now‑first‑class status of **Fortress** and **Alien Base**, the following research topics and engineering directives are designed to ensure the fan‑made *Conker: Live & Uncut* not only replicates the **N64 *Bad Fur Day* multiplayer feel** but surpasses the limitations of the original hardware and the compromised *Live & Reloaded* release.
+
+These items are structured to train AI‑Chat agents to produce code that balances **exact preservation of N64 game mechanics** (timing, collision, input response) with **modern scalability** (16+ players, dense AI hordes, high particle counts) while operating within a reasonable memory budget (e.g., 512 MB RAM) and without reliance on emulation.
+
+---
