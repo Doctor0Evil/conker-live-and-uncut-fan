@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "engine": "godot",
+  "tile_mappings": [
+    {
+      "tile_type": "T_Floor_IndustrialPlain",
+      "asset_id": "0"
+    },
+    {
+      "tile_type": "T_Floor_IndustrialHazardStripe",
+      "asset_id": "1"
+    },
+    {
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "asset_id": "2"
+    },
+    {
+      "tile_type": "T_Floor_AlienResin",
+      "asset_id": "3"
+    },
+    {
+      "tile_type": "T_Wall_PanelRiveted",
+      "asset_id": "4"
+    },
+    {
+      "tile_type": "T_Wall_AlienVeins",
+      "asset_id": "5"
+    },
+    {
+      "tile_type": "T_Ceiling_PipeCluster",
+      "asset_id": "6"
+    },
+    {
+      "tile_type": "T_Ceiling_GratedVent",
+      "asset_id": "7"
+    },
+    {
+      "tile_type": "T_Platform_EggBase",
+      "asset_id": "8"
+    }
+  ],
+  "entity_mappings": {
+    "spawn": {
+      "prefab_or_class": "res://AlienBase/SpawnPoint.tscn"
+    },
+    "weapon_pickup": {
+      "Chainsaw": "res://AlienBase/Pickup_Chainsaw.tscn",
+      "Flamethrower": "res://AlienBase/Pickup_Flamethrower.tscn",
+      "SMG": "res://AlienBase/Pickup_SMG.tscn",
+      "Shotgun": "res://AlienBase/Pickup_Shotgun.tscn",
+      "SniperRifle": "res://AlienBase/Pickup_SniperRifle.tscn",
+      "Bazooka": "res://AlienBase/Pickup_Bazooka.tscn"
+    },
+    "hazard_volume": {
+      "FloorGas": "res://AlienBase/Hazard_FloorGas.tscn",
+      "SublevelAcid": "res://AlienBase/Hazard_SublevelAcid.tscn"
+    },
+    "objective": {
+      "Egg": "res://AlienBase/AlienEgg.tscn"
+    }
+  }
+}
