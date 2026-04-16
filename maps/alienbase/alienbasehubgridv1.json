@@ -1,0 +1,415 @@
+{
+  "version": "1.0.0",
+  "mapid": "alienbasehub",
+  "schemaversion": "mapgridv1",
+  "gridsize": {
+    "cols": 24,
+    "rows": 24
+  },
+  "cellsize": 4.0,
+  "ylevel": 0.0,
+  "origin": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "metadata": {
+    "author": "AIChat",
+    "notes": "First-pass Alien Base hub greybox: central Egg platform, hub floor gas band, outer wall ring, four corridor mouths, and sublevel acid shaft entries. Shaped to match alienbasehubentitiesv1.json and hazard roletags (hazardhubfloorgas, hazardsublevelacid)."
+  },
+  "cells": [
+    {
+      "col": 11,
+      "row": 11,
+      "tiletype": "TFloorPlatformEggBase",
+      "walkable": true,
+      "heightoffset": 0.5,
+      "rotationdeg": 0.0,
+      "scale": 1.0,
+      "roletags": ["hubcenter", "eggplatform", "objective_anchor"]
+    },
+    {
+      "col": 11,
+      "row": 12,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "roletags": ["hubcenter", "hubfloor", "eggapproach"]
+    },
+    {
+      "col": 12,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["hubcenter", "hubfloor", "eggapproach"]
+    },
+    {
+      "col": 10,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["hubcenter", "hubfloor", "eggapproach"]
+    },
+    {
+      "col": 11,
+      "row": 10,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["hubcenter", "hubfloor", "eggapproach"]
+    },
+
+    {
+      "col": 10,
+      "row": 10,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["hubcenter", "hubfloor"]
+    },
+    {
+      "col": 12,
+      "row": 10,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["hubcenter", "hubfloor"]
+    },
+    {
+      "col": 10,
+      "row": 12,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["hubcenter", "hubfloor"]
+    },
+    {
+      "col": 12,
+      "row": 12,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["hubcenter", "hubfloor"]
+    },
+
+    {
+      "col": 9,
+      "row": 9,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 10,
+      "row": 9,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 11,
+      "row": 9,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 12,
+      "row": 9,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 13,
+      "row": 9,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+
+    {
+      "col": 9,
+      "row": 13,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 10,
+      "row": 13,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 11,
+      "row": 13,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 12,
+      "row": 13,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 13,
+      "row": 13,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+
+    {
+      "col": 9,
+      "row": 10,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 9,
+      "row": 11,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 9,
+      "row": 12,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+
+    {
+      "col": 13,
+      "row": 10,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 13,
+      "row": 11,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+    {
+      "col": 13,
+      "row": 12,
+      "tiletype": "TFloorGrateGasEmitter",
+      "walkable": true,
+      "roletags": ["hubfloor", "floor_gas_zone", "hazardhubfloorgas"]
+    },
+
+    {
+      "col": 11,
+      "row": 6,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridorentrance", "northcorridor", "teamcorridor"]
+    },
+    {
+      "col": 11,
+      "row": 5,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "northcorridor"]
+    },
+    {
+      "col": 11,
+      "row": 4,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "northcorridor"]
+    },
+
+    {
+      "col": 6,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridorentrance", "westcorridor", "teamcorridor"]
+    },
+    {
+      "col": 5,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "westcorridor"]
+    },
+    {
+      "col": 4,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "westcorridor"]
+    },
+
+    {
+      "col": 16,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridorentrance", "eastcorridor", "teamcorridor"]
+    },
+    {
+      "col": 17,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "eastcorridor"]
+    },
+    {
+      "col": 18,
+      "row": 11,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "eastcorridor"]
+    },
+
+    {
+      "col": 11,
+      "row": 16,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridorentrance", "southcorridor", "teamcorridor"]
+    },
+    {
+      "col": 11,
+      "row": 17,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "southcorridor"]
+    },
+    {
+      "col": 11,
+      "row": 18,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["corridor", "southcorridor"]
+    },
+
+    {
+      "col": 3,
+      "row": 3,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_a"]
+    },
+    {
+      "col": 4,
+      "row": 3,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_a"]
+    },
+    {
+      "col": 5,
+      "row": 3,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_a"]
+    },
+
+    {
+      "col": 19,
+      "row": 3,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_b"]
+    },
+    {
+      "col": 20,
+      "row": 3,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_b"]
+    },
+    {
+      "col": 21,
+      "row": 3,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_b"]
+    },
+
+    {
+      "col": 3,
+      "row": 19,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_c"]
+    },
+    {
+      "col": 4,
+      "row": 19,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_c"]
+    },
+    {
+      "col": 5,
+      "row": 19,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_c"]
+    },
+
+    {
+      "col": 19,
+      "row": 19,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_d"]
+    },
+    {
+      "col": 20,
+      "row": 19,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_d"]
+    },
+    {
+      "col": 21,
+      "row": 19,
+      "tiletype": "TFloorIndustrialPlain",
+      "walkable": true,
+      "roletags": ["outerring", "outerringfloor", "spawnzone_d"]
+    },
+
+    {
+      "col": 8,
+      "row": 8,
+      "tiletype": "TFloorIndustrialHazardStripe",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["sublevel_entrance", "acidshaft", "hazardsublevelacid"]
+    },
+    {
+      "col": 14,
+      "row": 8,
+      "tiletype": "TFloorIndustrialHazardStripe",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["sublevel_entrance", "acidshaft", "hazardsublevelacid"]
+    },
+    {
+      "col": 8,
+      "row": 14,
+      "tiletype": "TFloorIndustrialHazardStripe",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["sublevel_entrance", "acidshaft", "hazardsublevelacid"]
+    },
+    {
+      "col": 14,
+      "row": 14,
+      "tiletype": "TFloorIndustrialHazardStripe",
+      "walkable": true,
+      "heightoffset": -2.0,
+      "roletags": ["sublevel_entrance", "acidshaft", "hazardsublevelacid"]
+    }
+  ]
+}
