@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "engine": "godot",
+  "tilemappings": [
+    { "tiletype": "TFloorVaultRoom", "assetid": 0 },
+    { "tiletype": "TFloorVaultAntechamber", "assetid": 1 },
+    { "tiletype": "TFloorBankMarble", "assetid": 2 },
+    { "tiletype": "TFloorBankLobby", "assetid": 3 },
+    { "tiletype": "TFloorCorridor", "assetid": 4 },
+    { "tiletype": "TFloorTeamLobby", "assetid": 5 },
+    { "tiletype": "TFloorGasControl", "assetid": 6 },
+    { "tiletype": "TFloorGasCorridor", "assetid": 7 },
+    { "tiletype": "TFloorGasChamber", "assetid": 8 }
+  ],
+  "entitymappings": {
+    "spawn": {
+      "prefaborclass": "res://TheHeist/SpawnPointHeist.tscn"
+    },
+    "weaponpickup": {
+      "Shotgun": "res://TheHeist/PickupShotgun.tscn",
+      "Uzi": "res://TheHeist/PickupUzi.tscn"
+    },
+    "hazardvolume": {
+      "FloorGas": "res://TheHeist/HeistVolumeGasFloor.tscn"
+    },
+    "objective": {
+      "CaptureZone": "res://TheHeist/HeistCaptureZone.tscn",
+      "GasTrigger": "res://TheHeist/HeistGasTrigger.tscn",
+      "MoneyBag": "res://TheHeist/HeistMoneyBagObjective.tscn"
+    }
+  }
+}
