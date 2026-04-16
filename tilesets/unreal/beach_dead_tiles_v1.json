@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "engine": "unreal",
+  "tile_mappings": [
+    { "tile_type": "T_Floor_Sand", "asset_id": "/Game/BeachDead/Meshes/SM_Floor_Sand" },
+    { "tile_type": "T_Floor_TrenchMud", "asset_id": "/Game/BeachDead/Meshes/SM_Floor_TrenchMud" },
+    { "tile_type": "T_Floor_IndustrialPlain", "asset_id": "/Game/BeachDead/Meshes/SM_Floor_IndustrialPlain" },
+    { "tile_type": "T_Wall_Fence", "asset_id": "/Game/BeachDead/Meshes/SM_Wall_Fence" },
+    { "tile_type": "T_Wall_Fortress", "asset_id": "/Game/BeachDead/Meshes/SM_Wall_Fortress" }
+  ],
+  "entity_mappings": {
+    "spawn": {
+      "prefab_or_class": "/Game/BeachDead/Actors/BP_PlayerStart_Beach"
+    },
+    "weapon_pickup": {
+      "SniperRifle": "/Game/BeachDead/Pickups/BP_Pickup_SniperRifle",
+      "Chaingun": "/Game/BeachDead/Pickups/BP_Pickup_Chaingun",
+      "Explosives": "/Game/BeachDead/Pickups/BP_Pickup_Explosives"
+    },
+    "hazard_volume": {
+      "Artillery": "/Game/BeachDead/Hazards/BP_Beach_ArtilleryVolume"
+    },
+    "objective": {
+      "Fence": "/Game/BeachDead/Actors/BP_FenceObjective"
+    }
+  }
+}
