@@ -1,0 +1,5 @@
+mode_name,description,max_players,local_splitscreen,airlock_enabled,hazard_floor_damage_per_second,hazard_sublevel_damage_per_second,arming_duration_sec,active_duration_sec,cooldown_duration_sec,notes
+Deathmatch,"Classic FFA inspired by N64 multi, pickups only, no classes.",16,4,True,60,90,5,12,30,"Score by kills; any player can trigger airlock; hazards are pure map control tools."
+TeamDeathmatch,"Two-team variant focusing on hub control and squad pushes.",16,4,True,60,90,5,12,30,"Teams of 4v4 or 8v8; triggering team gets announcer credit for hazard kills."
+Invasion,"Asymmetrical mode with AI aliens pressuring both teams.",16,4,True,60,90,5,12,35,"Aliens may auto-trigger hazards when controlling hub; players can pre-empt with consoles."
+Objective_Heist,"Heist-style mode echoing Vault/Tank objectives.",16,4,True,60,90,6,14,35,"Teams fight over Alien Egg/Canister; airlock best used to secure delivery routes."
