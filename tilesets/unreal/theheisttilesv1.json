@@ -1,0 +1,59 @@
+{
+  "version": "1.0.0",
+  "engine": "unreal",
+  "tilemappings": [
+    {
+      "tiletype": "TFloorVaultRoom",
+      "assetid": "GameTheHeistMeshesSMFloorVaultRoom.SMFloorVaultRoom"
+    },
+    {
+      "tiletype": "TFloorVaultAntechamber",
+      "assetid": "GameTheHeistMeshesSMFloorVaultAntechamber.SMFloorVaultAntechamber"
+    },
+    {
+      "tiletype": "TFloorBankMarble",
+      "assetid": "GameTheHeistMeshesSMFloorBankMarble.SMFloorBankMarble"
+    },
+    {
+      "tiletype": "TFloorBankLobby",
+      "assetid": "GameTheHeistMeshesSMFloorBankLobby.SMFloorBankLobby"
+    },
+    {
+      "tiletype": "TFloorCorridor",
+      "assetid": "GameTheHeistMeshesSMFloorCorridor.SMFloorCorridor"
+    },
+    {
+      "tiletype": "TFloorTeamLobby",
+      "assetid": "GameTheHeistMeshesSMFloorTeamLobby.SMFloorTeamLobby"
+    },
+    {
+      "tiletype": "TFloorGasControl",
+      "assetid": "GameTheHeistMeshesSMFloorGasControl.SMFloorGasControl"
+    },
+    {
+      "tiletype": "TFloorGasCorridor",
+      "assetid": "GameTheHeistMeshesSMFloorGasCorridor.SMFloorGasCorridor"
+    },
+    {
+      "tiletype": "TFloorGasChamber",
+      "assetid": "GameTheHeistMeshesSMFloorGasChamber.SMFloorGasChamber"
+    }
+  ],
+  "entitymappings": {
+    "spawn": {
+      "prefaborclass": "GameTheHeistActorsBPPlayerStartHeist.BPPlayerStartHeist"
+    },
+    "weaponpickup": {
+      "Shotgun": "GameTheHeistPickupsBPUncutPickupShotgun.BPUncutPickupShotgun",
+      "Uzi": "GameTheHeistPickupsBPUncutPickupUzi.BPUncutPickupUzi"
+    },
+    "hazardvolume": {
+      "FloorGas": "GameTheHeistHazardsBPHeistVolumeGasFloor.BPHeistVolumeGasFloor"
+    },
+    "objective": {
+      "CaptureZone": "GameTheHeistActorsBPHeistCaptureZone.BPHeistCaptureZone",
+      "GasTrigger": "GameTheHeistActorsBPHeistGasTrigger.BPHeistGasTrigger",
+      "MoneyBag": "GameTheHeistActorsBPHeistMoneyBagObjective.BPHeistMoneyBagObjective"
+    }
+  }
+}
