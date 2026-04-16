@@ -51,6 +51,27 @@ fn extract_godot_asids(script: &str) -> BTreeSet<String> {
     out
 }
 
+/// Extract ASIDs from Unity ASIDHelpers.cs ("case 400:" or "case 50:").
+fn extract_unity_asids(cs: &str) -> BTreeSet<String> {
+    let mut out = BTreeSet::new();
+    let re = Regex::new(r"case\s+(\d{2,3})\s*:").unwrap();
+
+    for cap in re.captures_iter(cs) {
+        if let Some(m) = cap.get(1) {
+            let s = m.as_str();
+            // Normalize to three digits to match registry format.
+            let normalized = if s.len() == 2 {
+                format!("0{}", s)
+            } else {
+                s.to_string()
+            };
+            out.insert(normalized);
+        }
+    }
+
+    out
+}
+
 /// Simple report type so the CI log is readable.
 fn report_diff(
     name: &str,
@@ -118,6 +139,13 @@ fn main() -> anyhow::Result<()> {
             .unwrap(),
     )?;
 
+    let unity_asid_helpers = read(
+        repo_root
+            .join("Unity/Assets/Scripts/Systems/ASID/ASIDHelpers.cs")
+            .to_str()
+            .unwrap(),
+    )?;
+
     let registry_asids = extract_registry_asids(&registry_md);
     let unreal_asids = extract_unreal_asids(&unreal_header);
 
@@ -128,8 +156,11 @@ fn main() -> anyhow::Result<()> {
         godot_asids.insert(asid);
     }
 
+    let unity_asids = extract_unity_asids(&unity_asid_helpers);
+
     report_diff("Unreal", &registry_asids, &unreal_asids)?;
     report_diff("Godot", &registry_asids, &godot_asids)?;
+    report_diff("Unity", &registry_asids, &unity_asids)?;
 
     Ok(())
 }
