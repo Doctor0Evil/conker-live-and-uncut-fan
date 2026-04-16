@@ -1,0 +1,378 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gamemode.ai/schemas/multiplayer/map_entities_v1.schema.json",
+  "title": "MultiplayerMapEntitiesV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "map_id", "schema_version"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic content version for this entity layout (e.g., 1.0.0)."
+    },
+    "map_id": {
+      "type": "string",
+      "description": "Stable identifier for the map this entity set belongs to (e.g., beachdead, thebloodcount)."
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version string used to coordinate compatibility with tools (e.g., map_entities_v1)."
+    },
+    "spawn_points": {
+      "type": "array",
+      "description": "Player spawn points for each team/zone, including fallback spawns.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "col", "row"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this spawn (e.g., spawn_team_red_01)."
+          },
+          "team": {
+            "type": "string",
+            "description": "Optional team identifier (e.g., red, blue, attackers, defenders)."
+          },
+          "zone": {
+            "type": "string",
+            "description": "Optional semantic zone name (e.g., Hub, Beach, NorthWing)."
+          },
+          "col": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Grid column index for this spawn."
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Grid row index for this spawn."
+          },
+          "y_offset": {
+            "type": "number",
+            "description": "Vertical offset relative to grid y_level (e.g., for roof or balcony spawns).",
+            "default": 0.0
+          },
+          "facing_deg": {
+            "type": "number",
+            "description": "Initial yaw rotation in degrees for spawned players.",
+            "default": 0.0
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Semantic tags (e.g., teamredspawn, centralhallspawn, attackerspawnband).",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        }
+      },
+      "default": []
+    },
+    "weapon_pickups": {
+      "type": "array",
+      "description": "Weapon and ammo pickups placed in the map.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "weapon_type", "col", "row"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this pickup (e.g., pickup_shotgun_altar_01)."
+          },
+          "weapon_type": {
+            "type": "string",
+            "description": "Logical weapon identifier (e.g., Shotgun, Chainsaw, Bazooka)."
+          },
+          "ammo_amount": {
+            "type": "integer",
+            "description": "Amount of ammo granted on pickup, if applicable.",
+            "minimum": 0,
+            "default": 0
+          },
+          "respawn_seconds": {
+            "type": "number",
+            "description": "Respawn delay for this pickup; 0 for no respawn.",
+            "minimum": 0.0,
+            "default": 0.0
+          },
+          "col": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "y_offset": {
+            "type": "number",
+            "description": "Vertical offset relative to the grid y_level (e.g., on tables or platforms).",
+            "default": 0.0
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Semantic tags for placement and behavior (e.g., altarroutepickup, centralhallpickup).",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        }
+      },
+      "default": []
+    },
+    "objective_pickups": {
+      "type": "array",
+      "description": "Heavy-carry style pickups that serve as objectives (e.g., BloodVial, MoneyBag, GasCanister).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "objective_type", "col", "row"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this objective pickup (e.g., pickup_blood_vial)."
+          },
+          "objective_type": {
+            "type": "string",
+            "description": "Logical type (e.g., BloodVial, MoneyBag, GasCanister, Egg)."
+          },
+          "heavy_carry_asid": {
+            "type": "string",
+            "description": "ASID used for heavy carry behavior (e.g., ASID050)."
+          },
+          "respawn_seconds": {
+            "type": "number",
+            "description": "Respawn time after being scored/consumed; 0 for single-use or script-driven respawn.",
+            "minimum": 0.0,
+            "default": 0.0
+          },
+          "drop_on_death": {
+            "type": "boolean",
+            "description": "Whether this objective is dropped when the carrier dies.",
+            "default": true
+          },
+          "col": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "y_offset": {
+            "type": "number",
+            "default": 0.0
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Semantic tags (e.g., bloodvialsource, centralhallobjective).",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        }
+      },
+      "default": []
+    },
+    "objectives": {
+      "type": "array",
+      "description": "Static objective actors such as fences, eggs, ritual altars, vaults and capture zones.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "objective_type", "col", "row"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the objective (e.g., objective_ritual_altar_red)."
+          },
+          "objective_type": {
+            "type": "string",
+            "description": "Logical type (e.g., Fence, RitualAltar, Egg, CaptureZone, Vault, GasTrigger)."
+          },
+          "team": {
+            "type": "string",
+            "description": "Team that owns this objective, where applicable (e.g., red, blue, attackers, defenders)."
+          },
+          "max_health": {
+            "type": "integer",
+            "description": "Maximum health for destructible objectives (e.g., fences, eggs).",
+            "minimum": 1,
+            "default": 100
+          },
+          "col": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "y_offset": {
+            "type": "number",
+            "default": 0.0
+          },
+          "radius_cells": {
+            "type": "number",
+            "description": "Optional radius in cells for area objectives (e.g., capture/control zones).",
+            "minimum": 0.0
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Semantic tags (e.g., fence1, bloodvialscorespot, teamredaltar).",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        }
+      },
+      "default": []
+    },
+    "hazard_volumes": {
+      "type": "array",
+      "description": "Hazard areas such as gas floors, acid pools, artillery zones, and fire-imp trigger regions.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "hazard_type"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this hazard (e.g., HubFloorGas, ArtilleryZoneBeach)."
+          },
+          "hazard_type": {
+            "type": "string",
+            "description": "Logical hazard type (e.g., FloorGas, SublevelAcid, Artillery, FireImpTrigger)."
+          },
+          "center_col": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Grid column center for radial hazards."
+          },
+          "center_row": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Grid row center for radial hazards."
+          },
+          "radius_cells": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Radial extent of the hazard in grid cells."
+          },
+          "min_y_offset": {
+            "type": "number",
+            "description": "Lower vertical offset relative to grid y_level for volume bounds.",
+            "default": 0.0
+          },
+          "max_y_offset": {
+            "type": "number",
+            "description": "Upper vertical offset relative to grid y_level for volume bounds.",
+            "default": 0.0
+          },
+          "grid_inclusion_rule": {
+            "type": "string",
+            "description": "Optional rule description for inclusion based on tile role_tags (e.g., include all hazardzone tiles)."
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Semantic tags (e.g., fireimpactivationzone, hazardhubfloorgas).",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        }
+      },
+      "default": []
+    },
+    "npc_spawners": {
+      "type": "array",
+      "description": "Spawner definitions for zombies, aliens, Fire Imp and other NPCs.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "npc_type", "col", "row"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this spawner (e.g., spawner_zombie_centralhall)."
+          },
+          "npc_type": {
+            "type": "string",
+            "description": "Type of NPC to spawn (e.g., Zombie, Alien, FireImp)."
+          },
+          "col": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "y_offset": {
+            "type": "number",
+            "default": 0.0
+          },
+          "max_alive": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Maximum concurrent NPCs from this spawner.",
+            "default": 0
+          },
+          "spawn_interval_seconds": {
+            "type": "number",
+            "minimum": 0.0,
+            "description": "Interval between spawn attempts in seconds.",
+            "default": 0.0
+          },
+          "activation_role_tags": {
+            "type": "array",
+            "description": "Tags that must be active (e.g., bloodvialheld, hedgemaze) for this spawner to run.",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "role_tags": {
+            "type": "array",
+            "description": "Additional semantic tags (e.g., zombiespawn, centralhall).",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          }
+        }
+      },
+      "default": []
+    },
+    "meta": {
+      "type": "object",
+      "description": "High-level map metadata useful for UI and validation.",
+      "additionalProperties": false,
+      "properties": {
+        "recommended_players": {
+          "type": "integer",
+          "description": "Recommended total player count (e.g., 16).",
+          "minimum": 1
+        },
+        "supported_modes": {
+          "type": "array",
+          "description": "List of supported game mode identifiers (e.g., BloodVialRun, TotalWar, BeachAssault).",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form designer notes."
+        }
+      }
+    }
+  }
+}
