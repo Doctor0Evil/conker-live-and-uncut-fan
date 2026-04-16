@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gamemode.ai/schemas/modeprofilesv1.schema.json",
+  "title": "MultiplayerMapModeProfilesV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "mapid", "schemaversion", "modes"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic content version for this mode profile set, e.g., 1.0.0."
+    },
+    "mapid": {
+      "type": "string",
+      "description": "Stable identifier for the map this profile applies to, e.g., beachdead, thebloodcount."
+    },
+    "schemaversion": {
+      "type": "string",
+      "description": "Schema version string for compatibility checks, e.g., modeprofilesv1.0.0."
+    },
+    "modes": {
+      "type": "array",
+      "description": "List of mode profiles that filter zones, spawns, objectives, hazards, and lighting.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "displayname",
+          "enabledzones",
+          "enabledspawnroletags",
+          "enabledobjectiveroletags",
+          "enabledhazardroletags",
+          "lightingprofile"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Internal mode identifier, e.g., BeachFrenchiesDay, TotalWarValley."
+          },
+          "displayname": {
+            "type": "string",
+            "description": "Human-readable name for UI."
+          },
+          "enabledzones": {
+            "type": "array",
+            "description": "Zone tags that should be considered active for this mode.",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "enabledspawnroletags": {
+            "type": "array",
+            "description": "Spawn roletags that are allowed to be instantiated in this mode.",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "enabledobjectiveroletags": {
+            "type": "array",
+            "description": "Objective roletags that are active in this mode.",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "enabledhazardroletags": {
+            "type": "array",
+            "description": "Hazard roletags that are active in this mode.",
+            "items": { "type": "string" },
+            "default": []
+          },
+          "lightingprofile": {
+            "type": "string",
+            "description": "Logical lighting / post-process profile ID to apply per engine."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional free-form designer notes about this mode."
+          }
+        }
+      }
+    }
+  }
+}
