@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gamemode.ai/schemas/multiplayer/map_manifest_v1.schema.json",
+  "title": "MultiplayerMapManifestV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "maps"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Semantic version for this manifest (e.g., 1.0.0)."
+    },
+    "maps": {
+      "type": "array",
+      "description": "List of multiplayer maps that can be processed by grid2scene.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "grid_path", "entities_path", "tileset_paths", "recommended_players", "supported_modes"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Short stable identifier for the map (e.g., beachdead, alienbasehub, thebloodcount)."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-friendly display name for the map."
+          },
+          "n64_ancestor": {
+            "type": "string",
+            "description": "Optional reference to original N64 map (e.g., Beach, TotalWar, Raptor)."
+          },
+          "grid_path": {
+            "type": "string",
+            "description": "Path to the grid JSON file (map_grid_v1) relative to repo root."
+          },
+          "entities_path": {
+            "type": "string",
+            "description": "Path to the entities JSON file (map_entities_v1) relative to repo root."
+          },
+          "tileset_paths": {
+            "type": "object",
+            "description": "Engine-specific tileset mapping files that grid2scene uses for asset resolution.",
+            "additionalProperties": false,
+            "properties": {
+              "unreal": {
+                "type": "string",
+                "description": "Path to Unreal tileset JSON for this map."
+              },
+              "unity": {
+                "type": "string",
+                "description": "Path to Unity tileset JSON for this map."
+              },
+              "godot": {
+                "type": "string",
+                "description": "Path to Godot tileset JSON for this map."
+              }
+            }
+          },
+          "recommended_players": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Recommended player count (e.g., 16)."
+          },
+          "supported_modes": {
+            "type": "array",
+            "description": "List of supported game mode identifiers for this map.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional notes about this map (status, TODOs, etc.)."
+          }
+        }
+      }
+    }
+  }
+}
