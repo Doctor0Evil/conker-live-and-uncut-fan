@@ -1,0 +1,70 @@
+{
+  "version": "2.0.0",
+  "contentversion": "2.0.0",
+  "mapid": "01MultiplayerBeachDead",
+  "schemaversion": "mapgridv1.0.0",
+  "gridsize": { "cols": 36, "rows": 32 },
+  "cellsize": 4.0,
+  "ylevel": 0.0,
+  "origin": { "x": 0.0, "z": 0.0 },
+  "metadata": {
+    "notes": "Extended Beach Dead grid: SHC base (rows 0–5), valley (6–13), beach (14–21), bunker exterior + tower (22–25), Assault corridors (26–29), Casualties Dept interior (30–31)."
+  },
+  "cells": [
+    { "col": 4,  "row": 1,  "tiletype": "TFloorBaseConcrete", "walkable": true,  "roletags": ["shc_base","shc_spawn_plaza"] },
+    { "col": 5,  "row": 1,  "tiletype": "TFloorBaseConcrete", "walkable": true,  "roletags": ["shc_base","shc_spawn_plaza"] },
+    { "col": 6,  "row": 1,  "tiletype": "TFloorBaseConcrete", "walkable": true,  "roletags": ["shc_base","shc_spawn_plaza"] },
+    { "col": 4,  "row": 2,  "tiletype": "TFloorBaseConcrete", "walkable": true,  "roletags": ["shc_base","shc_spawn_room"] },
+    { "col": 5,  "row": 2,  "tiletype": "TFloorBaseConcrete", "walkable": true,  "roletags": ["shc_base","shc_spawn_room"] },
+    { "col": 6,  "row": 2,  "tiletype": "TFloorBaseConcrete", "walkable": true,  "roletags": ["shc_base","shc_spawn_room"] },
+
+    { "col": 10, "row": 6,  "tiletype": "TFloorValleyMud",   "walkable": true,  "roletags": ["valley","no_mans_land"] },
+    { "col": 11, "row": 6,  "tiletype": "TFloorValleyMud",   "walkable": true,  "roletags": ["valley","no_mans_land"] },
+    { "col": 12, "row": 6,  "tiletype": "TFloorValleyMud",   "walkable": true,  "roletags": ["valley","shell_crater"] },
+    { "col": 13, "row": 7,  "tiletype": "TFloorValleyMud",   "walkable": true,  "roletags": ["valley","trench","valley_trench"] },
+
+    { "col": 8,  "row": 14, "tiletype": "TFloorBeachSand",   "walkable": true,  "roletags": ["beach","sand_open","attackerspawnband"] },
+    { "col": 12, "row": 14, "tiletype": "TFloorBeachSand",   "walkable": true,  "roletags": ["beach","sand_open","attackerspawnband"] },
+
+    { "col": 6,  "row": 16, "tiletype": "TFloorBeachTrench", "walkable": true,  "roletags": ["beach","trench","attackerfallbackband1"] },
+    { "col": 14, "row": 16, "tiletype": "TFloorBeachTrench", "walkable": true,  "roletags": ["beach","trench","attackerfallbackband1"] },
+
+    { "col": 8,  "row": 18, "tiletype": "TFloorBeachTrench", "walkable": true,  "roletags": ["beach","trench","attackerfallbackband2"] },
+    { "col": 16, "row": 18, "tiletype": "TFloorBeachTrench", "walkable": true,  "roletags": ["beach","trench","attackerfallbackband2"] },
+
+    { "col": 4,  "row": 17, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence1","beach_blockade"] },
+    { "col": 5,  "row": 17, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence1","beach_blockade"] },
+    { "col": 6,  "row": 17, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence1","beach_blockade"] },
+    { "col": 18, "row": 17, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence1","beach_blockade"] },
+    { "col": 19, "row": 17, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence1","beach_blockade"] },
+    { "col": 20, "row": 17, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence1","beach_blockade"] },
+
+    { "col": 4,  "row": 20, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence2","beach_blockade"] },
+    { "col": 5,  "row": 20, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence2","beach_blockade"] },
+    { "col": 6,  "row": 20, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence2","beach_blockade"] },
+    { "col": 18, "row": 20, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence2","beach_blockade"] },
+    { "col": 19, "row": 20, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence2","beach_blockade"] },
+    { "col": 20, "row": 20, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence2","beach_blockade"] },
+
+    { "col": 6,  "row": 22, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence3","beach_blockade"] },
+    { "col": 7,  "row": 22, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence3","beach_blockade"] },
+    { "col": 8,  "row": 22, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence3","beach_blockade"] },
+    { "col": 16, "row": 22, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence3","beach_blockade"] },
+    { "col": 17, "row": 22, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence3","beach_blockade"] },
+    { "col": 18, "row": 22, "tiletype": "TWallFence",        "walkable": false, "roletags": ["fence3","beach_blockade"] },
+
+    { "col": 10, "row": 23, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_exterior","bunkerlip","defenderspawnband"] },
+    { "col": 11, "row": 23, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_exterior","bunkerlip","defenderspawnband"] },
+    { "col": 12, "row": 23, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_exterior","bunkerlip","defenderspawnband"] },
+
+    { "col": 12, "row": 24, "tiletype": "TFloorAssaultCorridor", "walkable": true, "roletags": ["assault_corridor","base_interior"] },
+    { "col": 12, "row": 25, "tiletype": "TFloorAssaultCorridor", "walkable": true, "roletags": ["assault_corridor","base_interior"] },
+
+    { "col": 20, "row": 24, "tiletype": "TFloorTowerStairs", "walkable": true, "roletags": ["tower","tower_base"] },
+    { "col": 20, "row": 25, "tiletype": "TFloorTowerRoof",   "walkable": true, "heightoffset": 4.0, "roletags": ["tower","mgnest","bunkerroof"] },
+
+    { "col": 10, "row": 30, "tiletype": "TFloorCasualties", "walkable": true, "roletags": ["casualties_dept","base_interior"] },
+    { "col": 11, "row": 30, "tiletype": "TFloorCasualties", "walkable": true, "roletags": ["casualties_dept","base_interior"] },
+    { "col": 12, "row": 30, "tiletype": "TFloorCasualties", "walkable": true, "roletags": ["casualties_dept","base_interior","objectivezone_escape"] }
+  ]
+}
