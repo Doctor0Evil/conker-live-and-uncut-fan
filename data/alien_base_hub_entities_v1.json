@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "spawn_points": [
+    { "id": "Spawn_Hub_North", "zone": "Hub", "col": 8, "row": 4, "y_offset": 0.0 },
+    { "id": "Spawn_Hub_South", "zone": "Hub", "col": 8, "row": 12, "y_offset": 0.0 },
+    { "id": "Spawn_Hub_East",  "zone": "Hub", "col": 12, "row": 8, "y_offset": 0.0 },
+    { "id": "Spawn_Hub_West",  "zone": "Hub", "col": 4,  "row": 8, "y_offset": 0.0 }
+  ],
+  "weapon_pickups": [
+    { "id": "Pickup_Chainsaw_NE", "type": "Chainsaw", "col": 11, "row": 5, "y_offset": 0.0 },
+    { "id": "Pickup_Flamethrower_NW", "type": "Flamethrower", "col": 5, "row": 5, "y_offset": 0.0 },
+    { "id": "Pickup_SMG_SE", "type": "SMG", "col": 11, "row": 11, "y_offset": 0.0 },
+    { "id": "Pickup_Shotgun_SW", "type": "Shotgun", "col": 5, "row": 11, "y_offset": 0.0 }
+  ],
+  "hazard_volumes": [
+    {
+      "id": "HubFloorGas",
+      "type": "FloorGas",
+      "center_col": 8,
+      "center_row": 8,
+      "radius_cells": 5,
+      "y_min_offset": -2.0,
+      "y_max_offset": 4.0
+    }
+  ],
+  "objectives": [
+    {
+      "id": "AlienEgg",
+      "type": "Egg",
+      "col": 8,
+      "row": 8,
+      "y_offset": 0.0
+    }
+  ]
+}
