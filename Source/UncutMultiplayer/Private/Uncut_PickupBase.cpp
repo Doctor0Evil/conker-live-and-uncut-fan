@@ -1,8 +1,11 @@
 #include "Uncut_PickupBase.h"
+
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
-#include "TimerManager.h"
 #include "GameFramework/Character.h"
+#include "TimerManager.h"
+#include "UncutCharacterInterface.h"
+#include "UncutWeaponRegistry.h"
 
 AUncut_PickupBase::AUncut_PickupBase()
 {
@@ -42,7 +45,7 @@ void AUncut_PickupBase::OnInteractionSphereBeginOverlap(
 	AActor* OtherActor, UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (PickupState != EUncutPickupState::Available)
+	if (PickupState != EUncut_PickupState::Available)
 	{
 		return;
 	}
@@ -52,7 +55,6 @@ void AUncut_PickupBase::OnInteractionSphereBeginOverlap(
 		return;
 	}
 
-	// Simple character gate; you can replace with your own pawn interface
 	ACharacter* Character = Cast<ACharacter>(OtherActor);
 	if (!Character)
 	{
@@ -90,8 +92,11 @@ void AUncut_PickupBase::StartRespawnTimer()
 	if (UWorld* World = GetWorld())
 	{
 		World->GetTimerManager().SetTimer(
-			RespawnTimerHandle, this, &AUncut_PickupBase::HandleRespawn,
-			PickupSpec.RespawnTimeSeconds, false);
+			RespawnTimerHandle,
+			this,
+			&AUncut_PickupBase::HandleRespawn,
+			PickupSpec.RespawnTimeSeconds,
+			false);
 	}
 }
 
@@ -103,8 +108,37 @@ void AUncut_PickupBase::HandleRespawn()
 void AUncut_PickupBase::ApplyPickupToCharacter_Implementation(
 	AActor* Picker, const FName& WeaponId, bool bIsHeavyCarry)
 {
-	// Intentionally empty: Blueprint or subclasses should
-	//  - look up WeaponId in weaponstatsv1.json-backed registry
-	//  - grant weapon/ammo to Picker
-	//  - if bIsHeavyCarry, drive ASID050 heavy-carry state on the character
+	if (!Picker)
+	{
+		return;
+	}
+
+	UUncutWeaponRegistry* Registry = UUncutWeaponRegistry::Get(this);
+	if (!Registry)
+	{
+		return;
+	}
+
+	FUncutWeaponStats Stats;
+	if (!Registry->GetWeaponStats(WeaponId, Stats))
+	{
+		return;
+	}
+
+	if (!Picker->GetClass()->ImplementsInterface(UUncutCharacterInterface::StaticClass()))
+	{
+		return;
+	}
+
+	if (IUncutCharacterInterface::Execute_GiveWeaponFromStats(Picker, Stats))
+	{
+		if (Stats.bIsHeavyCarry)
+		{
+			IUncutCharacterInterface::Execute_EnterHeavyCarry(Picker);
+		}
+		else
+		{
+			IUncutCharacterInterface::Execute_ClearHeavyCarry(Picker);
+		}
+	}
 }
