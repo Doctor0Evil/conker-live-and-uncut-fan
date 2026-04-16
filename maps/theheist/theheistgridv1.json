@@ -1,0 +1,394 @@
+{
+  "version": "1.0.0",
+  "contentversion": "1.0.0",
+  "mapid": "theheist",
+  "schemaversion": "mapgridv1.0.0",
+  "gridsize": {
+    "cols": 32,
+    "rows": 32
+  },
+  "cellsize": 4.0,
+  "ylevel": 0.0,
+  "origin": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "metadata": {
+    "author": "AIChat",
+    "notes": "First-pass Heist grid: central vault, surrounding bank lobby ring, four team corridors (red, blue, green, yellow), and a gas chamber/control wing. Tiles are tileset-agnostic and use role_tags to drive Heist mode logic and gas-chamber hazards."
+  },
+  "cells": [
+    {
+      "col": 15,
+      "row": 15,
+      "tiletype": "TFloorVaultRoom",
+      "walkable": true,
+      "heightoffset": 0.0,
+      "rotationdeg": 0.0,
+      "scale": 1.0,
+      "roletags": ["vault", "vault_core", "money_bag_spawn", "money_bag_route"]
+    },
+    {
+      "col": 14,
+      "row": 15,
+      "tiletype": "TFloorVaultRoom",
+      "walkable": true,
+      "roletags": ["vault", "vault_core"]
+    },
+    {
+      "col": 16,
+      "row": 15,
+      "tiletype": "TFloorVaultRoom",
+      "walkable": true,
+      "roletags": ["vault", "vault_core"]
+    },
+    {
+      "col": 15,
+      "row": 14,
+      "tiletype": "TFloorVaultRoom",
+      "walkable": true,
+      "roletags": ["vault", "vault_core"]
+    },
+    {
+      "col": 15,
+      "row": 16,
+      "tiletype": "TFloorVaultRoom",
+      "walkable": true,
+      "roletags": ["vault", "vault_core"]
+    },
+
+    {
+      "col": 14,
+      "row": 14,
+      "tiletype": "TFloorVaultAntechamber",
+      "walkable": true,
+      "roletags": ["vault", "vault_antechamber", "bank_lobby", "heist_lobby"]
+    },
+    {
+      "col": 16,
+      "row": 14,
+      "tiletype": "TFloorVaultAntechamber",
+      "walkable": true,
+      "roletags": ["vault", "vault_antechamber", "bank_lobby", "heist_lobby"]
+    },
+    {
+      "col": 14,
+      "row": 16,
+      "tiletype": "TFloorVaultAntechamber",
+      "walkable": true,
+      "roletags": ["vault", "vault_antechamber", "bank_lobby", "heist_lobby"]
+    },
+    {
+      "col": 16,
+      "row": 16,
+      "tiletype": "TFloorVaultAntechamber",
+      "walkable": true,
+      "roletags": ["vault", "vault_antechamber", "bank_lobby", "heist_lobby"]
+    },
+
+    {
+      "col": 13,
+      "row": 15,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby", "money_bag_route"]
+    },
+    {
+      "col": 17,
+      "row": 15,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby", "money_bag_route"]
+    },
+    {
+      "col": 15,
+      "row": 13,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby", "money_bag_route"]
+    },
+    {
+      "col": 15,
+      "row": 17,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby", "money_bag_route"]
+    },
+
+    {
+      "col": 13,
+      "row": 13,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby"]
+    },
+    {
+      "col": 17,
+      "row": 13,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby"]
+    },
+    {
+      "col": 13,
+      "row": 17,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby"]
+    },
+    {
+      "col": 17,
+      "row": 17,
+      "tiletype": "TFloorBankMarble",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby"]
+    },
+
+    {
+      "col": 11,
+      "row": 15,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby", "money_bag_route"]
+    },
+    {
+      "col": 10,
+      "row": 15,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "teller_window", "heist_lobby"]
+    },
+    {
+      "col": 9,
+      "row": 15,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "teller_window", "heist_lobby"]
+    },
+
+    {
+      "col": 19,
+      "row": 15,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby", "money_bag_route"]
+    },
+    {
+      "col": 20,
+      "row": 15,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "teller_window", "heist_lobby"]
+    },
+    {
+      "col": 21,
+      "row": 15,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "teller_window", "heist_lobby"]
+    },
+
+    {
+      "col": 15,
+      "row": 11,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby", "money_bag_route"]
+    },
+    {
+      "col": 15,
+      "row": 10,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "throne_room", "gas_control_room"]
+    },
+
+    {
+      "col": 15,
+      "row": 19,
+      "tiletype": "TFloorBankLobby",
+      "walkable": true,
+      "roletags": ["bank_lobby", "heist_lobby"]
+    },
+
+    {
+      "col": 15,
+      "row": 8,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "north_corridor", "team_red_corridor", "money_bag_route"]
+    },
+    {
+      "col": 15,
+      "row": 6,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "north_corridor", "team_red_corridor"]
+    },
+    {
+      "col": 15,
+      "row": 4,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_red_spawn", "team_spawn_lobby", "heist_lobby"]
+    },
+    {
+      "col": 14,
+      "row": 4,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_red_spawn", "team_spawn_lobby"]
+    },
+    {
+      "col": 16,
+      "row": 4,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_red_spawn", "team_spawn_lobby"]
+    },
+
+    {
+      "col": 8,
+      "row": 15,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "west_corridor", "team_blue_corridor", "money_bag_route"]
+    },
+    {
+      "col": 6,
+      "row": 15,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "west_corridor", "team_blue_corridor"]
+    },
+    {
+      "col": 4,
+      "row": 15,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_blue_spawn", "team_spawn_lobby", "heist_lobby"]
+    },
+    {
+      "col": 4,
+      "row": 14,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_blue_spawn", "team_spawn_lobby"]
+    },
+    {
+      "col": 4,
+      "row": 16,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_blue_spawn", "team_spawn_lobby"]
+    },
+
+    {
+      "col": 22,
+      "row": 15,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "east_corridor", "team_green_corridor", "money_bag_route"]
+    },
+    {
+      "col": 24,
+      "row": 15,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "east_corridor", "team_green_corridor"]
+    },
+    {
+      "col": 26,
+      "row": 15,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_green_spawn", "team_spawn_lobby", "heist_lobby"]
+    },
+    {
+      "col": 26,
+      "row": 14,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_green_spawn", "team_spawn_lobby"]
+    },
+    {
+      "col": 26,
+      "row": 16,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_green_spawn", "team_spawn_lobby"]
+    },
+
+    {
+      "col": 15,
+      "row": 22,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "south_corridor", "team_yellow_corridor", "money_bag_route"]
+    },
+    {
+      "col": 15,
+      "row": 24,
+      "tiletype": "TFloorCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "south_corridor", "team_yellow_corridor"]
+    },
+    {
+      "col": 15,
+      "row": 26,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_yellow_spawn", "team_spawn_lobby", "heist_lobby"]
+    },
+    {
+      "col": 14,
+      "row": 26,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_yellow_spawn", "team_spawn_lobby"]
+    },
+    {
+      "col": 16,
+      "row": 26,
+      "tiletype": "TFloorTeamLobby",
+      "walkable": true,
+      "roletags": ["team_yellow_spawn", "team_spawn_lobby"]
+    },
+
+    {
+      "col": 15,
+      "row": 9,
+      "tiletype": "TFloorGasControl",
+      "walkable": true,
+      "roletags": ["gas_control_room", "gas_safe_zone", "throne_room"]
+    },
+    {
+      "col": 15,
+      "row": 7,
+      "tiletype": "TFloorGasCorridor",
+      "walkable": true,
+      "roletags": ["corridor", "gas_chamber_corridor", "money_bag_route"]
+    },
+    {
+      "col": 15,
+      "row": 5,
+      "tiletype": "TFloorGasChamber",
+      "walkable": true,
+      "roletags": ["gas_chamber", "hazard_zone"]
+    },
+    {
+      "col": 14,
+      "row": 5,
+      "tiletype": "TFloorGasChamber",
+      "walkable": true,
+      "roletags": ["gas_chamber", "hazard_zone"]
+    },
+    {
+      "col": 16,
+      "row": 5,
+      "tiletype": "TFloorGasChamber",
+      "walkable": true,
+      "roletags": ["gas_chamber", "hazard_zone"]
+    }
+  ]
+}
