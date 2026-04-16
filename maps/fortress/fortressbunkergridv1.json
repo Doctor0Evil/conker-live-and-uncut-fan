@@ -1,0 +1,92 @@
+{
+  "version": "1.0.0",
+  "contentversion": "1.0.0",
+  "mapid": "fortress",
+  "schemaversion": "mapgridv1.0.0",
+  "gridsize": { "cols": 16, "rows": 16 },
+  "cellsize": 4.0,
+  "ylevel": 0.0,
+  "origin": { "x": 0.0, "z": 0.0 },
+  "metadata": {
+    "author": "AIChat",
+    "notes": "Merged Fortress bunker interior: SHC and Tediz spawn chambers, dual armories, main corridors, commander room objective zone, communications/radio room, central hub, multiple roof-access stairwells, and bunker roof MG/sniper posts. Role tags normalized to bunker_interior vocabulary and aligned with fortressentitiesv1.json."
+  },
+  "cells": [
+    { "col": 2, "row": 2, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "spawn_chamber", "shc_spawn"] },
+    { "col": 3, "row": 2, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "spawn_chamber", "shc_spawn"] },
+    { "col": 4, "row": 2, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "spawn_chamber", "shc_spawn"] },
+
+    { "col": 2, "row": 3, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "armory", "ammo_cache"] },
+    { "col": 3, "row": 3, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "armory", "ammo_cache"] },
+    { "col": 4, "row": 3, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "armory", "ammo_cache"] },
+
+    { "col": 3, "row": 4, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "main_corridor"] },
+    { "col": 3, "row": 5, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "main_corridor"] },
+    { "col": 3, "row": 6, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "main_corridor"] },
+
+    { "col": 2, "row": 7, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "commander_room", "bunker_objective_zone"] },
+    { "col": 3, "row": 7, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "commander_room", "bunker_objective_zone", "objective_zone"] },
+    { "col": 4, "row": 7, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "commander_room", "bunker_objective_zone"] },
+
+    { "col": 3, "row": 8, "tiletype": "TFloorBunkerStairs", "walkable": true, "roletags": ["bunker_interior", "stairwell", "roof_access", "stairs_up"] },
+
+    { "col": 11, "row": 2, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "spawn_chamber", "tediz_spawn"] },
+    { "col": 12, "row": 2, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "spawn_chamber", "tediz_spawn"] },
+    { "col": 13, "row": 2, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "spawn_chamber", "tediz_spawn"] },
+
+    { "col": 11, "row": 3, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "armory", "ammo_cache"] },
+    { "col": 12, "row": 3, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "armory", "ammo_cache"] },
+    { "col": 13, "row": 3, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "armory", "ammo_cache"] },
+
+    { "col": 12, "row": 4, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "main_corridor"] },
+    { "col": 12, "row": 5, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "main_corridor"] },
+    { "col": 12, "row": 6, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "main_corridor"] },
+
+    { "col": 11, "row": 7, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "communications_room", "radio_room"] },
+    { "col": 12, "row": 7, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "communications_room", "radio_room"] },
+    { "col": 13, "row": 7, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "communications_room", "radio_room"] },
+
+    { "col": 12, "row": 8, "tiletype": "TFloorBunkerStairs", "walkable": true, "roletags": ["bunker_interior", "stairwell", "roof_access", "stairs_up"] },
+
+    { "col": 7, "row": 10, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "central_hub", "bunker_hub"] },
+    { "col": 8, "row": 10, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "central_hub", "bunker_hub"] },
+    { "col": 9, "row": 10, "tiletype": "TFloorBunkerConcrete", "walkable": true, "roletags": ["bunker_interior", "central_hub", "bunker_hub"] },
+
+    { "col": 8, "row": 11, "tiletype": "TFloorBunkerStairs", "walkable": true, "roletags": ["bunker_interior", "stairwell", "roof_access", "stairs_up"] },
+
+    { "col": 6, "row": 13, "tiletype": "TFloorBunkerRoof", "walkable": true, "heightoffset": 4.0, "roletags": ["bunker_roof", "mg_nest", "roof_access"] },
+    { "col": 7, "row": 13, "tiletype": "TFloorBunkerRoof", "walkable": true, "heightoffset": 4.0, "roletags": ["bunker_roof", "sniper_post"] },
+    { "col": 8, "row": 13, "tiletype": "TFloorBunkerRoof", "walkable": true, "heightoffset": 4.0, "roletags": ["bunker_roof", "central_platform"] },
+    { "col": 9, "row": 13, "tiletype": "TFloorBunkerRoof", "walkable": true, "heightoffset": 4.0, "roletags": ["bunker_roof", "sniper_post"] },
+    { "col": 10, "row": 13, "tiletype": "TFloorBunkerRoof", "walkable": true, "heightoffset": 4.0, "roletags": ["bunker_roof", "mg_nest", "roof_access"] },
+
+    { "col": 5, "row": 11, "tiletype": "TFloorBunkerCorridor", "walkable": true, "heightoffset": 0.0, "rotationdeg": 0.0, "scale": 1.0, "roletags": ["bunker_interior", "bunker_corridor", "south_entrance", "tedizbase"] },
+    { "col": 5, "row": 10, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "tedizbase"] },
+    { "col": 5, "row": 9, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "tedizbase"] },
+    { "col": 5, "row": 8, "tiletype": "TFloorBunkerHub", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "bunker_hub", "tedizbase"] },
+
+    { "col": 4, "row": 8, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "towards_ammo_cache", "tedizbase"] },
+    { "col": 3, "row": 8, "tiletype": "TFloorBunkerRoom", "walkable": true, "roletags": ["bunker_interior", "ammo_cache", "tedizbase"] },
+    { "col": 3, "row": 7, "tiletype": "TFloorBunkerRoom", "walkable": true, "roletags": ["bunker_interior", "ammo_cache", "tedizbase"] },
+
+    { "col": 6, "row": 8, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "towards_radio_room", "tedizbase"] },
+    { "col": 7, "row": 8, "tiletype": "TFloorBunkerRoom", "walkable": true, "roletags": ["bunker_interior", "radio_room", "tedizbase"] },
+    { "col": 7, "row": 7, "tiletype": "TFloorBunkerRoom", "walkable": true, "roletags": ["bunker_interior", "radio_room", "tedizbase"] },
+
+    { "col": 7, "row": 6, "tiletype": "TFloorBunkerStairs", "walkable": true, "heightoffset": 1.0, "roletags": ["bunker_interior", "stairwell", "roof_access", "tedizbase"] },
+    { "col": 7, "row": 5, "tiletype": "TFloorBunkerStairs", "walkable": true, "heightoffset": 2.0, "roletags": ["bunker_interior", "stairwell", "roof_access", "tedizbase"] },
+    { "col": 7, "row": 4, "tiletype": "TFloorRoofHatch", "walkable": true, "heightoffset": 3.0, "roletags": ["roof_access", "ladder_shaft", "tedizbase"] },
+
+    { "col": 5, "row": 7, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "towards_commander_room", "tedizbase"] },
+    { "col": 5, "row": 6, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "towards_commander_room", "tedizbase"] },
+    { "col": 5, "row": 5, "tiletype": "TFloorBunkerRoom", "walkable": true, "roletags": ["bunker_interior", "commander_room", "bunker_objective_zone", "tedizbase"] },
+    { "col": 4, "row": 5, "tiletype": "TFloorBunkerRoom", "walkable": true, "roletags": ["bunker_interior", "commander_room", "bunker_objective_zone", "tedizbase"] },
+    { "col": 6, "row": 5, "tiletype": "TFloorBunkerRoom", "walkable": true, "roletags": ["bunker_interior", "commander_room", "bunker_objective_zone", "tedizbase"] },
+
+    { "col": 6, "row": 9, "tiletype": "TFloorBunkerCorridor", "walkable": true, "heightoffset": 0.0, "roletags": ["bunker_interior", "bunker_corridor", "vent_connection", "tedizbase"] },
+    { "col": 7, "row": 9, "tiletype": "TFloorVent", "walkable": true, "heightoffset": 0.5, "roletags": ["bunker_interior", "vent_entrance", "vent_connection", "tedizbase"] },
+
+    { "col": 4, "row": 7, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "fallback_spawn", "tedizbase"] },
+    { "col": 6, "row": 7, "tiletype": "TFloorBunkerCorridor", "walkable": true, "roletags": ["bunker_interior", "bunker_corridor", "fallback_spawn", "tedizbase"] }
+  ]
+}
