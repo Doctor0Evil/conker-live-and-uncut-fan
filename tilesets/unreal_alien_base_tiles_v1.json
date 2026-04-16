@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "engine": "unreal",
+  "tile_mappings": [
+    {
+      "tile_type": "T_Floor_IndustrialPlain",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Floor_IndustrialPlain"
+    },
+    {
+      "tile_type": "T_Floor_IndustrialHazardStripe",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Floor_IndustrialHazardStripe"
+    },
+    {
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Floor_GrateGasEmitter"
+    },
+    {
+      "tile_type": "T_Floor_AlienResin",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Floor_AlienResin"
+    },
+    {
+      "tile_type": "T_Wall_PanelRiveted",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Wall_PanelRiveted"
+    },
+    {
+      "tile_type": "T_Wall_AlienVeins",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Wall_AlienVeins"
+    },
+    {
+      "tile_type": "T_Ceiling_PipeCluster",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Ceiling_PipeCluster"
+    },
+    {
+      "tile_type": "T_Ceiling_GratedVent",
+      "asset_id": "/Game/AlienBase/Meshes/SM_Ceiling_GratedVent"
+    },
+    {
+      "tile_type": "T_Platform_EggBase",
+      "asset_id": "/Game/AlienBase/Meshes/SM_EggPlatform"
+    }
+  ],
+  "entity_mappings": {
+    "spawn": {
+      "prefab_or_class": "/Game/AlienBase/Actors/BP_PlayerStart_AlienBase"
+    },
+    "weapon_pickup": {
+      "Chainsaw": "/Game/AlienBase/Pickups/BP_Pickup_Chainsaw",
+      "Flamethrower": "/Game/AlienBase/Pickups/BP_Pickup_Flamethrower",
+      "SMG": "/Game/AlienBase/Pickups/BP_Pickup_SMG",
+      "Shotgun": "/Game/AlienBase/Pickups/BP_Pickup_Shotgun",
+      "SniperRifle": "/Game/AlienBase/Pickups/BP_Pickup_SniperRifle",
+      "Bazooka": "/Game/AlienBase/Pickups/BP_Pickup_Bazooka"
+    },
+    "hazard_volume": {
+      "FloorGas": "/Game/AlienBase/Hazards/BP_AlienBase_Volume_HubFloorGas",
+      "SublevelAcid": "/Game/AlienBase/Hazards/BP_AlienBase_Volume_SublevelAcid"
+    },
+    "objective": {
+      "Egg": "/Game/AlienBase/Actors/BP_AlienEgg"
+    }
+  }
+}
