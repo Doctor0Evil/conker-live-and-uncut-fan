@@ -1,0 +1,6 @@
+# Cargo.toml (workspace root)
+[workspace]
+members = [
+  "crates/alien_base_grid2scene",
+  "xtask"
+]
