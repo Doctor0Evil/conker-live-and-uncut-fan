@@ -1,0 +1,23 @@
+name: ASID Registry Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  asid-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build asid_ci_check
+        run: |
+          cargo build -p asid_ci_check --release
+
+      - name: Run ASID registry check
+        run: |
+          ./target/release/asid_ci_check
