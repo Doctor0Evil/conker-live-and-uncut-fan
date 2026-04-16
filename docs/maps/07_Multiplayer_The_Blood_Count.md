@@ -265,7 +265,8 @@ Zombies follow a simple but brutal rule set, modeled on Spooky:
   - Light weapons (e.g., SMG, pistols) – optional minor flinch but no real damage.
 - **On Death:**
   - Fire Imp enters a death animation and despawns.  
-  - Starts a **respawn cooldown** (e.g., 15 seconds) during which the carrier has “breathing room”.
+  - Starts a **respawn cooldown** (e.g., 15 seconds) during which the carrier has “breathing room”.  
+  - Triggers a small-radius fire blast on death that **cripples nearby zombies** and **sets players on fire** (damage-over-time burn effect).
 
 ### 4. Respawn Behavior
 
