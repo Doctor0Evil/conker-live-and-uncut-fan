@@ -1,0 +1,33 @@
+{
+  "version": '1.0.0',
+  "spawn_points": [
+    { "id": "Spawn_Beach_01", "zone": "Attackers", "col": 8, "row": 15, "y_offset": 0.0 },
+    { "id": "Spawn_Beach_02", "zone": "Attackers", "col": 6, "row": 15, "y_offset": 0.0 },
+    { "id": "Spawn_Fortress_01", "zone": "Defenders", "col": 8, "row": 4, "y_offset": 0.0 }
+  ],
+  "weapon_pickups": [
+    { "id": "Pickup_Sniper_Fortress_Roof", "type": "SniperRifle", "col": 10, "row": 5, "y_offset": 4.0 },
+    { "id": "Pickup_Chaingun_Fortress_Emplacement", "type": "Chaingun", "col": 8, "row": 5, "y_offset": 2.0 },
+    { "id": "Pickup_Explosives_Trench_Fence1", "type": "Explosives", "col": 8, "row": 11, "y_offset": 0.0 }
+  ],
+  "hazard_volumes": [
+    {
+      "id": "Artillery_Zone_Beach",
+      "type": "Artillery",
+      "center_col": 8,
+      "center_row": 13,
+      "radius_cells": 4,
+      "y_min_offset": 0.0,
+      "y_max_offset": 4.0
+    }
+  ],
+  "objectives": [
+    {
+      "id": "Fence1_Objective",
+      "type": "Fence",
+      "col": 8,
+      "row": 9,
+      "y_offset": 0.0
+    }
+  ]
+}
