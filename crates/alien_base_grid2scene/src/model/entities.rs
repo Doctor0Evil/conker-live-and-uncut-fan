@@ -23,7 +23,8 @@ pub struct WeaponPickup {
 #[derive(Debug, Deserialize)]
 pub struct HazardVolume {
     pub id: String,
-    pub r#type: String,
+    pub rtype: String,            // "hazard_volume"
+    pub hazard_profile_id: String,
     pub center_col: i32,
     pub center_row: i32,
     pub radius_cells: i32,
