@@ -1,0 +1,50 @@
+name: Validate Multiplayer Maps
+
+on:
+  push:
+    paths:
+      - "maps/**.json"
+      - "schemas/**.json"
+      - "tilesets/**.json"
+      - "crates/alienbasegrid2scene/**"
+      - ".github/workflows/validate_maps.yml"
+  pull_request:
+    paths:
+      - "maps/**.json"
+      - "schemas/**.json"
+      - "tilesets/**.json"
+      - "crates/alienbasegrid2scene/**"
+
+jobs:
+  validate-maps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build grid2scene
+        run: |
+          cargo build -p alienbasegrid2scene --release
+
+      - name: Run grid2scene validation (Unreal)
+        run: |
+          ./target/release/grid2scene \
+            --engine unreal \
+            --manifest maps/map_manifest_v1.json \
+            --validate \
+            --all
+
+      # Optional: also validate Unity and Godot tilesets once they are stable.
+      # - name: Run grid2scene validation (Unity)
+      #   run: |
+      #     ./target/release/grid2scene \
+      #       --engine unity \
+      #       --manifest maps/map_manifest_v1.json \
+      #       --validate \
+      #       --all
