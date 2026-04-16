@@ -1,0 +1,32 @@
+{
+  "scene_name": "AlienBase_Multi",
+  "hub_y_level": 0.0,
+  "tiles": [
+    {
+      "tile_type": "T_Floor_IndustrialPlain",
+      "prefab": "Prefabs/AlienBase/T_Floor_IndustrialPlain",
+      "positions": [
+        { "x": 0.0, "y": 0.0, "z": 4.0 },
+        { "x": 4.0, "y": 0.0, "z": 0.0 }
+      ]
+    },
+    {
+      "tile_type": "T_Floor_GrateGasEmitter",
+      "prefab": "Prefabs/AlienBase/T_Floor_GrateGasEmitter",
+      "positions": [
+        { "x": 0.0, "y": 0.0, "z": 12.0 }
+      ]
+    },
+    {
+      "tile_type": "T_Wall_PanelRiveted",
+      "prefab": "Prefabs/AlienBase/T_Wall_PanelRiveted",
+      "positions": [
+        { "x": 0.0, "y": 0.0, "z": 20.0 }
+      ]
+    }
+  ],
+  "egg_platform": {
+    "prefab": "Prefabs/AlienBase/T_Platform_EggBase",
+    "position": { "x": 0.0, "y": 0.0, "z": 0.0 }
+  }
+}
