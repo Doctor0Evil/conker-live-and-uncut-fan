@@ -1,0 +1,15 @@
+[package]
+name = "core_ids"
+version = "0.1.0"
+edition = "2021"
+description = "Shared ID enums for SFX, VFX, PRT, ENV, HUD, SEQ, ASID, and OBJ - engine-agnostic"
+license = "MIT"
+
+[dependencies]
+strum = { version = "0.25", features = ["derive"] }
+strum_macros = "0.25"
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
+
+[dev-dependencies]
+serde_json = "1.0"
