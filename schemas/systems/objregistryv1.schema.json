@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ObjectRegistry",
+  "description": "Registry for all game objects (pickups, interactibles, vehicles, objectives). Engine-agnostic.",
+  "type": "object",
+  "required": ["objects"],
+  "properties": {
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "internal_name", "kind", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^OBJ_[0-9]{3}$",
+            "description": "Unique object identifier (e.g., OBJ_010)"
+          },
+          "internal_name": {
+            "type": "string",
+            "description": "Human-readable name (e.g., WPN_PICKUP_CHAINSAW)"
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["weapon_pickup", "ammo_pickup", "health_pickup", "armor_pickup", "interactible", "vehicle_spawner", "objective"]
+          },
+          "map_ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Map IDs where this object appears"
+          },
+          "n64_ancestor": {
+            "type": "string",
+            "description": "Reference to original N64 BFD object if applicable"
+          },
+          "description": {
+            "type": "string"
+          },
+          "gameplay_notes": {
+            "type": "string",
+            "description": "Mechanic-oriented usage notes"
+          },
+          "engine_asset_id": {
+            "type": "object",
+            "properties": {
+              "ue5": { "type": "string" },
+              "unity": { "type": "string" },
+              "godot": { "type": "string" }
+            },
+            "description": "Engine-specific asset references (optional)"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AudioVisualRegistry",
+  "description": "Master registry for all SFX, VFX, PRT, ENV, HUD, and SEQ IDs. Engine-agnostic schema for AI-Chat validation and CI.",
+  "type": "object",
+  "required": ["sfx", "vfx", "prt", "env", "hud", "seq"],
+  "properties": {
+    "sfx": {
+      "type": "array",
+      "description": "Sound effects registry",
+      "items": {
+        "type": "object",
+        "required": ["id", "internal_name", "category", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^SFX_[0-9]{3}$",
+            "description": "Unique SFX identifier (e.g., SFX_150)"
+          },
+          "internal_name": {
+            "type": "string",
+            "description": "Human-readable internal name (e.g., WPN_FLAMER_PILOT)"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["weapon", "gore", "ambient", "ui", "cinematic", "misc", "voice", "hazard"],
+            "description": "Category classification"
+          },
+          "description": {
+            "type": "string",
+            "description": "Short description of the sound"
+          },
+          "usage_notes": {
+            "type": "string",
+            "description": "Mechanic-oriented usage notes (e.g., 'Alien decapitation by chainsaw; triggered by ASID_401 at gore_frame 12')"
+          },
+          "n64_ancestor": {
+            "type": "string",
+            "description": "Reference to original N64 BFD sound if applicable"
+          }
+        }
+      }
+    },
+    "vfx": {
+      "type": "array",
+      "description": "Visual effects registry",
+      "items": {
+        "type": "object",
+        "required": ["id", "internal_name", "category", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^VFX_[0-9]{3}$",
+            "description": "Unique VFX identifier (e.g., VFX_012)"
+          },
+          "internal_name": {
+            "type": "string",
+            "description": "Human-readable internal name (e.g., PRT_GORE_LIME_SPURT)"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["weapon", "gore", "ambient", "ui", "cinematic", "misc", "hazard"]
+          },
+          "decal_id": {
+            "type": "string",
+            "pattern": "^PRT_[0-9]{3}$",
+            "description": "Optional linked decal ID (e.g., PRT_101)"
+          },
+          "description": {
+            "type": "string"
+          },
+          "usage_notes": {
+            "type": "string"
+          },
+          "n64_ancestor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "prt": {
+      "type": "array",
+      "description": "Decal/gore particle registry",
+      "items": {
+        "type": "object",
+        "required": ["id", "internal_name", "material_tag", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PRT_[0-9]{3}$",
+            "description": "Unique particle/decal identifier (e.g., PRT_101)"
+          },
+          "internal_name": {
+            "type": "string",
+            "description": "Human-readable internal name (e.g., DECAL_BLOOD_POOL_LIME)"
+          },
+          "material_tag": {
+            "type": "string",
+            "description": "Material tag for context-sensitive spawning (e.g., MAT_FLESH, MAT_METAL_BASE)"
+          },
+          "description": {
+            "type": "string"
+          },
+          "usage_notes": {
+            "type": "string"
+          },
+          "n64_ancestor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "env": {
+      "type": "array",
+      "description": "Environmental hazard/ambient registry",
+      "items": {
+        "type": "object",
+        "required": ["id", "internal_name", "category", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ENV_[0-9]{3}$",
+            "description": "Unique environmental identifier (e.g., ENV_050)"
+          },
+          "internal_name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["weapon", "gore", "ambient", "ui", "cinematic", "misc", "hazard"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "usage_notes": {
+            "type": "string"
+          },
+          "n64_ancestor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "hud": {
+      "type": "array",
+      "description": "HUD element registry",
+      "items": {
+        "type": "object",
+        "required": ["id", "internal_name", "category", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^HUD_[0-9]{3}$",
+            "description": "Unique HUD identifier (e.g., HUD_001)"
+          },
+          "internal_name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["weapon", "gore", "ambient", "ui", "cinematic", "misc"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "usage_notes": {
+            "type": "string"
+          },
+          "n64_ancestor": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "seq": {
+      "type": "array",
+      "description": "Sequence/cinematic event registry",
+      "items": {
+        "type": "object",
+        "required": ["id", "internal_name", "category", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^SEQ_[0-9]{3}$",
+            "description": "Unique sequence identifier (e.g., SEQ_003)"
+          },
+          "internal_name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["weapon", "gore", "ambient", "ui", "cinematic", "misc"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "usage_notes": {
+            "type": "string"
+          },
+          "n64_ancestor": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

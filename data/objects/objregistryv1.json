@@ -1,0 +1,139 @@
+{
+  "objects": [
+    {
+      "id": "OBJ_010",
+      "internal_name": "WPN_PICKUP_CHAINSAW",
+      "kind": "weapon_pickup",
+      "map_ids": ["04MultiplayerAlienBase", "05FortressDeux"],
+      "n64_ancestor": "BFD_OBJ_CHAINSAW",
+      "description": "Chainsaw melee weapon pickup",
+      "gameplay_notes": "Heavy weapon; disables jump; ASID_050 HEAVY_CARRY state; execution finisher ASID_401"
+    },
+    {
+      "id": "OBJ_011",
+      "internal_name": "WPN_PICKUP_KATANA",
+      "kind": "weapon_pickup",
+      "map_ids": ["02MultiplayerTheHeist", "06BloodCount"],
+      "n64_ancestor": null,
+      "description": "Katana melee weapon pickup",
+      "gameplay_notes": "Fast swing; execution finisher ASID_406; no jump penalty"
+    },
+    {
+      "id": "OBJ_012",
+      "internal_name": "WPN_PICKUP_FLAMETHROWER",
+      "kind": "weapon_pickup",
+      "map_ids": ["04MultiplayerAlienBase", "03RaptorIsland"],
+      "n64_ancestor": "BFD_OBJ_FLAMETHROWER",
+      "description": "Flamethrower continuous damage weapon",
+      "gameplay_notes": "SFX_150/SFX_151 loop; VFX_110 muzzle; area denial"
+    },
+    {
+      "id": "OBJ_013",
+      "internal_name": "WPN_PICKUP_CHAINGUN",
+      "kind": "weapon_pickup",
+      "map_ids": ["01MultiplayerBeachDead", "05FortressDeux"],
+      "n64_ancestor": "BFD_OBJ_CHAINGUN",
+      "description": "Chaingun heavy automatic weapon",
+      "gameplay_notes": "Heavy weapon; disables jump (ASID_050); VFX_113 shell casings; high suppression"
+    },
+    {
+      "id": "OBJ_014",
+      "internal_name": "WPN_PICKUP_BAZOOKA",
+      "kind": "weapon_pickup",
+      "map_ids": ["01MultiplayerBeachDead", "05FortressDeux", "07BloodCount"],
+      "n64_ancestor": "BFD_OBJ_BAZOOKA",
+      "description": "Rocket launcher explosive weapon",
+      "gameplay_notes": "Heavy weapon; disables jump; VFX_017 explosive gore; PRT_103 scorch decal"
+    },
+    {
+      "id": "OBJ_020",
+      "internal_name": "AMMO_PICKUP_ROCKET",
+      "kind": "ammo_pickup",
+      "map_ids": ["01MultiplayerBeachDead", "05FortressDeux"],
+      "n64_ancestor": "BFD_OBJ_AMMO_ROCKET",
+      "description": "Rocket/ammo box for bazooka",
+      "gameplay_notes": "Spawns 4-8 rockets; red crate visual"
+    },
+    {
+      "id": "OBJ_021",
+      "internal_name": "AMMO_PICKUP_CHAINGUN",
+      "kind": "ammo_pickup",
+      "map_ids": ["01MultiplayerBeachDead", "05FortressDeux"],
+      "n64_ancestor": "BFD_OBJ_AMMO_CHAINGUN",
+      "description": "Belt ammo for chaingun",
+      "gameplay_notes": "Spawns 200 rounds; green crate visual"
+    },
+    {
+      "id": "OBJ_030",
+      "internal_name": "HEALTH_PICKUP_CHOCOLATE",
+      "kind": "health_pickup",
+      "map_ids": ["01MultiplayerBeachDead", "02MultiplayerTheHeist", "03RaptorIsland", "04MultiplayerAlienBase", "05FortressDeux", "06BloodCount"],
+      "n64_ancestor": "BFD_OBJ_HEALTH_CHOCOLATE",
+      "description": "Chocolate bar health pickup (N64 legacy)",
+      "gameplay_notes": "+25 HP; HUD_010 shows chocolate bar icon; no XP system"
+    },
+    {
+      "id": "OBJ_031",
+      "internal_name": "HEALTH_PICKUP_MEDKIT",
+      "kind": "health_pickup",
+      "map_ids": ["04MultiplayerAlienBase", "05FortressDeux"],
+      "n64_ancestor": null,
+      "description": "Medkit large heal pickup",
+      "gameplay_notes": "+100 HP (full heal); rare spawn; white cross visual"
+    },
+    {
+      "id": "OBJ_032",
+      "internal_name": "ARMOR_PICKUP_VEST",
+      "kind": "armor_pickup",
+      "map_ids": ["01MultiplayerBeachDead", "05FortressDeux"],
+      "n64_ancestor": "BFD_OBJ_ARMOR_VEST",
+      "description": "Combat vest armor pickup",
+      "gameplay_notes": "+50 armor; HUD_011 displays numeric + vest icon"
+    },
+    {
+      "id": "OBJ_040",
+      "internal_name": "INTERACT_DOOR_SLIDING",
+      "kind": "interactible",
+      "map_ids": ["04MultiplayerAlienBase", "02MultiplayerTheHeist"],
+      "n64_ancestor": null,
+      "description": "Sliding door interactible",
+      "gameplay_notes": "Use button to open/close; can trap players; ENV_050 airlock sequence"
+    },
+    {
+      "id": "OBJ_041",
+      "internal_name": "INTERACT_TURRET_MG",
+      "kind": "interactible",
+      "map_ids": ["01MultiplayerBeachDead", "05FortressDeux"],
+      "n64_ancestor": "BFD_OBJ_MG_NEST",
+      "description": "Mounted MG turret",
+      "gameplay_notes": "Player enters turret mode; unlimited ammo; VFX_113 shells; PRT_103 scorch on walls"
+    },
+    {
+      "id": "OBJ_050",
+      "internal_name": "OBJ_ALIEN_EGG",
+      "kind": "objective",
+      "map_ids": ["04MultiplayerAlienBase"],
+      "n64_ancestor": null,
+      "description": "Alien egg destruction objective",
+      "gameplay_notes": "ENV_304 pulse loop; SFX_304 proximity audio; destructible; triggers win condition"
+    },
+    {
+      "id": "OBJ_051",
+      "internal_name": "OBJ_HEIST_VAULT_KEYCARD",
+      "kind": "objective",
+      "map_ids": ["02MultiplayerTheHeist"],
+      "n64_ancestor": "BFD_OBJ_VAULT_KEY",
+      "description": "Vault keycard objective item",
+      "gameplay_notes": "Carry to vault; opens SEQ_001 match event; visible on HUD"
+    },
+    {
+      "id": "OBJ_060",
+      "internal_name": "VEHICLE_SPAWNER_BOAT",
+      "kind": "vehicle_spawner",
+      "map_ids": ["01MultiplayerBeachDead", "03RaptorIsland"],
+      "n64_ancestor": null,
+      "description": "Boat vehicle spawn point",
+      "gameplay_notes": "Respawns every 60s; max 2 active; transport only, no weapons"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AnimationStateRegistry",
+  "description": "Registry for animation states (ASID) with lock info, SFX/VFX ties, and gore frame triggers. Extends RO-201.",
+  "type": "object",
+  "required": ["animation_states"],
+  "properties": {
+    "animation_states": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["asid", "internal_name", "lock_type", "description"],
+        "properties": {
+          "asid": {
+            "type": "string",
+            "pattern": "^ASID_[0-9]{3}$",
+            "description": "Unique Animation State ID (e.g., ASID_401)"
+          },
+          "internal_name": {
+            "type": "string",
+            "description": "Human-readable name (e.g., FIN_CHAINSAW_H)"
+          },
+          "lock_type": {
+            "type": "string",
+            "enum": ["None", "Soft", "Hard"],
+            "description": "Lock type: None (free movement), Soft (can cancel), Hard (cannot cancel)"
+          },
+          "interrupt_priority": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Priority for interrupting other animations (higher = more priority)"
+          },
+          "description": {
+            "type": "string"
+          },
+          "usage_notes": {
+            "type": "string"
+          },
+          "sfx_on_start": {
+            "oneOf": [
+              { "type": "string", "pattern": "^SFX_[0-9]{3}$" },
+              { "type": "array", "items": { "type": "string", "pattern": "^SFX_[0-9]{3}$" } }
+            ],
+            "description": "SFX played on animation start"
+          },
+          "sfx_on_gore": {
+            "oneOf": [
+              { "type": "string", "pattern": "^SFX_[0-9]{3}$" },
+              { "type": "array", "items": { "type": "string", "pattern": "^SFX_[0-9]{3}$" } }
+            ],
+            "description": "SFX played at gore frame (optional)"
+          },
+          "vfx_on_gore": {
+            "oneOf": [
+              { "type": "string", "pattern": "^VFX_[0-9]{3}$" },
+              { "type": "array", "items": { "type": "string", "pattern": "^VFX_[0-9]{3}$" } }
+            ],
+            "description": "VFX spawned at gore frame"
+          },
+          "gore_decal": {
+            "type": "string",
+            "pattern": "^PRT_[0-9]{3}$",
+            "description": "Decal applied at gore frame (optional)"
+          },
+          "gore_frame": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Frame index within animation to trigger gore events"
+          },
+          "honors_n64_no_jump_heavy": {
+            "type": "boolean",
+            "description": "If true, this ASID enforces N64 'no jump with heavy guns' rule (RO-203)"
+          },
+          "n64_ancestor": {
+            "type": "string",
+            "description": "Reference to original N64 BFD animation if applicable"
+          }
+        }
+      }
+    }
+  }
+}

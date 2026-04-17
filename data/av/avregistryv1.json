@@ -1,0 +1,403 @@
+{
+  "sfx": [
+    {
+      "id": "SFX_150",
+      "internal_name": "WPN_FLAMER_PILOT",
+      "category": "weapon",
+      "description": "Flamethrower pilot light ignition sound",
+      "usage_notes": "Played when flamethrower first activated; loops with SFX_151",
+      "n64_ancestor": "BFD_WPN_FLAMER_IGNITE"
+    },
+    {
+      "id": "SFX_151",
+      "internal_name": "WPN_FLAMER_LOOP",
+      "category": "weapon",
+      "description": "Flamethrower continuous burn loop",
+      "usage_notes": "Looping sound while flamethrower trigger held",
+      "n64_ancestor": "BFD_WPN_FLAMER_LOOP"
+    },
+    {
+      "id": "SFX_152",
+      "internal_name": "WPN_CHAINSAW_IDLE_REV",
+      "category": "weapon",
+      "description": "Chainsaw idle revving sound",
+      "usage_notes": "Played on ASID_401 FIN_CHAINSAW_H start; loops during execution",
+      "n64_ancestor": "BFD_WPN_CHAINSAW_IDLE"
+    },
+    {
+      "id": "SFX_153",
+      "internal_name": "WPN_CHAINSAW_GORE_IMPACT",
+      "category": "gore",
+      "description": "Chainsaw cutting through flesh/bone impact",
+      "usage_notes": "Triggered by ASID_401 at gore_frame 14; paired with VFX_016/VFX_012",
+      "n64_ancestor": "BFD_WPN_CHAINSAW_IMPACT"
+    },
+    {
+      "id": "SFX_301",
+      "internal_name": "HAZ_AIRLOCK_DOOR_CLOSE",
+      "category": "hazard",
+      "description": "Heavy airlock door closing mechanism",
+      "usage_notes": "Alien Base hub hazard; warns players of gas chamber activation",
+      "n64_ancestor": null
+    },
+    {
+      "id": "SFX_302",
+      "internal_name": "HAZ_GAS_CHAMBER_FILL",
+      "category": "hazard",
+      "description": "Toxic gas filling chamber sound",
+      "usage_notes": "Plays during ENV_051; builds tension before instant-win SEQ_003",
+      "n64_ancestor": null
+    },
+    {
+      "id": "SFX_303",
+      "internal_name": "HAZ_ELECTRIC_SPARK_BURST",
+      "category": "hazard",
+      "description": "Electrical spark burst from damaged equipment",
+      "usage_notes": "Beach Dead bunker interiors; occasional ambient hazard",
+      "n64_ancestor": null
+    },
+    {
+      "id": "SFX_304",
+      "internal_name": "ENV_EGG_PULSE_LOOP",
+      "category": "ambient",
+      "description": "Alien egg pulsing/throbbing ambient loop",
+      "usage_notes": "Proximity loop for OBJ_050 Alien Egg objective; intensifies near destruction",
+      "n64_ancestor": null
+    },
+    {
+      "id": "SFX_501",
+      "internal_name": "VO_SHC_PAIN_SHORT_01",
+      "category": "voice",
+      "description": "SHC soldier short pain vocalization",
+      "usage_notes": "Standard hit reaction; respects profanity toggle (RO-203)",
+      "n64_ancestor": "BFD_VO_SHC_PAIN_01"
+    },
+    {
+      "id": "SFX_502",
+      "internal_name": "VO_SHC_DEATH_01",
+      "category": "voice",
+      "description": "SHC soldier death scream",
+      "usage_notes": "Played on character death; alternate bleeped variant if profanity disabled",
+      "n64_ancestor": "BFD_VO_SHC_DEATH_01"
+    },
+    {
+      "id": "SFX_503",
+      "internal_name": "VO_SHC_TAUNT_01",
+      "category": "voice",
+      "description": "SHC soldier taunt vocalization",
+      "usage_notes": "Triggered by PlayerAction::Taunt; rotation of 8 variants",
+      "n64_ancestor": "BFD_VO_SHC_TAUNT_01"
+    },
+    {
+      "id": "SFX_667",
+      "internal_name": "VO_CONK_PAIN_01",
+      "category": "voice",
+      "description": "Conk (Tediz) pain grunt",
+      "usage_notes": "Tediz faction hit reaction",
+      "n64_ancestor": "BFD_VO_CONK_PAIN_01"
+    },
+    {
+      "id": "SFX_668",
+      "internal_name": "VO_CONK_DEATH_01",
+      "category": "voice",
+      "description": "Conk (Tediz) death cry",
+      "usage_notes": "Tediz faction death",
+      "n64_ancestor": "BFD_VO_CONK_DEATH_01"
+    },
+    {
+      "id": "SFX_701",
+      "internal_name": "VO_ALIEN_SCREECH_01",
+      "category": "voice",
+      "description": "Alien aggressive screech",
+      "usage_notes": "Alien faction attack vocal; also used for ASID_900 pounce",
+      "n64_ancestor": "BFD_VO_ALIEN_SCREECH_01"
+    },
+    {
+      "id": "SFX_702",
+      "internal_name": "VO_ALIEN_DEATH_01",
+      "category": "voice",
+      "description": "Alien death thrash sound",
+      "usage_notes": "Alien faction death; triggers gore VFX on spawn",
+      "n64_ancestor": "BFD_VO_ALIEN_DEATH_01"
+    },
+    {
+      "id": "SFX_901",
+      "internal_name": "VO_FRENCHIE_YELL_01",
+      "category": "voice",
+      "description": "Frenchies faction battle yell",
+      "usage_notes": "Frenchies faction taunt/aggro",
+      "n64_ancestor": "BFD_VO_FRENCHIE_01"
+    },
+    {
+      "id": "SFX_902",
+      "internal_name": "VO_FRENCHIE_DEATH_01",
+      "category": "voice",
+      "description": "Frenchies faction death cry",
+      "usage_notes": "Frenchies faction death",
+      "n64_ancestor": "BFD_VO_FRENCHIE_DEATH_01"
+    }
+  ],
+  "vfx": [
+    {
+      "id": "VFX_012",
+      "internal_name": "PRT_GORE_LIME_SPURT",
+      "category": "gore",
+      "decal_id": "PRT_101",
+      "description": "Lime green blood spurt from alien/Tediz wounds",
+      "usage_notes": "Default gore for alien flesh; spawns with PRT_101 decal; triggered by ASID_401/ASID_406",
+      "n64_ancestor": "BFD_VFX_LIME_BLOOD"
+    },
+    {
+      "id": "VFX_013",
+      "internal_name": "PRT_GORE_BRAIN_MATTER",
+      "category": "gore",
+      "decal_id": "PRT_101",
+      "description": "Brain matter ejecta from headshots",
+      "usage_notes": "Headshot-specific gore; ASID_900 facebite uses this; lime-green for aliens",
+      "n64_ancestor": "BFD_VFX_BRAIN_SPLATTER"
+    },
+    {
+      "id": "VFX_014",
+      "internal_name": "PRT_GORE_LIMB_DETACH",
+      "category": "gore",
+      "decal_id": null,
+      "description": "Limb detachment particle burst",
+      "usage_notes": "Spawned when GoreChunkComponent detaches; no decal, physics-driven",
+      "n64_ancestor": null
+    },
+    {
+      "id": "VFX_015",
+      "internal_name": "PRT_GORE_BONE_CHIP",
+      "category": "gore",
+      "decal_id": null,
+      "description": "Bone chip/shard particles",
+      "usage_notes": "High-impact weapon hits (shotgun, bazooka); mixes with VFX_018",
+      "n64_ancestor": null
+    },
+    {
+      "id": "VFX_016",
+      "internal_name": "PRT_GORE_HEAVY_SLICE",
+      "category": "gore",
+      "decal_id": "PRT_102",
+      "description": "Heavy blade slice effect (chainsaw/katana)",
+      "usage_notes": "ASID_401/ASID_406 primary VFX; spawns PRT_102 deep cut decal",
+      "n64_ancestor": "BFD_VFX_CHAINSAW_SLICE"
+    },
+    {
+      "id": "VFX_017",
+      "internal_name": "PRT_GORE_EXPLOSIVE_DISMEMBER",
+      "category": "gore",
+      "decal_id": "PRT_103",
+      "description": "Explosive dismemberment cloud",
+      "usage_notes": "Bazooka/rocket direct hits; spawns multiple GoreChunks + PRT_103 scorch",
+      "n64_ancestor": "BFD_VFX_ROCKET_GORE"
+    },
+    {
+      "id": "VFX_018",
+      "internal_name": "PRT_GORE_BONE_SHARD",
+      "category": "gore",
+      "decal_id": "PRT_103",
+      "description": "Bone shard spray from high-caliber impacts",
+      "usage_notes": "MG nest kills, bazooka splash; pairs with PRT_103 scorch marks",
+      "n64_ancestor": null
+    },
+    {
+      "id": "VFX_020",
+      "internal_name": "SPARK_METAL_IMPACT",
+      "category": "weapon",
+      "decal_id": null,
+      "description": "Metal spark shower from weapon impacts on hard surfaces",
+      "usage_notes": "Gore Manager spawns this INSTEAD of gore when MaterialTag == MAT_METAL_BASE; chainsaw on metal",
+      "n64_ancestor": "BFD_VFX_METAL_SPARK"
+    },
+    {
+      "id": "VFX_080",
+      "internal_name": "HAZ_STEAM_VENT",
+      "category": "hazard",
+      "decal_id": null,
+      "description": "Steam vent cloud from damaged pipes",
+      "usage_notes": "Alien Base gas chamber vents; ambient hazard visual",
+      "n64_ancestor": null
+    },
+    {
+      "id": "VFX_110",
+      "internal_name": "WFX_MUZZLE_FLAMETHROWER",
+      "category": "weapon",
+      "decal_id": null,
+      "description": "Flamethrower muzzle flash cone",
+      "usage_notes": "Continuous muzzle VFX while SFX_151 loops",
+      "n64_ancestor": "BFD_VFX_FLAMER_MUZZLE"
+    },
+    {
+      "id": "VFX_111",
+      "internal_name": "WPN_IMPACT_ACID_SPLASH",
+      "category": "weapon",
+      "decal_id": null,
+      "description": "Green acid/chemical splash on impact",
+      "usage_notes": "Reused for Alien Base gas clouds; matches lime gore aesthetic",
+      "n64_ancestor": null
+    },
+    {
+      "id": "VFX_112",
+      "internal_name": "WPN_MUZZLE_KATANA_SWING",
+      "category": "weapon",
+      "decal_id": null,
+      "description": "Katana swing trail effect",
+      "usage_notes": "ASID_406 visual flourish; no sound",
+      "n64_ancestor": null
+    },
+    {
+      "id": "VFX_113",
+      "internal_name": "WPN_SHELL_CASING_EJECT",
+      "category": "weapon",
+      "decal_id": null,
+      "description": "Shell casing ejection particle",
+      "usage_notes": "Shotgun/MG reloads; Beach Dead MG nests; physics-enabled falling casings",
+      "n64_ancestor": "BFD_VFX_SHELL_EJECT"
+    }
+  ],
+  "prt": [
+    {
+      "id": "PRT_101",
+      "internal_name": "DECAL_BLOOD_POOL_LIME",
+      "material_tag": "MAT_FLESH",
+      "description": "Lime green blood pool decal",
+      "usage_notes": "Default alien/Tediz blood pool; spawned by VFX_012/VFX_013; max 200 decals FIFO",
+      "n64_ancestor": "BFD_DECAL_LIME_POOL"
+    },
+    {
+      "id": "PRT_102",
+      "internal_name": "DECAL_DEEP_CUT_SLICE",
+      "material_tag": "MAT_FLESH",
+      "description": "Deep blade cut mark",
+      "usage_notes": "Chainsaw/katana executions (ASID_401/406); persists longer than pools",
+      "n64_ancestor": "BFD_DECAL_CHAINSAW_CUT"
+    },
+    {
+      "id": "PRT_103",
+      "internal_name": "DECAL_SCORCH_MARK",
+      "material_tag": "MAT_CONCRETE",
+      "description": "Explosive scorch/burn mark",
+      "usage_notes": "Bazooka/explosive gore (VFX_017/VFX_018); also Beach Dead bunker impacts",
+      "n64_ancestor": "BFD_DECAL_SCORCH"
+    }
+  ],
+  "env": [
+    {
+      "id": "ENV_050",
+      "internal_name": "HAZ_AIRLOCK_DOOR_CLOSE",
+      "category": "hazard",
+      "description": "Airlock door closing event sequence",
+      "usage_notes": "Alien Base hub; triggers SFX_301 then ENV_051; warning phase",
+      "n64_ancestor": null
+    },
+    {
+      "id": "ENV_051",
+      "internal_name": "HAZ_GAS_CHAMBER_FILL",
+      "category": "hazard",
+      "description": "Gas chamber toxic fill event",
+      "usage_notes": "Follows ENV_050; spawns VFX_080 steam + green fog; leads to SEQ_003 instant win",
+      "n64_ancestor": null
+    },
+    {
+      "id": "ENV_052",
+      "internal_name": "HAZ_ELECTRIC_SPARK",
+      "category": "hazard",
+      "description": "Intermittent electric spark hazard",
+      "usage_notes": "Beach Dead destroyed bunkers; random interval; minor damage + VFX",
+      "n64_ancestor": null
+    },
+    {
+      "id": "ENV_304",
+      "internal_name": "ENV_EGG_PULSE",
+      "category": "ambient",
+      "description": "Alien egg proximity pulse event",
+      "usage_notes": "OBJ_050 Alien Egg objective; plays SFX_304 loop; intensifies on damage stages",
+      "n64_ancestor": null
+    }
+  ],
+  "hud": [
+    {
+      "id": "HUD_001",
+      "internal_name": "RETICLE_PISTOL",
+      "category": "ui",
+      "description": "Pistol crosshair reticle",
+      "usage_notes": "Default sidearm; N64-style simple dot; no perk icons",
+      "n64_ancestor": "BFD_HUD_RETICLE_PISTOL"
+    },
+    {
+      "id": "HUD_002",
+      "internal_name": "RETICLE_SHOTGUN",
+      "category": "ui",
+      "description": "Shotgun spread reticle",
+      "usage_notes": "Dynamic spread based on movement; mimics BFD layout",
+      "n64_ancestor": "BFD_HUD_RETICLE_SHOTGUN"
+    },
+    {
+      "id": "HUD_003",
+      "internal_name": "RETICLE_CHAINGUN",
+      "category": "ui",
+      "description": "Chaingun heavy weapon reticle",
+      "usage_notes": "Large circular reticle; expands during sustained fire",
+      "n64_ancestor": "BFD_HUD_RETICLE_CHAINGUN"
+    },
+    {
+      "id": "HUD_010",
+      "internal_name": "COUNTER_HEALTH",
+      "category": "ui",
+      "description": "Health counter display",
+      "usage_notes": "N64-style numeric + chocolate bar (if health is chocolate pickup); no XP bars",
+      "n64_ancestor": "BFD_HUD_HEALTH"
+    },
+    {
+      "id": "HUD_011",
+      "internal_name": "COUNTER_ARMOR",
+      "category": "ui",
+      "description": "Armor/vest counter display",
+      "usage_notes": "Numeric display; vest icon; no class-based armor systems",
+      "n64_ancestor": "BFD_HUD_ARMOR"
+    },
+    {
+      "id": "HUD_012",
+      "internal_name": "COUNTER_AMMO",
+      "category": "ui",
+      "description": "Ammo counter display",
+      "usage_notes": "Current/magazine format; mimics BFD bottom-right placement",
+      "n64_ancestor": "BFD_HUD_AMMO"
+    }
+  ],
+  "seq": [
+    {
+      "id": "SEQ_001",
+      "internal_name": "SEQ_MATCH_START",
+      "category": "cinematic",
+      "description": "Match start countdown sequence",
+      "usage_notes": "Transition from WaitingForPlayers to InProgress; 3-2-1 GO style",
+      "n64_ancestor": "BFD_SEQ_MATCH_START"
+    },
+    {
+      "id": "SEQ_002",
+      "internal_name": "SEQ_SUDDEN_DEATH",
+      "category": "cinematic",
+      "description": "Sudden Death activation sequence",
+      "usage_notes": "Triggered when timer expires with tied score; red screen overlay + music change",
+      "n64_ancestor": "BFD_SEQ_SUDDEN_DEATH"
+    },
+    {
+      "id": "SEQ_003",
+      "internal_name": "SEQ_INSTANT_WIN_GAS",
+      "category": "cinematic",
+      "description": "Gas chamber instant-win sequence",
+      "usage_notes": "The Heist gas trap; all players in chamber die immediately; skip scoreboard",
+      "n64_ancestor": null
+    },
+    {
+      "id": "SEQ_004",
+      "internal_name": "SEQ_POST_MATCH",
+      "category": "cinematic",
+      "description": "Post-match scoreboard sequence",
+      "usage_notes": "Displays final scores; no XP/class stats; N64-style simplicity",
+      "n64_ancestor": "BFD_SEQ_POST_MATCH"
+    }
+  ]
+}

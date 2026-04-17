@@ -1,168 +1,239 @@
-# Animation State Registry (ASID)
+# Animation State Registry
 
-This document is the master registry for all Animation State IDs (ASIDs) used by Uncut multiplayer characters and NPCs.  
-Each ASID entry is engine‑agnostic: Unreal, Unity, and Godot map these IDs to their own animation assets via engine‑local mapping files.
+## Overview
 
----
-
-## Table format
-
-For each ASID, define:
-
-- **ASID**: Three‑digit numeric identifier.
-- **Internal Name**: Short code used in code and tools.
-- **Role**: High‑level description of the move or state.
-- **Lock Type**: How strongly the state locks the actor (e.g., Hard Lock, Movement Lock, Soft Lock).
-- **Interrupt Priority**: Lower means harder to interrupt (0 is non‑interruptible during active window).
-- **Gore Trigger Frame**: Animation frame where gore or kill logic fires (if applicable).
-- **Duration**: Typical duration in seconds (if applicable).
-- **SFX IDs**: Primary sound effect IDs.
-- **VFX IDs**: Primary visual effect IDs.
-- **Notes**: Extra behavior details.
+The Animation State Registry defines all animation states (ASID) with lock behavior, SFX/VFX triggers, and gore frame events. This extends **RO-201** and integrates with the **Audio/Visual Registry** (Task B1/B2).
 
 ---
 
-## ASID‑012 HIT_STUN_DAZE
+## ASID Numeric Ranges
 
-- **ASID**: 012  
-- **Internal Name**: HITSTUN_DAZE  
-- **Role**: Stun lock after heavy impact; cancels movement and turning for a brief window.  
-- **Lock Type**: Soft Lock (movement and look damped; limited input allowed).  
-- **Interrupt Priority**: 2 (can be overridden by executions and higher‑priority states).  
-- **Gore Trigger Frame**: N/A  
-- **Duration**: 1.5 seconds (tunable per weapon).  
-- **SFX IDs**: SFX110 (stun impact grunt), SFX111 (ringing ears loop).  
-- **VFX IDs**: VFX030 (screen vignette / stars).  
-- **Notes**:  
-  - Applied by heavy weapons on non‑lethal body hits.  
-  - While active, movement speed is reduced and camera turn rate is clamped.  
+| Range | Category | Description |
+|-------|----------|-------------|
+| 001–099 | Core Movement | Walk, run, crouch, jump, land |
+| 100–199 | Weapon Fire | Primary fire, alt-fire, reload |
+| 200–299 | Hit Reactions | Flinch, stagger, knockback |
+| 300–399 | Death Animations | Ragdoll trigger, death poses |
+| 400–499 | Finishers/Executions | Hard-lock brutal animations |
+| 450–479 | Advanced Movement | Crouch walk, slide, mantle |
+| 500–599 | Idles/Emotes | Idle variants, taunts, special |
+| 900–999 | Alien/Creature | Pounce, facebite, tailwhip |
 
 ---
 
-## ASID‑050 HLD_HEAVY_WALK
+## Seeded ASID Entries
 
-- **ASID**: 050  
-- **Internal Name**: HLD_HEAVY_WALK  
-- **Role**: Heavy carry locomotion; used when carrying large objectives or heavy weapons.  
-- **Lock Type**: Movement Mode Lock (overrides base locomotion; does not hard‑lock animations).  
-- **Interrupt Priority**: 3 (low; can be overridden by stun and executions).  
-- **Gore Trigger Frame**: N/A  
-- **Duration**: As long as the heavy item is held.  
-- **SFX IDs**: SFX120 (heavy footstep loop), SFX121 (strain grunts).  
-- **VFX IDs**: None mandatory.  
-- **Notes**:  
-  - Enforces **No Jump** flag and reduces movement speed to ~60% of baseline.  
-  - Weapon firing is restricted based on weapon rules (e.g., no dual‑wield, slower ADS).  
+### Finishers (Hard Lock, High Priority)
 
----
+#### ASID_401 – FIN_CHAINSAW_H
+- **Lock Type**: Hard
+- **Interrupt Priority**: 9
+- **Description**: Chainsaw horizontal execution; victim bisected at waist
+- **sfx_on_start**: `["SFX_152"]` (chainsaw idle rev)
+- **sfx_on_gore**: `["SFX_153"]` (chainsaw gore impact)
+- **vfx_on_gore**: `["VFX_016", "VFX_012"]` (heavy slice + lime spurt)
+- **gore_decal**: `PRT_102` (deep cut slice)
+- **gore_frame**: 14
+- **honors_n64_no_jump_heavy**: false (execution locks all movement)
+- **n64_ancestor**: `BFD_ANIM_CHAINSAW_EXEC`
+- **usage_notes**: Victim cannot cancel; spawns 2 GoreChunks (torso halves); decal persists 60s
 
-## ASID‑400 FIN_CHAINSAW_V
+#### ASID_406 – FIN_KATANA_STAB
+- **Lock Type**: Hard
+- **Interrupt Priority**: 8
+- **Description**: Katana thrust through chest; single-target impalement
+- **sfx_on_start**: `[]` (silent approach)
+- **sfx_on_gore**: `["SFX_501"]` (victim pain vocal)
+- **vfx_on_gore**: `["VFX_016"]` (heavy slice trail)
+- **gore_decal**: `PRT_101` (small floor blood pool)
+- **gore_frame**: 8
+- **honors_n64_no_jump_heavy**: false
+- **n64_ancestor**: null
+- **usage_notes**: Cleaner than chainsaw; no dismemberment, just puncture
 
-- **ASID**: 400  
-- **Internal Name**: FIN_CHAINSAW_V  
-- **Role**: Chainsaw vertical execution; single‑target decapitation / bisect.  
-- **Lock Type**: Hard Lock (attacker and victim locked until gore frame resolves).  
-- **Interrupt Priority**: 0 (cannot be interrupted by normal gameplay once committed).  
-- **Gore Trigger Frame**: 42  
-- **Duration**: ~1.0–1.2 seconds total (from wind‑up to follow‑through).  
-- **SFX IDs**: SFX200 (chainsaw rev), SFX201 (impact), SFX800 (gore splat).  
-- **VFX IDs**: VFX010 (lime‑green gore burst), VFX015 (decap spurts).  
-- **Notes**:  
-  - During frames before the Gore Trigger, the victim is invulnerable to map hazards (e.g., gas) to avoid random cancels.  
-  - On the Gore Trigger frame, swap victim head mesh to gore mesh and apply instant kill.  
+#### ASID_410 – FIN_NECK_SNAP
+- **Lock Type**: Hard
+- **Interrupt Priority**: 7
+- **Description**: Rear takedown; cervical snap
+- **sfx_on_start**: `[]`
+- **sfx_on_gore**: `["SFX_502"]` (death crunch sound)
+- **vfx_on_gore**: `[]` (no visible gore, internal injury)
+- **gore_decal**: null
+- **gore_frame**: 6
+- **honors_n64_no_jump_heavy**: false
+- **n64_ancestor**: `BFD_ANIM_NECK_SNAP`
+- **usage_notes**: Silent kill; no blood unless head explodes (rare variant)
 
----
-
-## ASID‑405 FIN_SABRE_H
-
-- **ASID**: 405  
-- **Internal Name**: FIN_SABRE_H  
-- **Role**: Katana horizontal execution; 360‑degree decap sweep.  
-- **Lock Type**: Hard Lock.  
-- **Interrupt Priority**: 0.  
-- **Gore Trigger Frame**: 38  
-- **Duration**: ~1.0 seconds.  
-- **SFX IDs**: SFX210 (blade whoosh), SFX211 (impact), SFX801 (multi‑gore slice).  
-- **VFX IDs**: VFX011 (arc slash trail), VFX016 (multi‑head spray).  
-- **Notes**:  
-  - Applies instant kill to valid targets within 1.5 units radius of the attacker during a 2–3 frame window around the Gore Trigger.  
-  - Map hazards ignore the victim during the locked window, same as other FIN states.  
-
----
-
-## ASID‑666 SPEC_GREGG_REAP
-
-- **ASID**: 666  
-- **Internal Name**: SPEC_GREGG_REAP  
-- **Role**: Gregg’s scythe reap execution; unique special finisher.  
-- **Lock Type**: Hard Lock.  
-- **Interrupt Priority**: 0.  
-- **Gore Trigger Frame**: 50  
-- **Duration**: ~1.4 seconds.  
-- **SFX IDs**: SFX300 (scythe swing), SFX301 (soul rip), SFX802 (heavy gore).  
-- **VFX IDs**: VFX020 (soul trail), VFX017 (large gore plume).  
-- **Notes**:  
-  - Kill condition is neck hitbox overlap during the reap window.  
-  - Always spawns a stronger gore effect (e.g., red variant) to distinguish from standard executes.  
+#### ASID_411 – FIN_ALIEN_TAILWHIP
+- **Lock Type**: Hard
+- **Interrupt Priority**: 8
+- **Description**: Alien tail impalement through torso
+- **sfx_on_start**: `["SFX_701"]` (alien screech)
+- **sfx_on_gore**: `["SFX_702"]` (alien death as tail withdraws)
+- **vfx_on_gore**: `["VFX_013", "VFX_012"]` (brain matter + lime spurt)
+- **gore_decal**: `PRT_101`
+- **gore_frame**: 10
+- **honors_n64_no_jump_heavy**: false
+- **n64_ancestor**: `BFD_ANIM_ALIEN_TAIL`
+- **usage_notes**: Alien-specific finisher; victim lifted off ground
 
 ---
 
-## ASID‑900 ALN_POUNCE_STRK
+### Advanced Movement (Soft Lock or None)
 
-- **ASID**: 900  
-- **Internal Name**: ALN_POUNCE_STRK  
-- **Role**: Alien pounce strike; high‑velocity leap that transitions to facebite on hit.  
-- **Lock Type**: Movement Lock (attacker movement overridden; not full hard lock until hit confirmed).  
-- **Interrupt Priority**: 1 (can be interrupted by some high‑priority hits before contact).  
-- **Gore Trigger Frame**: N/A (no gore; sets up ASID901).  
-- **Duration**: ~0.6 seconds (from leap start to contact).  
-- **SFX IDs**: SFX400 (alien screech), SFX401 (pounce impact).  
-- **VFX IDs**: VFX040 (motion blur streak), optional camera shake.  
-- **Notes**:  
-  - If the target is within ~2.0 units at the impact window, both attacker and victim snap into ASID901.  
-  - While the leap is active, the alien ignores normal movement input.  
+#### ASID_450 – MOV_CROUCH_WALK
+- **Lock Type**: None
+- **Interrupt Priority**: 1
+- **Description**: Slow, quiet crouch walk
+- **sfx_on_start**: `[]`
+- **vfx_on_gore**: null
+- **gore_frame**: null
+- **honors_n64_no_jump_heavy**: true (cannot jump while crouch-walking with heavy)
+- **n64_ancestor**: `BFD_ANIM_CROUCH_WALK`
+- **usage_notes**: Reduced footstep audio; used for stealth approach
 
----
+#### ASID_451 – MOV_SLIDE
+- **Lock Type**: Soft
+- **Interrupt Priority**: 3
+- **Description**: Knee slide from sprint
+- **sfx_on_start**: `[]`
+- **vfx_on_gore**: null
+- **gore_frame**: null
+- **honors_n64_no_jump_heavy**: true (slide cancels if holding heavy)
+- **n64_ancestor**: null
+- **usage_notes**: Can fire pistol during slide; chaingun/bazooka cancel slide
 
-## ASID‑901 ALN_BITE_EXEC
-
-- **ASID**: 901  
-- **Internal Name**: ALN_BITE_EXEC  
-- **Role**: Alien facebite execution; cinematic finisher after a successful pounce.  
-- **Lock Type**: Hard Lock (attacker and victim).  
-- **Interrupt Priority**: 0.  
-- **Gore Trigger Frame**: 60  
-- **Duration**: ~1.2 seconds.  
-- **SFX IDs**: SFX402 (bite crunch), SFX403 (scream cut‑off), SFX803 (facebite gore).  
-- **VFX IDs**: VFX010 (lime‑green gore), VFX018 (head burst).  
-- **Notes**:  
-  - At the Gore Trigger frame, replace victim head with OBJ_GORE_MUSH and apply instant kill.  
-  - Hazard volumes must not tick damage on attacker or victim while this ASID is active and locked.  
-
----
-
-## ASID‑920 ZMB_CRAWL_MOVE
-
-- **ASID**: 920  
-- **Internal Name**: ZMB_CRAWL_MOVE  
-- **Role**: Zombie crawl locomotion; post‑maim state after heavy body damage.  
-- **Lock Type**: Movement Mode Lock (changes locomotion, not a one‑shot execution).  
-- **Interrupt Priority**: 2 (can be elevated to executions or hard locks).  
-- **Gore Trigger Frame**: N/A  
-- **Duration**: Until killed (e.g., headshot) or despawned.  
-- **SFX IDs**: SFX500 (crawl groan loop), SFX501 (dragging limbs).  
-- **VFX IDs**: VFX050 (blood smear trail, optional decals).  
-- **Notes**:  
-  - Entered when a zombie takes enough body/limb damage without a lethal headshot.  
-  - Movement speed is very low; hitbox is adjusted closer to the ground, and only specific weapons / headshots can finish the zombie.  
+#### ASID_050 – HEAVY_CARRY
+- **Lock Type**: None (passive state)
+- **Interrupt Priority**: 0
+- **Description**: Carrying heavy weapon (chaingun, bazooka)
+- **sfx_on_start**: `[]`
+- **vfx_on_gore**: null
+- **gore_frame**: null
+- **honors_n64_no_jump_heavy**: **true** (CRITICAL: disables jump entirely)
+- **n64_ancestor**: `BFD_STATE_HEAVY_WEAPON`
+- **usage_notes**: Movement speed reduced 20%; jump disabled; climb mantles slower
 
 ---
 
-## Execution and Hazard Priority Rule
+### Idles/Emotes
 
-- While an actor is in any **execution ASID** (FIN_ prefix or SPEC execution) and is in the **Hard Lock** phase, environmental hazard damage (e.g., gas volumes, acid) is suspended for that actor until:  
-  - The Gore Trigger frame has passed and any kill logic is resolved, or  
-  - The animation exits the Hard Lock state.  
+#### ASID_500 – IDLE_DRUNK
+- **Lock Type**: None (interruptible)
+- **Interrupt Priority**: 0
+- **Description**: Swaying drunk idle (easter egg)
+- **sfx_on_start**: `["SFX_503"]` (drunk burp vocal)
+- **vfx_on_gore**: null
+- **gore_frame**: null
+- **honors_n64_no_jump_heavy**: false
+- **n64_ancestor**: `BFD_ANIM_IDLE_DRUNK`
+- **usage_notes**: Random 1% chance on spawn; purely cosmetic
 
-Execution ASIDs currently include: **400**, **405**, **666**, **901**.  
-Additional executions should be added to this table and to the helper functions in each engine.
+#### ASID_501 – IDLE_PEE
+- **Lock Type**: Soft (can cancel with fire/move)
+- **Interrupt Priority**: 1
+- **Description**: Urination idle (N64 easter egg revival)
+- **sfx_on_start**: `[]` (stream sound optional)
+- **vfx_on_gore**: null
+- **gore_frame**: null
+- **honors_n64_no_jump_heavy**: false
+- **n64_ancestor**: `BFD_ANIM_IDLE_PEE`
+- **usage_notes**: Triggers after 60s idle; creates puddle VFX (not in AV registry; engine-specific)
+
+---
+
+### Alien Creature Attacks
+
+#### ASID_900 – ALIEN_POUNCE
+- **Lock Type**: Hard (on victim)
+- **Interrupt Priority**: 9
+- **Description**: Alien leaps and pins victim
+- **sfx_on_start**: `["SFX_701"]` (screech)
+- **sfx_on_gore**: `["SFX_702", "SFX_502"]` (alien + victim death)
+- **vfx_on_gore**: `["VFX_013"]` (brain matter from facebite)
+- **gore_decal**: `PRT_101`
+- **gore_frame**: 12
+- **honors_n64_no_jump_heavy**: false
+- **n64_ancestor**: `BFD_ANIM_ALIEN_POUNCE`
+- **usage_notes**: Instant-kill if victim < 50 HP; otherwise QTE escape
+
+#### ASID_901 – ALIEN_FACEBITE
+- **Lock Type**: Hard
+- **Interrupt Priority**: 10
+- **Description**: Facehugger-style head bite
+- **sfx_on_start**: `["SFX_701"]`
+- **sfx_on_gore**: `["SFX_502"]` (neck crunch)
+- **vfx_on_gore**: `["VFX_013", "VFX_012"]` (brain + lime)
+- **gore_decal**: `PRT_101`
+- **gore_frame**: 8
+- **honors_n64_no_jump_heavy**: false
+- **n64_ancestor**: `BFD_ANIM_FACEBITE`
+- **usage_notes**: Head detaches as GoreChunk; body slumps
+
+---
+
+## N64 No-Jump with Heavy Guns Enforcement
+
+Per **RO-203**, the following ASIDs enforce the classic rule:
+
+| ASID | Name | Jump Behavior |
+|------|------|---------------|
+| `ASID_050` | HEAVY_CARRY | **Jump completely disabled** |
+| `ASID_450` | MOV_CROUCH_WALK | Jump disabled if heavy equipped |
+| `ASID_451` | MOV_SLIDE | Slide cancels if heavy equipped |
+| `ASID_100–199` | Weapon Fire (Chaingun/Bazooka) | Jump allowed but accuracy penalty |
+
+Implementation note: Check `UncutCharacter->GetCurrentASID()` and `UncutCharacter->GetEquippedWeapon()->IsHeavy()` before processing jump input.
+
+---
+
+## Cross-Reference Validation
+
+CI validates (Task G1):
+
+1. All `sfx_*` IDs exist in `avregistryv1.json`
+2. All `vfx_*` IDs exist in `avregistryv1.json`
+3. All `gore_decal` PRT IDs exist in `avregistryv1.json`
+4. `gore_frame` is within animation length (engine-side check)
+
+---
+
+## Files
+
+| File | Purpose |
+|------|---------|
+| `schemas/systems/asidregistryv1.schema.json` | JSON Schema |
+| `data/systems/asidregistryv1.json` | Full ASID data (to be populated) |
+| `docs/systems/AnimationStateRegistry.md` | This documentation |
+
+---
+
+## Example: Wiring ASID to Gore Manager
+
+```cpp
+// UE5: Animation notify for gore frame
+void UAnimNotify_GoreEvent::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+{
+    const FAnimationStateEntry& Entry = GetASIDEntry(MeshComp->GetOwner());
+    
+    // Spawn VFX
+    for (const FString& VfxId : Entry.vfx_on_gore) {
+        GoreManager->SpawnVFX(VfxId, MeshComp->GetComponentLocation());
+    }
+    
+    // Apply decal
+    if (!Entry.gore_decal.IsEmpty()) {
+        GoreManager->ApplyDecal(Entry.gore_decal, MeshComp);
+    }
+    
+    // Play SFX
+    for (const FString& SfxId : Entry.sfx_on_gore) {
+        UGameplayStatics::PlaySoundAtLocation(MeshComp->GetWorld(), SfxId, ...);
+    }
+    
+    // Spawn GoreChunks (dismembered limbs)
+    if (Entry.lock_type == "Hard" && Entry.interrupt_priority >= 8) {
+        GoreManager->SpawnDismemberment(MeshComp->GetOwner(), Entry.gore_decal);
+    }
+}
+```
