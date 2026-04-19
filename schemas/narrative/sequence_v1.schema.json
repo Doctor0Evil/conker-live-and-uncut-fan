@@ -1,0 +1,283 @@
+{
+  "$id": "https://github.com/Doctor0Evil/conker-live-and-uncut-fan/schemas/narrative/sequence_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Conker Narrative Sequence v1",
+  "type": "object",
+  "required": ["id", "title", "entry_beat_id", "beats"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference for validation"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^SEQ_[A-Z0-9_]+$",
+      "description": "Unique sequence identifier (e.g., SEQ_ALIENBASE_INTRO_CONKER)"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable title for the sequence"
+    },
+    "entry_beat_id": {
+      "type": "string",
+      "description": "Beat ID where this sequence begins; must exist in beats map"
+    },
+    "beats": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/narrative_beat"
+      },
+      "description": "Map of beat IDs to NarrativeBeat definitions"
+    },
+    "exit_conditions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/beat_condition" },
+      "description": "Conditions that determine when the sequence is complete"
+    },
+    "ai_metadata": {
+      "$ref": "#/$defs/ai_sequence_metadata",
+      "description": "Metadata for AI-Chat conditioning and filtering"
+    }
+  },
+  "allOf": [
+    {
+      "description": "Entry beat must exist in beats map",
+      "if": {
+        "properties": {
+          "entry_beat_id": { "type": "string" }
+        }
+      },
+      "then": {
+        "properties": {
+          "beats": {
+            "required": ["entry_beat_id"]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "narrative_beat": {
+      "type": "object",
+      "required": ["id", "label", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^BEAT_[A-Z0-9_]+$",
+          "description": "Unique beat identifier"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable label"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["intro", "trigger", "action", "objective", "taunt", "transition", "outro"],
+          "description": "Beat type controlling pacing and presentation"
+        },
+        "sfx_id": {
+          "type": "string",
+          "pattern": "^SFX_\\d+$",
+          "description": "Optional conker_registry SFX ID"
+        },
+        "vfx_id": {
+          "type": "string", 
+          "pattern": "^VFX_\\d+$",
+          "description": "Optional conker_registry VFX ID"
+        },
+        "asid_id": {
+          "type": "string",
+          "pattern": "^ASID_\\d+$",
+          "description": "Optional conker_registry ASID for animation"
+        },
+        "dialog_lines": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/dialog_line" },
+          "description": "Dialog lines for this beat"
+        },
+        "conditions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/beat_condition" },
+          "description": "Conditions that must be true to trigger this beat"
+        },
+        "effects": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/beat_effect" },
+          "description": "Effects that occur when beat completes"
+        },
+        "branches": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/beat_branch" },
+          "description": "Optional branching paths for player choices"
+        },
+        "ai_metadata": {
+          "$ref": "#/$defs/ai_beat_metadata",
+          "description": "Metadata for AI-Chat conditioning"
+        }
+      }
+    },
+    "dialog_line": {
+      "type": "object",
+      "required": ["speaker", "text"],
+      "properties": {
+        "speaker": {
+          "type": "string",
+          "enum": ["CONKER", "GREGG", "BERRI", "TEDIZ", "SHC", "NEO_CONK", "NARRATOR"],
+          "description": "Character speaking this line"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Dialog text; supports {variable} templating"
+        },
+        "emotion": {
+          "type": "string",
+          "enum": ["Neutral", "Sarcastic", "Angry", "Drunk", "Fearful", "Triumphant", "Confused", "Flirtatious"],
+          "description": "Emotion tag for voice direction or UI"
+        },
+        "duration_hint_s": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Suggested display duration in seconds"
+        },
+        "sfx_override": {
+          "type": "string",
+          "pattern": "^SFX_\\d+$",
+          "description": "Optional registry SFX to play with this line"
+        }
+      }
+    },
+    "beat_condition": {
+      "type": "object",
+      "required": ["type", "parameter", "operator", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["HasItem", "HealthThreshold", "ZoneActive", "NpcAlive", "GameRule", "RandomChance"],
+          "description": "Type of condition to evaluate"
+        },
+        "parameter": {
+          "type": "string",
+          "description": "Target identifier for the condition"
+        },
+        "operator": {
+          "type": "string",
+          "enum": ["Eq", "Neq", "Gt", "Gte", "Lt", "Lte", "Contains"],
+          "default": "Eq",
+          "description": "Comparison operator"
+        },
+        "value": {
+          "description": "Value to compare against (any JSON type)"
+        }
+      }
+    },
+    "beat_effect": {
+      "type": "object",
+      "required": ["type", "target"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["Spawn", "Despawn", "GrantItem", "PlayEffect", "SetFlag", "ModifyStat", "TriggerCinematic"],
+          "description": "Type of effect to apply"
+        },
+        "target": {
+          "type": "string",
+          "description": "Target identifier (entity, player, flag, etc.)"
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Effect-specific parameters"
+        }
+      }
+    },
+    "beat_branch": {
+      "type": "object",
+      "required": ["id", "label", "next_beat_id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^BRANCH_[A-Z0-9_]+$",
+          "description": "Unique branch identifier"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable label"
+        },
+        "next_beat_id": {
+          "type": "string",
+          "description": "Beat ID this branch leads to; must exist in parent sequence"
+        },
+        "condition": {
+          "$ref": "#/$defs/beat_condition",
+          "description": "Optional condition for branch availability"
+        },
+        "choice_text": {
+          "type": "string",
+          "description": "Player-facing choice text if interactive"
+        }
+      }
+    },
+    "ai_beat_metadata": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tags for filtering/searching beats"
+        },
+        "prompt_hint": {
+          "type": "string",
+          "description": "Suggested prompt context for generating similar beats"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Difficulty rating for pacing control"
+        },
+        "estimated_duration_s": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Estimated beat duration in seconds"
+        },
+        "content_notes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Content warnings or tone indicators"
+        }
+      }
+    },
+    "ai_sequence_metadata": {
+      "type": "object",
+      "properties": {
+        "genre_tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Genre tags (comedy, action, puzzle, etc.)"
+        },
+        "player_count": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Target player count (1=solo, 2+=multiplayer)"
+        },
+        "compatible_modes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^GMR_[A-Z0-9_]+$"
+          },
+          "description": "Game mode IDs this sequence supports"
+        },
+        "estimated_playtime_min": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Estimated total playtime in minutes"
+        }
+      }
+    }
+  }
+}
