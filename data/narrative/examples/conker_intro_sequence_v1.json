@@ -1,0 +1,153 @@
+{
+  "$schema": "https://github.com/Doctor0Evil/conker-live-and-uncut-fan/schemas/narrative/sequence_v1.schema.json",
+  "id": "SEQ_ALIENBASE_INTRO_CONKER",
+  "title": "Conker's Alien Base Arrival - Intro Sequence",
+  "entry_beat_id": "BEAT_ARRIVAL_LANDING",
+  "beats": {
+    "BEAT_ARRIVAL_LANDING": {
+      "id": "BEAT_ARRIVAL_LANDING",
+      "label": "Conker crash-lands in Alien Base hub",
+      "type": "intro",
+      "sfx_id": "SFX_303",
+      "vfx_id": "VFX_112",
+      "asid_id": "ASID_451",
+      "dialog_lines": [
+        {
+          "speaker": "CONKER",
+          "text": "Blimey! That's the last time I trust a 'shortcut' from a talking mushroom.",
+          "emotion": "Confused",
+          "duration_hint_s": 4.5,
+          "sfx_override": "SFX_501"
+        }
+      ],
+      "conditions": [],
+      "effects": [
+        {
+          "type": "SetFlag",
+          "target": "player.arrived_alienbase",
+          "parameters": { "value": true }
+        }
+      ],
+      "branches": [
+        {
+          "id": "BRANCH_EXPLORE_HUB",
+          "label": "Look around the hub",
+          "next_beat_id": "BEAT_HUB_EXPLORATION",
+          "choice_text": "What's this place, then?"
+        },
+        {
+          "id": "BRANCH_FIND_EXIT",
+          "label": "Search for a way out",
+          "next_beat_id": "BEAT_SEARCH_EXIT",
+          "choice_text": "Right, let's find the exit before anything bites me."
+        }
+      ],
+      "ai_metadata": {
+        "tags": ["intro", "comedy", "alienbase"],
+        "prompt_hint": "Generate a confused CONKER arrival line with environmental SFX",
+        "difficulty": 1,
+        "estimated_duration_s": 12.0,
+        "content_notes": ["mild language"]
+      }
+    },
+    "BEAT_HUB_EXPLORATION": {
+      "id": "BEAT_HUB_EXPLORATION",
+      "label": "Conker observes Alien Base hub details",
+      "type": "trigger",
+      "sfx_id": "SFX_304",
+      "dialog_lines": [
+        {
+          "speaker": "CONKER",
+          "text": "Creepy organic walls, pulsing eggs, suspicious vents... this place gives me the willies.",
+          "emotion": "Fearful",
+          "duration_hint_s": 5.0
+        }
+      ],
+      "conditions": [
+        {
+          "type": "ZoneActive",
+          "parameter": "ZONE_AB_HUB_CENTER",
+          "operator": "Eq",
+          "value": true
+        }
+      ],
+      "effects": [
+        {
+          "type": "TriggerCinematic",
+          "target": "CAMERA_PAN_EGG",
+          "parameters": { "duration_s": 3.0 }
+        }
+      ],
+      "branches": [
+        {
+          "id": "BRANCH_INVESTIGATE_EGG",
+          "label": "Check out the weird egg",
+          "next_beat_id": "BEAT_EGG_DISCOVERY",
+          "choice_text": "That egg's pulsing. Probably not a good sign."
+        }
+      ],
+      "ai_metadata": {
+        "tags": ["exploration", "atmosphere", "alienbase"],
+        "difficulty": 1,
+        "estimated_duration_s": 8.0
+      }
+    },
+    "BEAT_EGG_DISCOVERY": {
+      "id": "BEAT_EGG_DISCOVERY",
+      "label": "Conker discovers Alien Egg objective",
+      "type": "objective",
+      "sfx_id": "SFX_304",
+      "vfx_id": "VFX_017",
+      "dialog_lines": [
+        {
+          "speaker": "CONKER",
+          "text": "Right. Massive alien egg. Probably wants hatching. Probably wants to eat me. Classic.",
+          "emotion": "Sarcastic",
+          "duration_hint_s": 4.0,
+          "sfx_override": "SFX_502"
+        }
+      ],
+      "conditions": [],
+      "effects": [
+        {
+          "type": "GrantItem",
+          "target": "player",
+          "parameters": { "item": "OBJ_ALIEN_EGG_KEY", "quantity": 1 }
+        },
+        {
+          "type": "SetFlag",
+          "target": "objective.egg_discovered",
+          "parameters": { "value": true }
+        }
+      ],
+      "branches": [
+        {
+          "id": "BRANCH_ACCEPT_QUEST",
+          "label": "Take the egg-related quest",
+          "next_beat_id": "BEAT_QUEST_ACCEPTED",
+          "choice_text": "Fine, fine. What do I have to do with this thing?"
+        }
+      ],
+      "ai_metadata": {
+        "tags": ["objective", "alienbase", "comedy"],
+        "prompt_hint": "Generate a sarcastic CONKER line about a dangerous alien objective",
+        "difficulty": 2,
+        "estimated_duration_s": 10.0
+      }
+    }
+  },
+  "exit_conditions": [
+    {
+      "type": "GameRule",
+      "parameter": "objective.egg_discovered",
+      "operator": "Eq",
+      "value": true
+    }
+  ],
+  "ai_metadata": {
+    "genre_tags": ["comedy", "sci-fi", "intro"],
+    "player_count": 1,
+    "compatible_modes": ["GMR_DEATHMATCH_CLASSIC", "GMR_INVASION_ALIEN_BASE"],
+    "estimated_playtime_min": 3
+  }
+}
